@@ -55,6 +55,16 @@ AGENTS.md -> skills -> agents -> memory -> wrappers
 
 Ambos conviven: SDD define que construir; el harness define como trabajar de forma consistente sin importar la herramienta.
 
+## Bucle del Agente
+
+Todo agente sigue el mismo ciclo operativo:
+
+```text
+leer contexto -> entender tarea -> planificar -> ejecutar -> validar -> reportar -> aprender -> repetir o cerrar
+```
+
+Este bucle evita ejecucion a ciegas y deja trazabilidad en status, `memory/progress.md`, skills o memoria cuando corresponde.
+
 ## Wrappers
 
 - `CLAUDE.md`: wrapper para Claude Code. Apunta a `AGENTS.md` y `skills/SELECTING_SKILLS.md`.

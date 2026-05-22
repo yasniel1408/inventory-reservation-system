@@ -1,183 +1,287 @@
 # Arquitectura del Flujo de Agentes
 
-Este documento muestra como interactuan el skill `development-flow` y los agentes definidos en `.agents/`. Los agentes coordinan el trabajo; los `skills/` siguen definiendo reglas tecnicas y de arquitectura.
+Este documento define como trabajan juntos los agentes de `.agents/` y los
+skills de `skills/`. La idea no es agregar burocracia: es hacer que cada cambio
+tenga analisis, plan, ejecucion, revision, pruebas y aprendizaje cuando aplica.
 
-## Flujo Principal
+## Principios
+
+- `skills/` manda sobre el estilo tecnico, arquitectura, naming y criterios de entrega.
+- `skills/development-flow/SKILL.md` se dispara siempre para tareas de desarrollo.
+- Los agentes coordinan el flujo; los skills definen como se debe trabajar.
+- El `analyst` siempre arma un plan antes de ejecutar.
+- El plan necesita aprobacion explicita del usuario.
+- El `team-leader` no continua con ejecucion hasta que el plan este aprobado.
+- El `team-leader` informa estado durante todo el flujo.
+- Al final, `skills-expert` revisa si lo aprendido debe quedar documentado en `skills/`.
+
+## Flujo General
 
 ```text
-Usuario
-  |
-  v
-skills/development-flow/SKILL.md
-  |
-  v
-Leer skills/
-  |
-  v
-analyst
-  - valida coherencia
-  - divide scope
-  - genera plan
-  |
-  v
-Usuario aprueba el plan?
-  |
-  +-- No --> analyst ajusta plan --> vuelve a pedir aprobacion
-  |
-  +-- Si
++----------------+
+| Usuario       |
+| pide trabajo  |
++-------+--------+
+        |
+        v
++---------------------------+
+| development-flow           |
+| inicia el proceso          |
+| lee skills/                |
++-------------+-------------+
+              |
+              v
++---------------------------+
+| analyst                   |
+| valida coherencia          |
+| divide alcance             |
+| propone plan               |
++-------------+-------------+
+              |
+              v
++---------------------------+
+| Gate de aprobacion         |
+| usuario aprueba el plan?   |
++------+--------------------+
        |
-       v
-     team-leader
-       - traduce a tareas tecnicas
-       - define ownership
-       - decide paralelismo
-       - reporta status continuo
+       +-- No --> analyst ajusta el plan
+       |          y vuelve al gate
        |
-       v
-     Hay tareas independientes?
-       |
-       +-- Si --> developer #1
-       |          developer #2
-       |          developer #N
-       |
-       +-- No --> developer unico
-                    |
-                    v
-                 reviewer
-                    |
-                    v
-                 Requiere tests?
-                    |
-                    +-- Si --> tester
-                    |
-                    +-- No
-                         |
-                         v
-                 skills-expert
-                    - revisa skills/
-                    - actualiza si cambio el flujo o arquitectura
-                    - elimina redundancias si aparecen
-                         |
-                         v
-                 validacion final
-                         |
-                         v
-                 resumen final al usuario
-                    - que se hizo
-                    - skills aplicadas
-                    - agentes usados
-                    - camino tomado
-                    - validaciones y riesgos
+       +-- Si
+              |
+              v
++---------------------------+
+| team-leader               |
+| traduce a tareas tecnicas  |
+| define ownership           |
+| decide paralelismo         |
+| reporta status             |
++-------------+-------------+
+              |
+              v
++---------------------------+
+| developer(s)              |
+| ejecutan tareas aisladas   |
+| validan cambios locales    |
++-------------+-------------+
+              |
+              v
++---------------------------+
+| reviewer                  |
+| revisa contra specs/plan   |
+| detecta riesgos y gaps     |
++-------------+-------------+
+              |
+              v
++---------------------------+
+| tester                    |
+| crea/corrige/elimina tests |
+| valida comportamiento      |
++-------------+-------------+
+              |
+              v
++---------------------------+
+| skills-expert             |
+| actualiza skills si aplica |
+| elimina redundancias       |
++-------------+-------------+
+              |
+              v
++---------------------------+
+| Cierre                    |
+| resumen + validaciones     |
+| skills/agentes usados      |
++---------------------------+
 ```
 
 ## Gate de Aprobacion
 
-```text
-Usuario              development-flow          analyst          team-leader
-   |                        |                     |                  |
-   | solicita desarrollo    |                     |                  |
-   |----------------------->|                     |                  |
-   |                        | lee skills/         |                  |
-   |                        |-------------------->|                  |
-   |                        | pide analisis       |                  |
-   |                        |-------------------->|                  |
-   |                        |                     | arma plan        |
-   |                        |                     |------------------|
-   | recibe plan            |                     |                  |
-   |<---------------------------------------------|                  |
-   |                        |                     |                  |
-   | aprueba plan           |                     |                  |
-   |--------------------------------------------->|                  |
-   |                        |                     | entrega plan     |
-   |                        |                     |----------------->|
-   |                        |                     |                  |
-
-Si el usuario NO aprueba:
-
-Usuario              analyst
-   |                    |
-   | pide cambios       |
-   |------------------->|
-   |                    | ajusta plan
-   | recibe nuevo plan  |
-   |<-------------------|
-```
-
-## Responsabilidades
+El gate evita que Codex implemente una solucion grande sin confirmar primero si
+el alcance tiene sentido.
 
 ```text
-+------------------+       +---------------------------+
-| analyst          | ----> | plan aprobado por usuario |
-| negocio/scope    |       +---------------------------+
-+------------------+                     |
-                                         v
-+------------------+       +---------------------------+
-| team-leader      | ----> | tareas tecnicas           |
-| ownership        |       | paralelismo               |
-| status continuo  |       | resumen final             |
-+------------------+       +---------------------------+
-                                         |
-                                         v
-+------------------+       +---------------------------+
-| developer(s)     | ----> | codigo / docs / cambios   |
-| implementacion   |       | validacion local          |
-+------------------+       +---------------------------+
-                                         |
-                                         v
-+------------------+       +---------------------------+
-| reviewer         | ----> | hallazgos / aprobacion    |
-| revision tecnica |       | gaps de tests             |
-+------------------+       +---------------------------+
-                                         |
-                                         v
-+------------------+       +---------------------------+
-| tester           | ----> | tests creados/corregidos  |
-| pruebas          |       | resultados                |
-+------------------+       +---------------------------+
-                                         |
-                                         v
-+------------------+       +---------------------------+
-| skills-expert    | ----> | skills actualizadas       |
-| mantenimiento    |       | redundancias eliminadas   |
-+------------------+       +---------------------------+
+Usuario pide cambio
+        |
+        v
+development-flow lee skills/
+        |
+        v
+analyst analiza el pedido
+        |
+        v
+analyst entrega plan
+        |
+        v
+Usuario decide
+        |
+        +-- pide cambios --> analyst ajusta plan
+        |
+        +-- aprueba ------> team-leader ejecuta el flujo tecnico
 ```
 
-## Mermaid Opcional
+Regla: si el usuario no aprueba, no hay ejecucion tecnica. Solo se ajusta el
+plan hasta que quede aprobado.
 
-Algunos visores Markdown no renderizan Mermaid. Si tu visor lo soporta, este bloque sirve como version grafica alternativa.
+## Bucle del Agente
+
+Cada agente trabaja con el mismo ciclo base. Cambia la salida de cada rol, pero
+no cambia la disciplina del proceso.
+
+```text
+        +------------------+
+        | 1. Leer contexto |
+        +--------+---------+
+                 |
+                 v
+        +------------------+
+        | 2. Entender      |
+        |    objetivo      |
+        +--------+---------+
+                 |
+                 v
+        +------------------+
+        | 3. Planificar    |
+        |    el siguiente  |
+        |    paso          |
+        +--------+---------+
+                 |
+                 v
+        +------------------+
+        | 4. Ejecutar      |
+        |    accion        |
+        +--------+---------+
+                 |
+                 v
+        +------------------+
+        | 5. Validar       |
+        |    resultado     |
+        +--------+---------+
+                 |
+                 v
+        +------------------+
+        | 6. Reportar      |
+        |    estado        |
+        +--------+---------+
+                 |
+                 v
+        +------------------+
+        | 7. Aprender      |
+        |    si aplica     |
+        +--------+---------+
+                 |
+                 v
+        +--------------------------+
+        | Hay mas trabajo para el  |
+        | mismo agente?            |
+        +--------+-----------------+
+                 |
+       +---------+----------+
+       |                    |
+       v                    v
+  repetir ciclo       entregar al
+  con nuevo contexto  siguiente agente
+```
+
+### Que Significa Cada Paso
+
+| Paso | Significado practico |
+| --- | --- |
+| Leer contexto | Revisar skills, specs, plan, tasks, memoria y archivos relevantes. |
+| Entender objetivo | Confirmar que se sabe que se debe producir y que queda fuera del alcance. |
+| Planificar el siguiente paso | Elegir la accion mas chica que mueve el trabajo sin mezclar responsabilidades. |
+| Ejecutar accion | Cambiar archivos, generar artefactos, revisar codigo o correr comandos segun el rol. |
+| Validar resultado | Verificar que la accion produjo lo esperado y no rompio reglas del proyecto. |
+| Reportar estado | Informar etapa, agente activo, tarea actual, bloqueos y proximo paso. |
+| Aprender si aplica | Documentar en skills o memoria solo si aparece una regla reutilizable. |
+
+## Responsabilidades Por Agente
+
+| Agente | Entra cuando | Produce | No debe hacer |
+| --- | --- | --- | --- |
+| `analyst` | Llega un pedido nuevo o ambiguo | Plan de negocio/alcance aprobado por usuario | Implementar codigo antes de la aprobacion |
+| `team-leader` | El plan ya fue aprobado | Tareas tecnicas, ownership, paralelismo, status y cierre | Ejecutar sin dividir cuando hay tareas independientes |
+| `developer` | Hay tarea tecnica concreta | Codigo, docs o artefactos listos y validados localmente | Pisar archivos de otro developer |
+| `reviewer` | Hay cambios completos para revisar | Hallazgos, riesgos, gaps y aprobacion/rechazo tecnica | Reescribir todo sin justificar |
+| `tester` | Hay comportamiento que validar | Tests nuevos, corregidos o eliminados segun corresponda | Mantener tests falsos o desalineados |
+| `skills-expert` | Termina el flujo o cambia una regla de trabajo | Skills actualizadas, simplificadas o sin cambios justificados | Convertir todo en skill sin valor reutilizable |
+
+## Paralelismo
+
+El `team-leader` puede crear N `developer` cuando las tareas son independientes.
+La condicion es que cada developer tenga ownership claro y no toque el mismo
+archivo o contrato sin coordinacion.
+
+```text
+team-leader
+    |
+    +-- developer A --> backend / docs backend
+    |
+    +-- developer B --> frontend / docs frontend
+    |
+    +-- developer C --> tests / fixtures
+    |
+    v
+reviewer integra la mirada completa
+```
+
+Si dos tareas comparten el mismo archivo, modulo o contrato critico, se ejecutan
+en serie o se define un owner unico.
+
+## Status Continuo
+
+Durante el flujo, el `team-leader` debe informar estado con esta forma:
+
+```text
+Status:
+- etapa: <analisis | plan | ejecucion | revision | testing | skills | cierre>
+- agente activo: <analyst | team-leader | developer | reviewer | tester | skills-expert>
+- tarea actual: <que se esta haciendo>
+- bloqueo: <ninguno | descripcion>
+- siguiente paso: <accion concreta>
+```
+
+El status no reemplaza el trabajo. Sirve para que el usuario sepa donde esta el
+flujo, que camino tomo y que falta.
+
+## Cierre Obligatorio
+
+Al terminar, el `team-leader` entrega un resumen corto con:
+
+- Que se hizo.
+- Que archivos se tocaron.
+- Que skills se aplicaron.
+- Que agentes participaron.
+- Que camino tomo el flujo.
+- Que validaciones se corrieron.
+- Riesgos o pendientes, si existen.
+
+## Diagrama Mermaid
+
+Este bloque es opcional para visores que soporten Mermaid.
 
 ```mermaid
 flowchart TD
-    U["Usuario pide cambio o implementacion"] --> DF["skill development-flow"]
-    DF --> S["Leer skills/"]
-    S --> A["analyst arma plan"]
-    A --> AP{"Usuario aprueba el plan?"}
-    AP -- "No" --> AR["analyst ajusta plan"]
-    AR --> AP
-    AP -- "Si" --> TL["team-leader"]
-    TL --> DQ{"Tareas independientes?"}
-    DQ -- "Si" --> D1["developer #1"]
-    DQ -- "Si" --> D2["developer #2"]
-    DQ -- "No" --> D["developer unico"]
+    U["Usuario"] --> DF["development-flow"]
+    DF --> SK["Leer skills/"]
+    SK --> A["analyst: plan"]
+    A --> G{"Usuario aprueba?"}
+    G -- "No" --> AX["analyst ajusta"]
+    AX --> G
+    G -- "Si" --> TL["team-leader"]
+    TL --> P{"Tareas independientes?"}
+    P -- "Si" --> D1["developer 1"]
+    P -- "Si" --> D2["developer 2"]
+    P -- "No" --> D["developer unico"]
     D1 --> R["reviewer"]
     D2 --> R
     D --> R
-    R --> TS["tester si aplica"]
-    TS --> SE["skills-expert"]
-    SE --> V["validacion final"]
-    V --> OUT["reporte al usuario"]
+    R --> T["tester"]
+    T --> SE["skills-expert"]
+    SE --> C["cierre y resumen"]
 ```
 
-## Reglas de Control
+## Regla Final
 
-- `skills/development-flow/SKILL.md` se usa siempre al inicio de tareas de desarrollo.
-- `analyst` siempre produce un plan antes de ejecutar desarrollo.
-- El plan del `analyst` requiere aprobacion explicita del usuario.
-- `team-leader` no continua hasta que el usuario apruebe el plan.
-- `team-leader` reporta status continuo de etapa, agente activo, tarea, bloqueos y siguiente paso.
-- `developer` puede instanciarse N veces solo si los scopes no pisan archivos.
-- `reviewer` revisa contra specs, plan, tasks y riesgos.
-- `tester` crea, corrige o elimina tests segun comportamiento real.
-- `skills-expert` corre al final para mantener `skills/` actualizadas, descubribles y no redundantes.
-- El cierre siempre incluye resumen de trabajo, skills aplicadas, agentes usados, camino tomado, validaciones y riesgos.
-- Si aparece conflicto entre agentes y `skills/`, ganan los `skills/`.
+Si hay conflicto entre un agente y un skill, gana el skill. Si aparece una regla
+nueva que sirve para trabajos futuros, `skills-expert` decide si debe quedar en
+`skills/` o en memoria.

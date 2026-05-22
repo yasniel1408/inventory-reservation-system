@@ -5,26 +5,26 @@ Este archivo es un snapshot del estado actual del flujo. No es un log historico;
 ## Estado del Flujo
 
 - Fecha: 2026-05-22.
-- Etapa: cierre de harness/memoria.
+- Etapa: cierre de documentacion de agentes.
 - Agente activo: skills-expert.
 - Plan aprobado: si.
-- Tarea actual: `memory/progress.md` incorporado como snapshot de progreso por agente.
+- Tarea actual: `.agents/ARCHITECTURE.md` prolijado y bucle del agente explicado con mas claridad.
 - Bloqueos: ninguno.
-- Siguiente paso: continuar con la implementacion cuando el usuario lo apruebe.
+- Siguiente paso: usar este flujo como referencia para futuras tareas de desarrollo.
 
 ## Agentes
 
-- analyst: completo; propuso usar `memory/progress.md` como snapshot, no como log infinito.
-- team-leader: completo; conecto progreso con `AGENTS.md`, `.agents/team-leader.md` y `skills-expert`.
-- developer: completo; creo `memory/progress.md` y actualizo reglas relacionadas.
-- reviewer: completo; valido consistencia y ausencia de referencias rotas.
-- tester: completo; valido JSON/config y skills.
-- skills-expert: completo; documento decision y aprendizaje en `memory/`.
+- analyst: completo; alcance acotado a mejorar el documento de arquitectura de agentes.
+- team-leader: completo; coordino el cambio y mantuvo status del flujo.
+- developer: completo; reescribio `.agents/ARCHITECTURE.md` con flujo, gate, bucle, responsabilidades y cierre.
+- reviewer: completo; reviso consistencia del documento.
+- tester: completo; valido formato basico y ausencia de referencias prohibidas.
+- skills-expert: completo; no detecto necesidad de modificar skills, solo actualizo este snapshot.
 
 ## Ultimo Resumen
 
-- Cambios realizados: se agrego `memory/progress.md` y reglas para mantenerlo como snapshot.
+- Cambios realizados: se prolijo `.agents/ARCHITECTURE.md` y se dejo mas claro el bucle del agente.
 - Skills aplicadas: `development-flow`, `sdd-architecture`.
-- Agentes usados: `team-leader`, `developer`, `reviewer/tester`, `skills-expert`.
-- Validaciones: `opencode.json` valido; skills validos; sin referencias a terminologia eliminada.
-- Riesgos: evitar que `progress.md` se convierta en historial largo.
+- Agentes usados: `team-leader`, `developer`, `reviewer`, `tester`, `skills-expert`.
+- Validaciones: lectura de skills; revision del documento; sin referencias a terminologia eliminada.
+- Riesgos: ninguno relevante; mantener el documento como guia operativa, no como teoria extensa.

@@ -48,6 +48,12 @@
 - Motivo: permite pausar y retomar con Codex, Claude Code, OpenCode u otra herramienta sin depender de memoria interna.
 - Implicacion: no debe convertirse en log historico; se reemplaza el estado vigente.
 
+## Bucle del Agente
+
+- Decision: todo agente trabaja con un bucle explicito de contexto, plan, ejecucion, validacion, status y aprendizaje.
+- Motivo: evita ejecucion a ciegas y hace portable el modo de trabajo entre herramientas.
+- Implicacion: cada agente debe reportar status, validar antes de cerrar y marcar aprendizajes para `skills-expert`.
+
 ## Stack del Challenge
 
 - Decision: backend Go + Gin + GORM + PostgreSQL; frontend React + Vite + TypeScript.

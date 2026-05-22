@@ -34,6 +34,29 @@ Este repo debe priorizar entrega clara sobre ceremonia. Usar este skill como pun
 10. Ejecutar validacion posible.
 11. Reportar resumen final con cambios, skills aplicadas, agentes usados, camino tomado, validacion y riesgos restantes.
 
+## Bucle del Agente
+
+Cada agente debe operar en este ciclo:
+
+```text
+leer contexto
+  -> entender tarea
+  -> planificar siguiente paso
+  -> ejecutar
+  -> validar
+  -> reportar status
+  -> aprender si aplica
+  -> decidir si termina o repite
+```
+
+Reglas:
+
+- No ejecutar sin contexto suficiente.
+- No pasar al siguiente agente si falta aprobacion, validacion u ownership.
+- Si hay bloqueo, reportarlo y replanificar.
+- Si hay aprendizaje reusable, marcarlo para `skills-expert`.
+- Si el trabajo puede pausarse o cambiar de herramienta, actualizar `memory/progress.md`.
+
 ## Status Obligatorio
 
 Durante una tarea de desarrollo, mostrar status recurrente al usuario con:

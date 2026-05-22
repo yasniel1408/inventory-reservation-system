@@ -53,6 +53,29 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
 10. `skills-expert` revisa si hay que actualizar, fusionar o eliminar skills, incluyendo aprendizajes de bugs corregidos.
 11. Reportar resumen final con trabajo realizado, skills aplicadas, agentes usados, camino tomado, validaciones y riesgos restantes.
 
+## Bucle del Agente
+
+Cada agente debe trabajar en ciclos cortos y observables:
+
+```text
+leer contexto
+  -> entender tarea
+  -> planificar siguiente paso
+  -> ejecutar
+  -> validar
+  -> reportar status
+  -> aprender si aplica
+  -> decidir si termina o repite
+```
+
+Reglas del bucle:
+
+- No ejecutar sin contexto suficiente.
+- No avanzar al siguiente agente si falta aprobacion, validacion o ownership.
+- Si aparece un bloqueo, reportarlo y volver a planificar.
+- Si aparece un aprendizaje reusable, marcarlo para `skills-expert`.
+- Si el trabajo puede pausarse, actualizar `memory/progress.md`.
+
 ## Status y Resumen
 
 - Durante ejecucion, el usuario debe ver status recurrente y claro de que esta pasando.

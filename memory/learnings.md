@@ -36,6 +36,12 @@
 - Regla preventiva: `memory/progress.md` debe ser snapshot del estado actual, no historial acumulativo.
 - Responsable: `team-leader` durante ejecucion y `skills-expert` al cierre.
 
+## Bucle Explícito Evita Ejecución a Ciegas
+
+- Aprendizaje: si el agente no tiene un ciclo claro, puede ejecutar sin contexto, saltarse validaciones o no reportar estado.
+- Regla preventiva: todo agente debe seguir el bucle contexto -> plan -> ejecutar -> validar -> status -> aprender -> repetir/cerrar.
+- Aplicado en: `AGENTS.md`, `skills/development-flow/SKILL.md`, `.agents/ARCHITECTURE.md` y `HARNESS.md`.
+
 ## Evitar Duplicacion del Flujo
 
 - Aprendizaje: duplicar `development-flow` en `.agents/` y `skills/` crea dos fuentes de verdad.
