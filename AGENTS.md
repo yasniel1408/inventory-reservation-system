@@ -12,6 +12,7 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
   - `tasks.md`
 - Los `skills/` definen reglas tecnicas y de arquitectura.
 - `.agents/` define roles de coordinacion.
+- `memory/` guarda decisiones y aprendizajes versionados del harness.
 - `AGENTS.md` es la fuente canonica tool-agnostic del harness.
 - `CLAUDE.md` y `opencode.json` son wrappers para herramientas especificas y no deben duplicar reglas.
 
@@ -29,8 +30,10 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
 - `tester` crea, corrige o elimina tests segun comportamiento real.
 - `skills-expert` corre al final para mantener `skills/` actualizadas, descubribles y sin redundancia.
 - Si aparece un bug, regresion o validacion fallida con causa reusable, `skills-expert` debe documentar la regla preventiva en `skills/`.
+- Usar `memory/` para decisiones estables y aprendizajes historicos que no necesariamente son reglas operativas.
 - Si hay conflicto entre `.agents/` y `skills/`, ganan los `skills/`.
 - Si hay conflicto entre wrappers de herramienta y `AGENTS.md`, gana `AGENTS.md`.
+- Si hay conflicto entre `memory/` y `skills/`, ganan los `skills/`.
 
 ## Flujo de Desarrollo
 

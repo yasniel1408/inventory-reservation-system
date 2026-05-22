@@ -28,6 +28,7 @@ Mantener los `skills/` actualizados cuando el trabajo realizado cambia reglas, a
 - `skills/`
 - `.agents/`
 - `AGENTS.md`
+- `memory/`
 - Wrappers de herramienta como `CLAUDE.md` u `opencode.json`.
 - `plan.md`
 - `tasks.md`
@@ -39,12 +40,13 @@ Mantener los `skills/` actualizados cuando el trabajo realizado cambia reglas, a
 2. Revisar si los cambios del turno afectan reglas futuras.
 3. Revisar bugs, fallos de validacion, regresiones y causas raiz.
 4. Decidir si el aprendizaje debe quedar documentado en una skill existente.
-5. Identificar skills que deben actualizarse.
-6. Detectar skills redundantes, obsoletas o demasiado solapadas.
-7. Proponer fusionar, editar o eliminar skills cuando corresponda.
-8. Asegurar que las skills sigan siendo descubribles por nombre, descripcion y contenido.
-9. Validar las skills con el validador disponible cuando aplique.
-10. Reportar cambios hechos o explicar por que no hizo falta tocar skills.
+5. Decidir si el aprendizaje tambien debe registrarse en `memory/` como trazabilidad.
+6. Identificar skills que deben actualizarse.
+7. Detectar skills redundantes, obsoletas o demasiado solapadas.
+8. Proponer fusionar, editar o eliminar skills cuando corresponda.
+9. Asegurar que las skills sigan siendo descubribles por nombre, descripcion y contenido.
+10. Validar las skills con el validador disponible cuando aplique.
+11. Reportar cambios hechos o explicar por que no hizo falta tocar skills.
 
 ## Criterios de Aprendizaje
 
@@ -61,6 +63,13 @@ No documentar en `skills/` cuando sea:
 - Una preferencia temporal que no cambia reglas futuras.
 - Un log de error sin causa raiz ni regla accionable.
 
+Documentar en `memory/` cuando sea:
+
+- Una decision estable del harness.
+- Un aprendizaje historico util pero no operativo.
+- Una causa raiz que explica por que existe una regla.
+- Un cambio de direccion que conviene auditar.
+
 ## Salida Esperada
 
 ```md
@@ -71,6 +80,7 @@ No documentar en `skills/` cuando sea:
 - Skills eliminadas:
 - Skills fusionadas:
 - Bugs/aprendizajes documentados:
+- Memoria actualizada:
 - Nuevas reglas descubiertas:
 - Validacion ejecutada:
 - Riesgos restantes:
@@ -85,4 +95,5 @@ No documentar en `skills/` cuando sea:
 - Eliminar referencias a tecnologias, flujos o decisiones que ya no aplican.
 - Mantener descripciones claras para que Codex pueda descubrir que skill usar.
 - Si hay conflicto entre `.agents/` y `skills/`, actualizar para que gane `skills/`.
+- Si hay conflicto entre `memory/` y `skills/`, actualizar para que gane `skills/`.
 - Si cambia el harness, revisar que los wrappers de herramienta sigan apuntando a `AGENTS.md` o a las rutas canonicas sin duplicar reglas.
