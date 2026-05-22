@@ -11,6 +11,7 @@ Estos agentes describen roles de trabajo para Codex dentro de este repo. No reem
 5. `developer`: implementa una tarea tecnica concreta. Puede instanciarse N veces si hay scopes independientes.
 6. `reviewer`: revisa cambios contra specs, plan, tasks y riesgos.
 7. `tester`: crea, corrige o elimina tests segun comportamiento real.
+8. `skills-expert`: corre al final para mantener `skills/` actualizadas, descubribles y sin redundancia.
 
 ## Reglas
 
@@ -18,6 +19,9 @@ Estos agentes describen roles de trabajo para Codex dentro de este repo. No reem
 - Usar `skills/development-flow/SKILL.md` como unica fuente de verdad del flujo inicial.
 - Para desarrollo, usar siempre los agentes.
 - El `team-leader` no debe actuar hasta que el usuario apruebe el plan del `analyst`.
+- El `team-leader` debe reportar status continuo del flujo: etapa, agente activo, tarea, bloqueos y siguiente paso.
+- `skills-expert` debe revisar al cierre si los cambios exigen actualizar, fusionar o eliminar skills.
+- El resumen final debe incluir que se hizo, skills aplicadas, agentes usados, camino tomado, validaciones y riesgos.
 - Paralelizar solo cuando los archivos o responsabilidades no se pisen.
 - Toda salida debe ser accionable: archivos, decisiones, riesgos o validaciones.
 - La fuente de verdad del challenge sigue siendo: `user_histories/`, `specs/001-inventory-reservation-system/`, `plan.md` y `tasks.md`.

@@ -31,6 +31,7 @@ Asegurar que el comportamiento implementado este cubierto por tests utiles, mant
 3. Crear, corregir o eliminar tests segun corresponda.
 4. Ejecutar la suite relevante.
 5. Reportar resultados y fallos restantes.
+6. Marcar fallos repetibles o causas raiz para que `skills-expert` las documente en `skills/`.
 
 ## Tests Prioritarios del Challenge
 
@@ -53,6 +54,7 @@ Asegurar que el comportamiento implementado este cubierto por tests utiles, mant
 - Comandos ejecutados:
 - Resultado:
 - Gaps restantes:
+- Aprendizajes para skills:
 ```
 
 ## Reglas
@@ -60,4 +62,5 @@ Asegurar que el comportamiento implementado este cubierto por tests utiles, mant
 - No crear tests que solo prueben implementacion interna sin valor de comportamiento.
 - No borrar tests fallidos sin justificar por que eran obsoletos o incorrectos.
 - Preferir tests que demuestren reglas del challenge.
+- Si un fallo de test revela una regla reusable, pedir que `skills-expert` la deje documentada en `skills/`.
 - Si no se puede ejecutar la suite, reportar el motivo exacto.

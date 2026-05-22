@@ -32,6 +32,7 @@ Revisar que lo implementado cumpla las specs, no rompa decisiones del plan y no 
 4. Confirmar que los cambios respetan skills locales.
 5. Listar hallazgos por severidad.
 6. Enviar al `tester` si faltan pruebas o hay tests incorrectos.
+7. Marcar hallazgos repetibles para que `skills-expert` los documente como reglas preventivas.
 
 ## Salida Esperada
 
@@ -41,6 +42,7 @@ Revisar que lo implementado cumpla las specs, no rompa decisiones del plan y no 
 - Hallazgos:
 - Riesgos:
 - Gaps de tests:
+- Aprendizajes para skills:
 - Cambios aceptados:
 - Requiere tester:
 ```
@@ -49,5 +51,6 @@ Revisar que lo implementado cumpla las specs, no rompa decisiones del plan y no 
 
 - Priorizar bugs y riesgos sobre estilo.
 - Referenciar archivos y lineas cuando existan.
+- Si un bug revela un patron que puede repetirse, pedir que `skills-expert` actualice la skill correspondiente.
 - No reescribir codigo salvo que se pida explicitamente.
 - Si no hay hallazgos, decirlo claramente y mencionar riesgo residual.

@@ -12,6 +12,8 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
   - `tasks.md`
 - Los `skills/` definen reglas tecnicas y de arquitectura.
 - `.agents/` define roles de coordinacion.
+- `AGENTS.md` es la fuente canonica tool-agnostic del harness.
+- `CLAUDE.md` y `opencode.json` son wrappers para herramientas especificas y no deben duplicar reglas.
 
 ## Reglas Obligatorias
 
@@ -21,10 +23,14 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
 - `analyst` debe generar un plan antes de cualquier implementacion.
 - El plan del `analyst` requiere aprobacion explicita del usuario.
 - `team-leader` no puede continuar hasta que el usuario apruebe el plan.
+- `team-leader` debe mantener status continuo del flujo: etapa actual, agente activo, tarea en curso, bloqueos y siguiente paso.
 - `developer` solo trabaja sobre tareas tecnicas con ownership claro.
 - `reviewer` revisa cambios contra specs, plan, tasks y riesgos.
 - `tester` crea, corrige o elimina tests segun comportamiento real.
+- `skills-expert` corre al final para mantener `skills/` actualizadas, descubribles y sin redundancia.
+- Si aparece un bug, regresion o validacion fallida con causa reusable, `skills-expert` debe documentar la regla preventiva en `skills/`.
 - Si hay conflicto entre `.agents/` y `skills/`, ganan los `skills/`.
+- Si hay conflicto entre wrappers de herramienta y `AGENTS.md`, gana `AGENTS.md`.
 
 ## Flujo de Desarrollo
 
@@ -33,10 +39,30 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
 3. `analyst` presenta un plan al usuario.
 4. Esperar aprobacion explicita del usuario.
 5. `team-leader` traduce el plan aprobado a tareas tecnicas.
-6. `developer` implementa una o mas tareas.
-7. `reviewer` revisa el resultado.
-8. `tester` ajusta tests cuando corresponde.
-9. Reportar cambios, validaciones y riesgos restantes.
+6. `team-leader` reporta status al iniciar cada etapa y cuando cambie el agente activo.
+7. `developer` implementa una o mas tareas.
+8. `reviewer` revisa el resultado.
+9. `tester` ajusta tests cuando corresponde.
+10. `skills-expert` revisa si hay que actualizar, fusionar o eliminar skills, incluyendo aprendizajes de bugs corregidos.
+11. Reportar resumen final con trabajo realizado, skills aplicadas, agentes usados, camino tomado, validaciones y riesgos restantes.
+
+## Status y Resumen
+
+- Durante ejecucion, el usuario debe ver status recurrente y claro de que esta pasando.
+- El status debe indicar:
+  - etapa actual del flujo
+  - agente activo
+  - tarea en curso
+  - decision o bloqueo relevante
+  - siguiente paso
+- El resumen final debe incluir:
+  - que se hizo
+  - que archivos cambiaron
+  - que skills se aplicaron
+  - que agentes participaron
+  - que camino tomo el flujo
+  - que validaciones se ejecutaron
+  - que riesgos o pendientes quedan
 
 ## Paralelismo
 
