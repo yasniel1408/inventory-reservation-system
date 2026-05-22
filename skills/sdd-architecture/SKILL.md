@@ -12,6 +12,7 @@ Usar este skill para preservar el flujo SDD del challenge. No escribir código d
 - Leer todos los archivos en `skills/` antes de iniciar cualquier tarea del repo.
 - Usar `sdd/user_histories/` como fuente de comportamiento.
 - Usar `sdd/specs/001-inventory-reservation-system/` como paquete actual de especificación.
+- Usar `sdd/TRACEABILITY.md` como matriz de cobertura entre historias, specs, plan, tasks y validaciones.
 - Usar el PDF original del challenge solo cuando requisitos no estén claros o se deba confirmar un artefacto faltante.
 
 ## Flujo
@@ -28,6 +29,7 @@ Usar este skill para preservar el flujo SDD del challenge. No escribir código d
    - `sdd/plans/001-inventory-reservation-system.md` como plan activo
    - `sdd/tasks.md` como indice
    - `sdd/tasks/001-inventory-reservation-system.md` como tablero activo
+   - `sdd/TRACEABILITY.md`
 3. Documentar supuestos, ambigüedades y decisiones en el artefacto más cercano: `spec.md`, `sdd/plans/<id>.md`, `sdd/tasks/<id>.md` o `README.md`.
 4. Mantener trazabilidad explícita: cada tarea de implementación debe apuntar a al menos una spec, criterio de aceptación o requisito de test.
 5. Preferir artefactos pequeños y revisables antes que documentos narrativos amplios.
@@ -45,6 +47,7 @@ Usar este skill para preservar el flujo SDD del challenge. No escribir código d
 - `sdd/plans/<id>.md` debe elegir tecnologías y estrategias concretas de implementación.
 - `sdd/tasks.md` debe ser un indice corto de tableros.
 - `sdd/tasks/<id>.md` debe contener work items ejecutables con ownership claro de archivo/módulo.
+- `sdd/TRACEABILITY.md` debe mostrar que historia, spec, plan, task y validacion cubren cada area principal.
 
 ## Checks Específicos del Challenge
 

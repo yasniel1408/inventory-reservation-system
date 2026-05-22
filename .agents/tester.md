@@ -69,6 +69,20 @@ Asegurar que el comportamiento implementado este cubierto por tests utiles, mant
 - Aprendizajes para skills:
 ```
 
+## Handoff
+
+```md
+## Handoff
+
+- Para: delivery-manager | reviewer | skills-expert
+- Contexto:
+- Archivos tocados:
+- Decisiones:
+- Validacion:
+- Riesgos:
+- Proximo paso:
+```
+
 ## Reglas
 
 - No crear tests que solo prueben implementacion interna sin valor de comportamiento.

@@ -109,6 +109,20 @@ Documentar en `memory/progress.md` cuando sea:
 - Riesgos restantes:
 ```
 
+## Handoff
+
+```md
+## Handoff
+
+- Para: team-leader | usuario | siguiente herramienta
+- Contexto:
+- Archivos tocados:
+- Decisiones:
+- Validacion:
+- Riesgos:
+- Proximo paso:
+```
+
 ## Reglas
 
 - No crear skills nuevas salvo que exista una responsabilidad estable y repetida.

@@ -64,6 +64,20 @@ Implementar una tarea tecnica concreta con cambios listos para revision y valida
 - Siguiente paso recomendado:
 ```
 
+## Handoff
+
+```md
+## Handoff
+
+- Para: reviewer
+- Contexto:
+- Archivos tocados:
+- Decisiones:
+- Validacion:
+- Riesgos:
+- Proximo paso:
+```
+
 ## Reglas
 
 - No modificar archivos fuera del owner sin avisar.

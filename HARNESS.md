@@ -12,10 +12,16 @@ AGENTS.md
   |     reglas operativas, arquitectura y aprendizajes accionables
   |
   +-- .agents/
-  |     roles de coordinacion: analyst, team-leader, developer, reviewer, tester, skills-expert
+  |     roles de coordinacion: analyst, team-leader, developer, reviewer, tester, delivery-manager, skills-expert
   |
   +-- memory/
   |     decisiones estables y aprendizajes historicos versionados
+  |
+  +-- harness/
+  |     checklist operativo del harness
+  |
+  +-- scripts/
+  |     validadores locales del harness
   |
   +-- wrappers
   |     CLAUDE.md
@@ -73,6 +79,21 @@ leer contexto -> entender tarea -> planificar -> ejecutar -> validar -> reportar
 ```
 
 Este bucle evita ejecucion a ciegas y deja trazabilidad en status, `memory/progress.md`, skills o memoria cuando corresponde.
+
+## Handoff
+
+Cuando un agente termina, entrega un bloque `## Handoff` al siguiente agente con contexto, archivos, decisiones, validacion, riesgos y proximo paso. El objetivo es que Codex, Claude Code, OpenCode u otra herramienta puedan retomar sin depender de memoria interna.
+
+## Validacion del Harness
+
+- `harness/checklist.md`: checklist humano del harness.
+- `scripts/validate-harness.sh`: validacion automatica de estructura, skills, agentes, wrappers y referencias obsoletas.
+
+Ejecutar:
+
+```bash
+./scripts/validate-harness.sh
+```
 
 ## Wrappers
 

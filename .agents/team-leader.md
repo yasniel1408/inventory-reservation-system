@@ -91,6 +91,20 @@ Traducir un plan aprobado por el usuario en tareas tecnicas ejecutables, con own
 - Riesgos o pendientes:
 ```
 
+## Handoff
+
+```md
+## Handoff
+
+- Para: developer | reviewer | tester | delivery-manager | skills-expert
+- Contexto:
+- Archivos tocados:
+- Decisiones:
+- Validacion:
+- Riesgos:
+- Proximo paso:
+```
+
 ## Reglas
 
 - No crear tareas vagas.

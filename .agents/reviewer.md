@@ -60,6 +60,20 @@ Revisar que lo implementado cumpla las specs, no rompa decisiones del plan y no 
 - Requiere tester:
 ```
 
+## Handoff
+
+```md
+## Handoff
+
+- Para: tester | delivery-manager | team-leader
+- Contexto:
+- Archivos tocados:
+- Decisiones:
+- Validacion:
+- Riesgos:
+- Proximo paso:
+```
+
 ## Reglas
 
 - Priorizar bugs y riesgos sobre estilo.

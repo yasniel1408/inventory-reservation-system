@@ -72,6 +72,24 @@
 - Motivo: concentrar mayor razonamiento en coordinacion global y ahorrar tokens en tareas acotadas.
 - Implicacion: si una herramienta no soporta el modelo exacto, debe usar el modelo disponible mas cercano y reportar fallback.
 
+## Delivery Manager Antes de Skills Expert
+
+- Decision: agregar `delivery-manager` despues de `tester` y antes de `skills-expert`.
+- Motivo: separar validacion de comportamiento de verificacion de entrega final.
+- Implicacion: README, OpenAPI, seeds, setup, comandos y checklist final se revisan antes de cerrar y antes de actualizar skills.
+
+## Harness Verificable
+
+- Decision: agregar `harness/checklist.md`, `scripts/validate-harness.sh` y `sdd/TRACEABILITY.md`.
+- Motivo: convertir reglas de harness y SDD en estructura verificable, no solo documentacion narrativa.
+- Implicacion: cambios futuros del harness deben pasar por checklist, script y matriz de trazabilidad cuando apliquen.
+
+## Handoff Entre Agentes
+
+- Decision: cada agente entrega un bloque `## Handoff` al siguiente.
+- Motivo: hacer portable el flujo entre Codex, Claude Code, OpenCode u otra herramienta.
+- Implicacion: el siguiente agente recibe contexto, archivos, decisiones, validacion, riesgos y proximo paso sin reconstruir todo.
+
 ## Stack del Challenge
 
 - Decision: backend Go + Gin + GORM + PostgreSQL; frontend React + Vite + TypeScript.

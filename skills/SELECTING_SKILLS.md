@@ -32,4 +32,5 @@ No crear más skills salvo que aparezca una responsabilidad estable y repetida q
 - `developer`: `development-flow`, `tdd-development` y la skill tecnica asignada.
 - `reviewer`: `development-flow`, `sdd-architecture`, `tdd-development` y skills tecnicas segun diff.
 - `tester`: `development-flow`, `tdd-development` y backend/frontend segun suite.
+- `delivery-manager`: `development-flow`, `sdd-architecture` y `delivery-artifacts`.
 - `skills-expert`: `development-flow`, `sdd-architecture` y toda skill afectada por el aprendizaje.

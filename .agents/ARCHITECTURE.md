@@ -16,6 +16,7 @@ tenga analisis, plan, ejecucion, revision, pruebas y aprendizaje cuando aplica.
 - Al final, `skills-expert` revisa si lo aprendido debe quedar documentado en `skills/`.
 - Cada agente selecciona y declara las skills que necesita para su tarea actual.
 - Cada agente usa el perfil de modelo recomendado para su rol si la herramienta lo permite.
+- Cada agente entrega un `## Handoff` cuando pasa trabajo al siguiente agente.
 
 ## Flujo General
 
@@ -83,6 +84,13 @@ tenga analisis, plan, ejecucion, revision, pruebas y aprendizaje cuando aplica.
               |
               v
 +---------------------------+
+| delivery-manager          |
+| verifica artefactos        |
+| de entrega                 |
++-------------+-------------+
+              |
+              v
++---------------------------+
 | skills-expert             |
 | actualiza skills si aplica |
 | elimina redundancias       |
@@ -123,6 +131,18 @@ Usuario decide
 
 Regla: si el usuario no aprueba, no hay ejecucion tecnica. Solo se ajusta el
 plan hasta que quede aprobado.
+
+## Excepciones al Flujo Completo
+
+No se activa todo el flujo para tareas menores:
+
+- preguntas conceptuales;
+- lecturas o resumenes cortos;
+- comandos simples;
+- correcciones menores de texto o formato;
+- inspecciones rapidas sin decision tecnica.
+
+Si una tarea menor descubre riesgo, bug, cambio de arquitectura o implementacion real, se escala al flujo completo desde `analyst`.
 
 ## Bucle del Agente
 
@@ -229,6 +249,7 @@ Mapa minimo:
 | `developer` | `development-flow`, `tdd-development`, skill tecnica asignada |
 | `reviewer` | `development-flow`, `sdd-architecture`, skills del diff |
 | `tester` | `development-flow`, `tdd-development`, skill de la suite |
+| `delivery-manager` | `development-flow`, `sdd-architecture`, `delivery-artifacts` |
 | `skills-expert` | `development-flow`, `sdd-architecture`, skills afectadas |
 
 ## Responsabilidades Por Agente
@@ -240,6 +261,7 @@ Mapa minimo:
 | `developer` | Hay tarea tecnica concreta | Codigo, docs o artefactos listos y validados localmente | Pisar archivos de otro developer |
 | `reviewer` | Hay cambios completos para revisar | Hallazgos, riesgos, gaps y aprobacion/rechazo tecnica | Reescribir todo sin justificar |
 | `tester` | Hay comportamiento que validar | Tests nuevos, corregidos o eliminados segun corresponda | Mantener tests falsos o desalineados |
+| `delivery-manager` | Tests y revision ya pasaron o la entrega necesita checklist | README, OpenAPI, seeds, setup, comandos y estado de entrega | Revalidar todo el codigo como tester |
 | `skills-expert` | Termina el flujo o cambia una regla de trabajo | Skills actualizadas, simplificadas o sin cambios justificados | Convertir todo en skill sin valor reutilizable |
 
 ## Modelo Por Agente
@@ -251,6 +273,7 @@ Mapa minimo:
 | `developer` | Codex estandar | medium | Ejecuta tareas acotadas con contexto tecnico especifico. |
 | `reviewer` | Codex alto | high | Busca bugs, riesgos y gaps de tests. |
 | `tester` | Codex estandar | medium | Ajusta tests y validaciones concretas. |
+| `delivery-manager` | Codex estandar | medium | Verifica artefactos de entrega y comandos documentados. |
 | `skills-expert` | Codex alto | high | Evita drift y mantiene skills descubribles. |
 
 Si el modelo exacto no existe en la herramienta usada, se usa el disponible mas cercano al perfil.
@@ -294,7 +317,7 @@ Durante el flujo, el `team-leader` debe informar estado con esta forma:
 ```text
 Status:
 - etapa: <analisis | plan | ejecucion | revision | testing | skills | cierre>
-- agente activo: <analyst | team-leader | developer | reviewer | tester | skills-expert>
+- agente activo: <analyst | team-leader | developer | reviewer | tester | delivery-manager | skills-expert>
 - tarea actual: <que se esta haciendo>
 - skills seleccionadas: <lista corta>
 - modelo/perfil: <perfil usado>
@@ -304,6 +327,24 @@ Status:
 
 El status no reemplaza el trabajo. Sirve para que el usuario sepa donde esta el
 flujo, que camino tomo y que falta.
+
+## Handoff Entre Agentes
+
+Cada agente entrega al siguiente este bloque:
+
+```md
+## Handoff
+
+- Para:
+- Contexto:
+- Archivos tocados:
+- Decisiones:
+- Validacion:
+- Riesgos:
+- Proximo paso:
+```
+
+El handoff evita que el siguiente agente tenga que reconstruir contexto desde cero y hace el flujo portable entre herramientas.
 
 ## Cierre Obligatorio
 
@@ -339,7 +380,8 @@ flowchart TD
     D2 --> R
     D --> R
     R --> T["tester"]
-    T --> SE["skills-expert"]
+    T --> DM["delivery-manager"]
+    DM --> SE["skills-expert"]
     SE --> C["cierre y resumen"]
 ```
 

@@ -5,10 +5,10 @@ Este archivo es un snapshot del estado actual del flujo. No es un log historico;
 ## Estado del Flujo
 
 - Fecha: 2026-05-22.
-- Etapa: ajuste de harness de agentes.
+- Etapa: mejora de Harness Engineering.
 - Agente activo: skills-expert.
 - Plan aprobado: si.
-- Tarea actual: perfiles de modelo explicitados dentro de cada `.agents/*.md`.
+- Tarea actual: checklist, validador, handoff, excepciones de flujo y trazabilidad SDD agregados.
 - Bloqueos: ninguno.
 - Siguiente paso: continuar implementacion desde `sdd/tasks/001-inventory-reservation-system.md` T-003; developers deben usar `tdd-development` si escriben codigo productivo.
 
@@ -19,12 +19,13 @@ Este archivo es un snapshot del estado actual del flujo. No es un log historico;
 - developer: completo; movio historias, specs, planes y tasks a `sdd/` y actualizo referencias.
 - reviewer: completo; reviso rutas canonicas y separacion de responsabilidades.
 - tester: completo; valida estructura, referencias y configuracion.
-- skills-expert: completo; mantuvo modelos en frontmatter y tambien visibles en el cuerpo de cada agente.
+- delivery-manager: definido; revisa artefactos de entrega antes de `skills-expert`.
+- skills-expert: completo; mantiene skills despues del cierre de delivery y verifica reglas de harness.
 
 ## Ultimo Resumen
 
-- Cambios realizados: se agrego `## Modelo` a cada agente y se corrigio la referencia canonica a `sdd/plans.md`.
+- Cambios realizados: se agrego `harness/checklist.md`, `scripts/validate-harness.sh`, `sdd/TRACEABILITY.md`, handoff entre agentes y reglas para no usar flujo completo en tareas menores.
 - Skills aplicadas: `development-flow`, `sdd-architecture`.
-- Agentes usados: `team-leader`, `developer`, `reviewer`, `tester`, `skills-expert`.
-- Validaciones: lectura de skills; revision de rutas; validacion de JSON/config.
-- Riesgos: mantener root harness y `sdd/` sincronizados cuando se creen nuevos artefactos.
+- Agentes usados: `team-leader`, `developer`, `reviewer`, `tester`, `delivery-manager`, `skills-expert`.
+- Validaciones: lectura de skills; revision de rutas; validacion automatica del harness.
+- Riesgos: mantener `sdd/TRACEABILITY.md` actualizado cuando cambien tasks o specs.

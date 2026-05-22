@@ -11,7 +11,8 @@ Estos agentes describen roles de trabajo para Codex dentro de este repo. No reem
 5. `developer`: implementa una tarea tecnica concreta usando `tdd-development` si escribe codigo productivo. Puede instanciarse N veces si hay scopes independientes.
 6. `reviewer`: revisa cambios contra specs, plan, tasks y riesgos.
 7. `tester`: crea, corrige o elimina tests segun comportamiento real.
-8. `skills-expert`: corre al final para mantener `skills/` actualizadas, descubribles y sin redundancia.
+8. `delivery-manager`: verifica README, OpenAPI, seeds, setup, comandos y checklist de entrega.
+9. `skills-expert`: corre al final para mantener `skills/` actualizadas, descubribles y sin redundancia.
 
 ## Reglas
 
@@ -25,9 +26,14 @@ Estos agentes describen roles de trabajo para Codex dentro de este repo. No reem
 - Todo `developer` debe incluir `tdd-development` cuando implementa feature, bugfix, refactor o cambio de comportamiento.
 - Cada agente debe usar el perfil de modelo recomendado para su rol cuando la herramienta lo permita.
 - El resumen final debe incluir que se hizo, skills aplicadas, agentes usados, camino tomado, validaciones y riesgos.
+- Cada agente debe entregar `## Handoff` cuando pasa trabajo al siguiente agente.
 - Paralelizar solo cuando los archivos o responsabilidades no se pisen.
 - Toda salida debe ser accionable: archivos, decisiones, riesgos o validaciones.
 - La fuente de verdad del challenge sigue siendo: `sdd/user_histories/`, `sdd/specs/001-inventory-reservation-system/`, `sdd/plans.md`/`sdd/plans/` y `sdd/tasks.md`/`sdd/tasks/`.
+
+## Tareas Menores
+
+No hace falta activar todo el flujo para preguntas conceptuales, lecturas cortas, comandos simples, correcciones menores o inspecciones rapidas. Si aparece riesgo, bug, cambio de arquitectura o implementacion real, se escala al flujo completo desde `analyst`.
 
 ## Perfiles de Modelo
 
@@ -38,6 +44,7 @@ Estos agentes describen roles de trabajo para Codex dentro de este repo. No reem
 | `developer` | Codex estandar | medium |
 | `reviewer` | Codex alto | high |
 | `tester` | Codex estandar | medium |
+| `delivery-manager` | Codex estandar | medium |
 | `skills-expert` | Codex alto | high |
 
 Si la herramienta no soporta el nombre exacto, usar el modelo disponible mas cercano.

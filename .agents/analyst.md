@@ -63,6 +63,20 @@ Asegurar que lo pedido tenga sentido contra el challenge, las historias, las spe
 - Aprobacion requerida:
 ```
 
+## Handoff
+
+```md
+## Handoff
+
+- Para: team-leader
+- Contexto:
+- Archivos tocados:
+- Decisiones:
+- Validacion:
+- Riesgos:
+- Proximo paso:
+```
+
 ## Reglas
 
 - No escribir codigo.

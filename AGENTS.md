@@ -33,9 +33,11 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
 - `developer` solo trabaja sobre tareas tecnicas con ownership claro.
 - `reviewer` revisa cambios contra specs, plan, tasks y riesgos.
 - `tester` crea, corrige o elimina tests segun comportamiento real.
+- `delivery-manager` verifica README, OpenAPI, seeds, setup, comandos y checklist de entrega antes del cierre.
 - `skills-expert` corre al final para mantener `skills/` actualizadas, descubribles y sin redundancia.
 - Cada agente debe recolectar y declarar las skills necesarias para su tarea actual antes de ejecutar.
 - Cada agente debe usar el perfil de modelo recomendado para su rol cuando la herramienta lo permita.
+- Cada agente debe entregar un bloque `## Handoff` al pasar trabajo al siguiente agente.
 - Si aparece un bug, regresion o validacion fallida con causa reusable, `skills-expert` debe documentar la regla preventiva en `skills/`.
 - Usar `memory/` para decisiones estables y aprendizajes historicos que no necesariamente son reglas operativas.
 - Usar `memory/progress.md` para retomar el estado actual sin convertirlo en log historico.
@@ -54,8 +56,21 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
 7. `developer` implementa una o mas tareas.
 8. `reviewer` revisa el resultado.
 9. `tester` ajusta tests cuando corresponde.
-10. `skills-expert` revisa si hay que actualizar, fusionar o eliminar skills, incluyendo aprendizajes de bugs corregidos.
-11. Reportar resumen final con trabajo realizado, skills aplicadas, agentes usados, camino tomado, validaciones y riesgos restantes.
+10. `delivery-manager` valida artefactos de entrega.
+11. `skills-expert` revisa si hay que actualizar, fusionar o eliminar skills, incluyendo aprendizajes de bugs corregidos.
+12. Reportar resumen final con trabajo realizado, skills aplicadas, agentes usados, camino tomado, validaciones y riesgos restantes.
+
+## Cuándo No Usar Todo el Flujo
+
+No hace falta activar todos los agentes para tareas menores:
+
+- preguntas conceptuales;
+- lectura o resumen corto;
+- comandos simples;
+- correcciones menores de texto o formato;
+- inspecciones rapidas sin cambio tecnico.
+
+Si una tarea menor descubre riesgo, bug, cambio de arquitectura o implementacion real, escalar al flujo completo desde `analyst`.
 
 ## Seleccion de Skills por Agente
 
@@ -77,6 +92,7 @@ Proceso obligatorio:
 | `developer` | `development-flow`, `tdd-development` + skill tecnica asignada | `sdd-architecture` si toca artefactos SDD |
 | `reviewer` | `development-flow`, `sdd-architecture` | `tdd-development` y backend/frontend/delivery segun diff |
 | `tester` | `development-flow`, `tdd-development` | backend/frontend segun suite |
+| `delivery-manager` | `development-flow`, `sdd-architecture`, `delivery-artifacts` | backend/frontend si verifica comandos especificos |
 | `skills-expert` | `development-flow`, `sdd-architecture` | toda skill afectada por el aprendizaje |
 
 ## Perfiles de Modelo
@@ -90,6 +106,7 @@ Estos perfiles son una politica del harness para ahorrar tokens. Si la herramien
 | `developer` | Codex estandar | medium | Implementacion acotada con archivos owner claros. |
 | `reviewer` | Codex alto | high | Revision de bugs, riesgos, contratos y gaps. |
 | `tester` | Codex estandar | medium | Tests concretos y validacion de comportamiento. |
+| `delivery-manager` | Codex estandar | medium | Checklist de entrega, README, OpenAPI, setup y comandos. |
 | `skills-expert` | Codex alto | high | Mantener skills sin duplicacion ni drift. |
 
 Reglas:
@@ -121,6 +138,22 @@ Reglas del bucle:
 - Si aparece un bloqueo, reportarlo y volver a planificar.
 - Si aparece un aprendizaje reusable, marcarlo para `skills-expert`.
 - Si el trabajo puede pausarse, actualizar `memory/progress.md`.
+
+## Handoff
+
+Cada agente debe pasar un bloque reutilizable al siguiente:
+
+```md
+## Handoff
+
+- Para:
+- Contexto:
+- Archivos tocados:
+- Decisiones:
+- Validacion:
+- Riesgos:
+- Proximo paso:
+```
 
 ## Status y Resumen
 

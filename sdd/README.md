@@ -10,6 +10,7 @@ Esta carpeta contiene los artefactos de Specification Driven Development del pro
 - `plans/`: planes tecnicos versionados.
 - `tasks.md`: indice de tableros.
 - `tasks/`: tareas ejecutables derivadas de los planes.
+- `TRACEABILITY.md`: matriz que conecta historias, specs, plan, tasks y validaciones.
 
 ## Relacion con Harness
 

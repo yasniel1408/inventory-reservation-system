@@ -1,6 +1,6 @@
 ---
 name: development-flow
-description: "Usar siempre al inicio de toda tarea de desarrollo del repo para activar el flujo de agentes: leer skills, usar analyst para plan aprobado por el usuario, luego team-leader, developers, reviewer, tester y skills-expert al cierre."
+description: "Usar siempre al inicio de toda tarea de desarrollo del repo para activar el flujo de agentes: leer skills, usar analyst para plan aprobado por el usuario, luego team-leader, developers, reviewer, tester, delivery-manager y skills-expert al cierre."
 ---
 
 # Flujo de Desarrollo
@@ -15,6 +15,7 @@ Este repo debe priorizar entrega clara sobre ceremonia. Usar este skill como pun
 - `analyst` siempre debe producir un plan y esperar aprobacion explicita del usuario antes de continuar.
 - `team-leader` solo puede continuar despues de que el usuario apruebe el plan del `analyst`.
 - `team-leader` debe mantener status continuo: etapa actual, agente activo, tarea en curso, bloqueos y siguiente paso.
+- `delivery-manager` debe revisar los artefactos de entrega despues de testing y antes de `skills-expert`.
 - `skills-expert` debe ejecutarse al final para revisar si `skills/` debe actualizarse, fusionarse o limpiarse.
 - Cada agente debe seleccionar y declarar las skills necesarias para su tarea actual antes de ejecutar.
 - Cada agente debe usar el perfil de modelo recomendado en `.agents/` cuando la herramienta lo permita.
@@ -22,6 +23,19 @@ Este repo debe priorizar entrega clara sobre ceremonia. Usar este skill como pun
 - Si se detecta o corrige un bug, regresion o fallo de validacion con causa reusable, documentar la regla preventiva en `skills/`.
 - Dividir trabajo solo cuando haya scopes independientes reales.
 - Preferir pocos artefactos buenos sobre muchos documentos repetidos.
+- Usar handoff explicito al pasar trabajo entre agentes.
+
+## Cuándo No Usar Todo el Flujo
+
+No activar el flujo completo de agentes cuando el pedido sea claramente menor y autocontenido:
+
+- pregunta conceptual sin cambios de archivos;
+- lectura o resumen corto de un archivo;
+- comando simple;
+- correccion menor de texto o formato;
+- inspeccion rapida sin decisiones tecnicas.
+
+Aunque no se use todo el flujo, se deben leer `skills/` y respetar `AGENTS.md`. Si el pedido menor descubre riesgo, bug, cambio de arquitectura o trabajo de implementacion, escalar al flujo completo desde `analyst`.
 
 ## Flujo Práctico
 
@@ -35,9 +49,10 @@ Este repo debe priorizar entrega clara sobre ceremonia. Usar este skill como pun
 8. Instanciar uno o mas `developer` solo si hay ownership claro y scopes independientes.
 9. Pasar cambios por `reviewer`.
 10. Usar `tester` para crear, corregir o eliminar tests cuando el cambio sea testeable.
-11. Activar `skills-expert` para mantener `skills/` actualizadas y descubribles, incluyendo aprendizajes de bugs y validaciones fallidas.
-12. Ejecutar validacion posible.
-13. Reportar resumen final con cambios, skills aplicadas, agentes usados, perfiles/modelos usados, camino tomado, validacion y riesgos restantes.
+11. Activar `delivery-manager` para verificar README, OpenAPI, seeds, setup, comandos y checklist de entrega.
+12. Activar `skills-expert` para mantener `skills/` actualizadas y descubribles, incluyendo aprendizajes de bugs y validaciones fallidas.
+13. Ejecutar validacion posible.
+14. Reportar resumen final con cambios, skills aplicadas, agentes usados, perfiles/modelos usados, camino tomado, validacion y riesgos restantes.
 
 ## Bucle del Agente
 
@@ -61,6 +76,24 @@ Reglas:
 - Si hay bloqueo, reportarlo y replanificar.
 - Si hay aprendizaje reusable, marcarlo para `skills-expert`.
 - Si el trabajo puede pausarse o cambiar de herramienta, actualizar `memory/progress.md`.
+
+## Handoff Entre Agentes
+
+Cada agente debe entregar al siguiente un bloque reutilizable:
+
+```md
+## Handoff
+
+- Para:
+- Contexto:
+- Archivos tocados:
+- Decisiones:
+- Validacion:
+- Riesgos:
+- Proximo paso:
+```
+
+El handoff debe ser corto, accionable y suficiente para que el siguiente agente no tenga que reconstruir todo desde cero.
 
 ## Status Obligatorio
 

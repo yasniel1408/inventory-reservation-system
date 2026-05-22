@@ -8,6 +8,7 @@
 
 - Cada tarea debe terminar con archivos modificados o una validación concreta.
 - Mantener trazabilidad hacia `sdd/plans/001-inventory-reservation-system.md`, `sdd/user_histories/` y `sdd/specs/001-inventory-reservation-system/`.
+- Mantener `sdd/TRACEABILITY.md` actualizado cuando se agregue, elimine o cambie cobertura de tareas.
 - Marcar tareas completadas cambiando `[ ]` por `[x]`.
 
 ## Fase 0 - SDD
