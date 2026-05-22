@@ -54,7 +54,7 @@ Reglas:
 - `scope` más `key` debe ser único.
 - Misma key más mismo request hash debe devolver el outcome almacenado.
 - Misma key más distinto request hash debe devolver conflicto de idempotencia.
-- Duplicados en progreso deben esperar, bloquear o devolver una respuesta retryable determinística. El enfoque elegido debe documentarse en el plan activo enlazado desde `plans.md`.
+- Duplicados en progreso deben esperar, bloquear o devolver una respuesta retryable determinística. El enfoque elegido debe documentarse en el plan activo enlazado desde `sdd/plans.md`.
 - Los registros de idempotencia deben tener política de retención documentada en el plan activo.
 
 ## Transiciones de Estado

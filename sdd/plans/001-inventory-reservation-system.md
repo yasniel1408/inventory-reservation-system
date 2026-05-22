@@ -6,9 +6,9 @@ Implementar el challenge con una solución simple y verificable: backend Go con 
 
 ## Artefactos Base
 
-- Historias: `user_histories/`
-- Specs: `specs/001-inventory-reservation-system/`
-- Tasks: `tasks/001-inventory-reservation-system.md`
+- Historias: `sdd/user_histories/`
+- Specs: `sdd/specs/001-inventory-reservation-system/`
+- Tasks: `sdd/tasks/001-inventory-reservation-system.md`
 - Skills activos: `skills/`
 - Próximos artefactos: implementación, OpenAPI, README y chat history
 
@@ -190,11 +190,11 @@ Archivos finales esperados:
 
 ## Trazabilidad
 
-- Dashboard: `user_histories/01_inventory_dashboard.feature`
-- Reservas atómicas: `user_histories/02_atomic_reservations.feature`
-- TTL: `user_histories/03_reservation_ttl.feature`
-- Release manual: `user_histories/04_manual_release.feature`
-- Idempotencia: `user_histories/05_idempotency.feature`
-- UI/estado: `user_histories/06_ui_feedback_and_state.feature`
-- OpenAPI: `user_histories/07_openapi_contract.feature`
-- Entrega SDD: `user_histories/08_sdd_traceability.feature`
+- Dashboard: `sdd/user_histories/01_inventory_dashboard.feature`
+- Reservas atómicas: `sdd/user_histories/02_atomic_reservations.feature`
+- TTL: `sdd/user_histories/03_reservation_ttl.feature`
+- Release manual: `sdd/user_histories/04_manual_release.feature`
+- Idempotencia: `sdd/user_histories/05_idempotency.feature`
+- UI/estado: `sdd/user_histories/06_ui_feedback_and_state.feature`
+- OpenAPI: `sdd/user_histories/07_openapi_contract.feature`
+- Entrega SDD: `sdd/user_histories/08_sdd_traceability.feature`

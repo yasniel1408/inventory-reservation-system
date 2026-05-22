@@ -5,26 +5,26 @@ Este archivo es un snapshot del estado actual del flujo. No es un log historico;
 ## Estado del Flujo
 
 - Fecha: 2026-05-22.
-- Etapa: cierre de skill TDD.
+- Etapa: cierre de reorganizacion SDD.
 - Agente activo: skills-expert.
 - Plan aprobado: si.
-- Tarea actual: skill `tdd-development` creada y vinculada al flujo de developers.
+- Tarea actual: artefactos SDD movidos a `sdd/` manteniendo harness en raiz.
 - Bloqueos: ninguno.
-- Siguiente paso: continuar implementacion desde `tasks/001-inventory-reservation-system.md` T-003; developers deben usar `tdd-development` si escriben codigo productivo.
+- Siguiente paso: continuar implementacion desde `sdd/tasks/001-inventory-reservation-system.md` T-003; developers deben usar `tdd-development` si escriben codigo productivo.
 
 ## Agentes
 
-- analyst: completo; valido que TDD aplica a developers y no a tareas puramente documentales.
-- team-leader: completo; incorporo `tdd-development` como skill obligatoria para implementacion.
-- developer: completo; creo skill local y actualizo agentes/skills relacionados.
-- reviewer: completo; reviso que reviewers/testers pidan evidencia TDD.
-- tester: completo; valida estructura y referencias.
-- skills-expert: completo; documento decision estable en `memory/decisions.md`.
+- analyst: completo; valido separar SDD como el que y mantener harness como el como.
+- team-leader: completo; limito el cambio a artefactos SDD.
+- developer: completo; movio historias, specs, planes y tasks a `sdd/` y actualizo referencias.
+- reviewer: completo; reviso rutas canonicas y separacion de responsabilidades.
+- tester: completo; valida estructura, referencias y configuracion.
+- skills-expert: completo; no movio skills porque siguen siendo parte del harness operativo.
 
 ## Ultimo Resumen
 
-- Cambios realizados: se agrego `skills/tdd-development`, se enlazo con el flujo de developers y el indice de planes se renombro a `plans.md`.
+- Cambios realizados: se creo `sdd/` y se movieron `user_histories/`, `specs/`, `plans.md`, `plans/`, `tasks.md` y `tasks/`.
 - Skills aplicadas: `development-flow`, `sdd-architecture`.
 - Agentes usados: `team-leader`, `developer`, `reviewer`, `tester`, `skills-expert`.
-- Validaciones: lectura de skills; revision de agentes; validacion de JSON/config.
-- Riesgos: los nombres exactos de modelo dependen de la herramienta; usar fallback al perfil mas cercano.
+- Validaciones: lectura de skills; revision de rutas; validacion de JSON/config.
+- Riesgos: mantener root harness y `sdd/` sincronizados cuando se creen nuevos artefactos.

@@ -70,7 +70,7 @@ tenga analisis, plan, ejecucion, revision, pruebas y aprendizaje cuando aplica.
               v
 +---------------------------+
 | reviewer                  |
-| revisa contra specs/plan   |
+| revisa specs y plan SDD        |
 | detecta riesgos y gaps     |
 +-------------+-------------+
               |

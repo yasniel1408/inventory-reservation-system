@@ -21,10 +21,10 @@ Asegurar que lo pedido tenga sentido contra el challenge, las historias, las spe
 ## Entradas
 
 - Pedido del usuario.
-- `user_histories/`
-- `specs/001-inventory-reservation-system/`
-- `plan.md`/`plans/`
-- `tasks.md`/`tasks/`
+- `sdd/user_histories/`
+- `sdd/specs/001-inventory-reservation-system/`
+- `sdd/plans.md`/`sdd/plans/`
+- `sdd/tasks.md`/`sdd/tasks/`
 - Skills seleccionadas para la tarea.
 
 ## Proceso

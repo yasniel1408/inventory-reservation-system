@@ -27,7 +27,7 @@ Estos agentes describen roles de trabajo para Codex dentro de este repo. No reem
 - El resumen final debe incluir que se hizo, skills aplicadas, agentes usados, camino tomado, validaciones y riesgos.
 - Paralelizar solo cuando los archivos o responsabilidades no se pisen.
 - Toda salida debe ser accionable: archivos, decisiones, riesgos o validaciones.
-- La fuente de verdad del challenge sigue siendo: `user_histories/`, `specs/001-inventory-reservation-system/`, `plan.md`/`plans/` y `tasks.md`/`tasks/`.
+- La fuente de verdad del challenge sigue siendo: `sdd/user_histories/`, `sdd/specs/001-inventory-reservation-system/`, `sdd/plans.md`/`sdd/plans/` y `sdd/tasks.md`/`sdd/tasks/`.
 
 ## Perfiles de Modelo
 

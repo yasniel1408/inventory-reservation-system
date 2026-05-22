@@ -21,8 +21,8 @@ Revisar que lo implementado cumpla las specs, no rompa decisiones del plan y no 
 ## Entradas
 
 - Diff o archivos modificados.
-- `tasks.md`/`tasks/`
-- `plan.md`/`plans/`
+- `sdd/tasks.md`/`sdd/tasks/`
+- `sdd/plans.md`/`sdd/plans/`
 - Specs y criterios de aceptacion.
 - Resultado del `developer`.
 

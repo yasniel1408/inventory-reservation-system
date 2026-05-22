@@ -6,12 +6,12 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
 
 - Este repo implementa el challenge de reservas de inventario.
 - La fuente principal de requerimientos esta en:
-  - `user_histories/`
-  - `specs/001-inventory-reservation-system/`
-  - `plans.md` como indice de planes
-  - `plans/001-inventory-reservation-system.md` como plan activo
-  - `tasks.md` como indice de tareas
-  - `tasks/001-inventory-reservation-system.md` como tablero activo
+  - `sdd/user_histories/`
+  - `sdd/specs/001-inventory-reservation-system/`
+  - `sdd/plans.md` como indice de planes
+  - `sdd/plans/001-inventory-reservation-system.md` como plan activo
+  - `sdd/tasks.md` como indice de tareas
+  - `sdd/tasks/001-inventory-reservation-system.md` como tablero activo
 - Los `skills/` definen reglas tecnicas y de arquitectura.
 - `.agents/` define roles de coordinacion.
 - `memory/` guarda decisiones y aprendizajes versionados del harness.
@@ -160,6 +160,6 @@ Reglas del bucle:
 
 ## Entrega
 
-- Mantener trazabilidad entre historias, specs, `plans.md`, `plans/`, `tasks.md`, `tasks/`, implementacion y README.
+- Mantener trazabilidad entre historias, specs, `sdd/plans.md`, `sdd/plans/`, `sdd/tasks.md`, `sdd/tasks/`, implementacion y README.
 - El README debe documentar setup, tests, estrategia de concurrencia, TTL, idempotencia y LLM usado.
 - El contrato OpenAPI final debe vivir en `openapi/openapi.yaml`.

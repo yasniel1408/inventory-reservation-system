@@ -33,8 +33,8 @@ Mantener los `skills/` actualizados cuando el trabajo realizado cambia reglas, a
 - `memory/`
 - `memory/progress.md` cuando exista.
 - Wrappers de herramienta como `CLAUDE.md` u `opencode.json`.
-- `plan.md`/`plans/`
-- `tasks.md`/`tasks/`
+- `plan.md`/`sdd/plans/`
+- `sdd/tasks.md`/`sdd/tasks/`
 - Specs relevantes.
 
 ## Proceso

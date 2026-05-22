@@ -4,7 +4,7 @@
 
 - Fase: Especificación
 - Fuente: `references/Beeyond Media FS - Code Challenge.pdf`
-- Historias de usuario: `user_histories/`
+- Historias de usuario: `sdd/user_histories/`
 - Estado de `skills/` local: presente y obligatorio para ejecutar tareas del repo
 
 ## Objetivo
@@ -88,7 +88,7 @@ El sistema debe mostrar estado de stock, crear reservas de forma atómica, expir
 - La expiración debe devolver la cantidad reservada al pool disponible exactamente una vez.
 - La expiración debe ser durable y segura ante retries o múltiples ejecuciones de worker.
 - La expiración debe usar tiempo de backend/base de datos como fuente de verdad, no el reloj frontend.
-- La expiración puede implementarse mediante worker, scheduled job, lazy cleanup en lecturas/escrituras o combinación. El mecanismo elegido debe documentarse en el plan activo enlazado desde `plans.md`.
+- La expiración puede implementarse mediante worker, scheduled job, lazy cleanup en lecturas/escrituras o combinación. El mecanismo elegido debe documentarse en el plan activo enlazado desde `sdd/plans.md`.
 - El timer frontend es solo orientativo; el estado backend es autoritativo.
 - La UI debe dejar de mostrar reservas expiradas como activas después de sincronizar.
 
@@ -198,15 +198,15 @@ El sistema debe mostrar estado de stock, crear reservas de forma atómica, expir
 ## Trazabilidad
 
 - Historias de usuario:
-  - `user_histories/01_inventory_dashboard.feature`
-  - `user_histories/02_atomic_reservations.feature`
-  - `user_histories/03_reservation_ttl.feature`
-  - `user_histories/04_manual_release.feature`
-  - `user_histories/05_idempotency.feature`
-  - `user_histories/06_ui_feedback_and_state.feature`
-  - `user_histories/07_openapi_contract.feature`
-  - `user_histories/08_sdd_traceability.feature`
+  - `sdd/user_histories/01_inventory_dashboard.feature`
+  - `sdd/user_histories/02_atomic_reservations.feature`
+  - `sdd/user_histories/03_reservation_ttl.feature`
+  - `sdd/user_histories/04_manual_release.feature`
+  - `sdd/user_histories/05_idempotency.feature`
+  - `sdd/user_histories/06_ui_feedback_and_state.feature`
+  - `sdd/user_histories/07_openapi_contract.feature`
+  - `sdd/user_histories/08_sdd_traceability.feature`
 - Próximos artefactos:
-  - `plans.md` y `plans/001-inventory-reservation-system.md`
-  - `tasks.md` y `tasks/001-inventory-reservation-system.md`
+  - `sdd/plans.md` y `sdd/plans/001-inventory-reservation-system.md`
+  - `sdd/tasks.md` y `sdd/tasks/001-inventory-reservation-system.md`
   - contrato OpenAPI

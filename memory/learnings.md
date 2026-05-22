@@ -20,8 +20,8 @@
 
 ## Fuentes Externas Fuera de Historias
 
-- Aprendizaje: guardar PDFs o materiales fuente dentro de `user_histories/` ensucia la carpeta de historias Gherkin.
-- Regla preventiva: poner fuentes externas en `references/` y dejar `user_histories/` solo para `.feature` y README.
+- Aprendizaje: guardar PDFs o materiales fuente dentro de `sdd/user_histories/` ensucia la carpeta de historias Gherkin.
+- Regla preventiva: poner fuentes externas en `references/` y dejar `sdd/user_histories/` solo para `.feature` y README.
 - Aplicado en: movimiento del PDF del challenge a `references/`.
 
 ## Memoria vs Skills

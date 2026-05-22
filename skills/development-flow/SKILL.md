@@ -91,11 +91,11 @@ Al cerrar una tarea, reportar:
 
 Antes de código deben existir:
 
-- `user_histories/`
-- `specs/001-inventory-reservation-system/`
-- `plans.md` como indice de planes
-- `plans/001-inventory-reservation-system.md` como plan activo
-- `tasks.md` como indice de tareas
-- `tasks/001-inventory-reservation-system.md` como tablero activo
+- `sdd/user_histories/`
+- `sdd/specs/001-inventory-reservation-system/`
+- `sdd/plans.md` como indice de planes
+- `sdd/plans/001-inventory-reservation-system.md` como plan activo
+- `sdd/tasks.md` como indice de tareas
+- `sdd/tasks/001-inventory-reservation-system.md` como tablero activo
 
 Si falta alguno y la tarea es implementación, crear primero el artefacto faltante.

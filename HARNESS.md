@@ -22,10 +22,10 @@ AGENTS.md
   |     opencode.json
   |
   +-- SDD
-        user_histories/
-        specs/
-        plans.md -> plans/
-        tasks.md -> tasks/
+        sdd/user_histories/
+        sdd/specs/
+        sdd/plans.md -> sdd/plans/
+        sdd/tasks.md -> sdd/tasks/
 ```
 
 ## Prioridad de Instrucciones
@@ -44,7 +44,7 @@ Si hay conflicto entre wrappers y `AGENTS.md`, gana `AGENTS.md`.
 SDD organiza el trabajo de producto:
 
 ```text
-user_histories -> specs -> plans.md/plans -> tasks.md/tasks -> implementacion -> validacion
+sdd/user_histories -> sdd/specs -> sdd/plans.md + sdd/plans -> sdd/tasks.md + sdd/tasks -> implementacion -> validacion
 ```
 
 Harness Engineering organiza como trabajan las herramientas y agentes:

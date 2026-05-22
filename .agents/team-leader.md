@@ -23,8 +23,8 @@ Traducir un plan aprobado por el usuario en tareas tecnicas ejecutables, con own
 
 - Resultado aprobado de `analyst`.
 - Confirmacion explicita de aprobacion del usuario.
-- `tasks.md`/`tasks/`
-- `plan.md`/`plans/`
+- `sdd/tasks.md`/`sdd/tasks/`
+- `sdd/plans.md`/`sdd/plans/`
 - `memory/progress.md` si existe.
 - Specs relevantes.
 - Skills seleccionadas para la coordinacion actual.
@@ -92,5 +92,5 @@ Traducir un plan aprobado por el usuario en tareas tecnicas ejecutables, con own
 - Mantener `memory/progress.md` como snapshot, no como log historico.
 - El cierre debe incluir skills aplicadas, agentes usados y camino tomado por el flujo.
 - No dividir si la division aumenta costo sin reducir riesgo.
-- Mantener el plan alineado con `tasks.md`.
+- Mantener el plan alineado con `sdd/tasks.md`.
 - Priorizar correctness de concurrencia, idempotencia y TTL sobre detalles cosmeticos.
