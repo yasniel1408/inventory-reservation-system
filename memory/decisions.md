@@ -6,6 +6,12 @@
 - Motivo: Codex, Claude Code, OpenCode u otras herramientas deben compartir la misma forma de trabajo.
 - Implicacion: wrappers como `CLAUDE.md` u `opencode.json` no deben duplicar reglas; deben apuntar a las rutas canonicas.
 
+## HARNESS.md como Mapa Operativo
+
+- Decision: `HARNESS.md` explica como se conectan `AGENTS.md`, `skills/`, `.agents/`, `memory/`, wrappers y SDD.
+- Motivo: el harness debe ser entendible para cualquier herramienta o developer sin leer todos los archivos primero.
+- Implicacion: `HARNESS.md` no reemplaza `AGENTS.md`; solo documenta el mapa.
+
 ## Skills como Reglas Operativas
 
 - Decision: `skills/` contiene reglas tecnicas, arquitectura, criterios de ejecucion y aprendizajes accionables.

@@ -3,7 +3,7 @@
 ## Estado
 
 - Fase: Especificación
-- Fuente: `Beeyond Media FS - Code Challenge (1).pdf`
+- Fuente: `references/Beeyond Media FS - Code Challenge.pdf`
 - Historias de usuario: `user_histories/`
 - Estado de `skills/` local: presente y obligatorio para ejecutar tareas del repo
 

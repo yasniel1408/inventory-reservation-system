@@ -12,6 +12,18 @@
 - Regla preventiva: mantener `AGENTS.md` como fuente canonica y crear wrappers minimos por herramienta.
 - Aplicado en: `CLAUDE.md` y `opencode.json`.
 
+## OpenCode debe Cargar la Fuente Canonica
+
+- Aprendizaje: cargar solo `.agents/*.md` y `skills/*/SKILL.md` deja afuera reglas globales de `AGENTS.md`.
+- Regla preventiva: wrappers/configs deben cargar la fuente canonica y los documentos de soporte necesarios, no solo roles o skills.
+- Aplicado en: `opencode.json`.
+
+## Fuentes Externas Fuera de Historias
+
+- Aprendizaje: guardar PDFs o materiales fuente dentro de `user_histories/` ensucia la carpeta de historias Gherkin.
+- Regla preventiva: poner fuentes externas en `references/` y dejar `user_histories/` solo para `.feature` y README.
+- Aplicado en: movimiento del PDF del challenge a `references/`.
+
 ## Memoria vs Skills
 
 - Aprendizaje: no todo aprendizaje debe convertirse en skill.

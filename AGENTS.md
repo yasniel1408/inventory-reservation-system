@@ -13,6 +13,7 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
 - Los `skills/` definen reglas tecnicas y de arquitectura.
 - `.agents/` define roles de coordinacion.
 - `memory/` guarda decisiones y aprendizajes versionados del harness.
+- `HARNESS.md` explica el mapa operativo entre harness, SDD, wrappers, skills y memoria.
 - `AGENTS.md` es la fuente canonica tool-agnostic del harness.
 - `CLAUDE.md` y `opencode.json` son wrappers para herramientas especificas y no deben duplicar reglas.
 

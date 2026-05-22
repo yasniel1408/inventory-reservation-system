@@ -1,7 +1,9 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "instructions": [
+    "AGENTS.md",
     ".agents/*.md",
-    "skills/*/SKILL.md"
+    "skills/*/SKILL.md",
+    "memory/*.md"
   ]
 }
