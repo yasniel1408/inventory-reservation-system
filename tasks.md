@@ -3,19 +3,18 @@
 ## Convenciones
 
 - Cada tarea debe terminar con archivos modificados o una validación concreta.
-- No iniciar implementación antes de crear `spec-kit-notes.md`.
 - Mantener trazabilidad hacia `plan.md`, `user_histories/` y `specs/001-inventory-reservation-system/`.
 - Marcar tareas completadas cambiando `[ ]` por `[x]`.
 
 ## Fase 0 - Spec Kit
 
-- [x] T-001 Crear `spec-kit-notes.md`.
+- [x] T-001 Validar coherencia inicial de Spec Kit.
   - Owner: raíz del repo.
   - Referencias: `plan.md`, `user_histories/08_spec_kit_traceability.feature`.
-  - Resultado: archivo con comandos, supuestos, decisiones, refinamientos y pivots.
+  - Resultado: `plan.md`, `tasks.md`, `user_histories/` y `specs/` quedan alineados antes de implementar.
 
-- [x] T-002 Registrar en `spec-kit-notes.md` la decisión de simplificar arquitectura.
-  - Owner: `spec-kit-notes.md`.
+- [x] T-002 Registrar decisión de simplificar arquitectura.
+  - Owner: `plan.md`.
   - Referencias: `plan.md#decisiones-técnicas`.
   - Resultado: nota explícita de que no se usará Next.js, Tailwind, CQRS formal ni arquitectura hexagonal formal.
 
@@ -186,10 +185,10 @@
   - Referencias: `user_histories/08_spec_kit_traceability.feature`.
   - Criterios: el repo indica dónde está el historial completo de la conversación.
 
-- [ ] T-033 Actualizar `spec-kit-notes.md` con comandos y pivots finales.
-  - Owner: `spec-kit-notes.md`.
+- [ ] T-033 Documentar comandos y decisiones finales.
+  - Owner: `README.md`.
   - Referencias: `plan.md`, `user_histories/08_spec_kit_traceability.feature`.
-  - Criterios: comandos usados, supuestos, refinamientos y pivots.
+  - Criterios: comandos usados, supuestos relevantes y decisiones finales.
 
 - [ ] T-034 Ejecutar validación final.
   - Owner: repo completo.
@@ -198,4 +197,4 @@
     - frontend tests
     - frontend build
     - validación OpenAPI si hay herramienta disponible
-  - Criterios: resultados documentados en README o `spec-kit-notes.md`.
+  - Criterios: resultados documentados en `README.md`.

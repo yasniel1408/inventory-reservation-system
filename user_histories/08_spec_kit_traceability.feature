@@ -31,4 +31,4 @@ Característica: Trazabilidad Spec Kit y entregables
     Y encuentro código fuente React con Vite y TypeScript del frontend
     Y encuentro seed data para PostgreSQL
     Y encuentro un `README.md` con estrategia de concurrencia, ejecución de tests y LLM usado
-    Y encuentro un `spec-kit-notes.md` con comandos, supuestos, refinamientos y pivots
+    Y encuentro trazabilidad suficiente en `spec.md`, `plan.md`, `tasks.md` y `README.md`

@@ -27,7 +27,7 @@ El sistema debe mostrar estado de stock, crear reservas de forma atómica, expir
 - Contrato OpenAPI para la REST API implementada.
 - Seed data para reviewers.
 - Tests backend y frontend requeridos por el challenge.
-- Artefactos Architecture First: spec, plan, tasks, notes y trazabilidad.
+- Artefactos Architecture First: spec, plan, tasks y trazabilidad.
 
 ## Fuera de Alcance
 
@@ -157,7 +157,7 @@ El sistema debe mostrar estado de stock, crear reservas de forma atómica, expir
 - API debe ser determinística ante retries.
 - Test coverage debe probar concurrencia e idempotencia.
 - README debe explicar estrategia de concurrencia, ejecución de tests y uso de LLM.
-- `spec-kit-notes.md` debe documentar comandos, supuestos, refinamientos y pivots.
+- README debe documentar comandos finales, estrategia de concurrencia, ejecución de tests y uso de LLM.
 
 ## Criterios de Aceptación
 
@@ -209,5 +209,4 @@ El sistema debe mostrar estado de stock, crear reservas de forma atómica, expir
 - Próximos artefactos:
   - `plan.md`
   - `tasks.md`
-  - `spec-kit-notes.md`
   - contrato OpenAPI

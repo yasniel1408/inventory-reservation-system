@@ -9,7 +9,7 @@ Implementar el challenge con una solución simple y verificable: backend Go con 
 - Historias: `user_histories/`
 - Specs: `specs/001-inventory-reservation-system/`
 - Skills activos: `skills/`
-- Próximos artefactos: `tasks.md`, `spec-kit-notes.md`
+- Próximos artefactos: implementación, OpenAPI, README y chat history
 
 ## Decisiones Técnicas
 
@@ -174,7 +174,6 @@ Archivos finales esperados:
 - `db/seeds/`
 - `openapi/openapi.yaml`
 - `README.md`
-- `spec-kit-notes.md`
 - `docs/chat-history.md` o ruta documentada del historial
 
 ## Riesgos y Mitigaciones
@@ -198,4 +197,3 @@ Archivos finales esperados:
 - UI/estado: `user_histories/06_ui_feedback_and_state.feature`
 - OpenAPI: `user_histories/07_openapi_contract.feature`
 - Entrega Spec Kit: `user_histories/08_spec_kit_traceability.feature`
-

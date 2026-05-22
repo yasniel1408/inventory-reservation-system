@@ -1,11 +1,11 @@
 ---
 name: spec-kit-architecture
-description: Usar al crear, actualizar o validar artefactos Spec Kit para este challenge de reservas de inventario, incluyendo user histories, spec.md, plan.md, tasks.md, spec-kit-notes.md, decisiones de arquitectura, supuestos, pivots y trazabilidad antes de implementación.
+description: Usar al crear, actualizar o validar artefactos Spec Kit para este challenge de reservas de inventario, incluyendo user histories, spec.md, plan.md, tasks.md, decisiones de arquitectura, supuestos y trazabilidad antes de implementación.
 ---
 
 # Spec Kit Architecture
 
-Usar este skill para preservar el flujo Architecture First del challenge. No escribir código de aplicación hasta que existan `spec.md`, `plan.md`, `tasks.md` y `spec-kit-notes.md`, y hasta que mapeen con las historias de usuario.
+Usar este skill para preservar el flujo Architecture First del challenge. No escribir código de aplicación hasta que existan `spec.md`, `plan.md` y `tasks.md`, y hasta que mapeen con las historias de usuario.
 
 ## Entradas Requeridas
 
@@ -26,8 +26,7 @@ Usar este skill para preservar el flujo Architecture First del challenge. No esc
    - `specs/001-inventory-reservation-system/test-spec.md`
    - `plan.md`
    - `tasks.md`
-   - `spec-kit-notes.md`
-3. Documentar cada supuesto, ambigüedad y pivot en `spec-kit-notes.md` cuando exista.
+3. Documentar supuestos, ambigüedades y decisiones en el artefacto más cercano: `spec.md`, `plan.md`, `tasks.md` o `README.md`.
 4. Mantener trazabilidad explícita: cada tarea de implementación debe apuntar a al menos una spec, criterio de aceptación o requisito de test.
 5. Preferir artefactos pequeños y revisables antes que documentos narrativos amplios.
 6. Si el usuario pide implementar antes de que existan artefactos requeridos, crear o actualizar primero los artefactos faltantes.
@@ -47,7 +46,7 @@ Usar este skill para preservar el flujo Architecture First del challenge. No esc
 - Confirmar comportamiento de reserva atómica antes de escribir código backend.
 - Confirmar expiración TTL, release manual y carreras de idempotencia antes de schema work.
 - Confirmar sincronización UI antes de state management frontend.
-- Confirmar OpenAPI, seed data, README, chat history completo y notas finales antes de delivery.
+- Confirmar OpenAPI, seed data, README y chat history completo antes de delivery.
 - Confirmar estructura repo y comandos ejecutables antes de scaffold de backend/frontend.
 
 ## Guía de Trabajo Paralelo

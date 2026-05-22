@@ -71,6 +71,5 @@
 - El repositorio incluye source frontend.
 - El repositorio incluye seed data PostgreSQL.
 - El repositorio incluye README con estrategia de concurrencia y comandos de test.
-- El repositorio incluye `spec-kit-notes.md` con comandos, supuestos, refinamientos y pivots.
+- El repositorio incluye trazabilidad suficiente entre historias, specs, plan, tasks y README.
 - La implementación final mapea de vuelta a estos artefactos de especificación.
-

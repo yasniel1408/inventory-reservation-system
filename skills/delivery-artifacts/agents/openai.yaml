@@ -1,4 +1,4 @@
 interface:
   display_name: "Artefactos Entrega"
-  short_description: "OpenAPI README seeds notas"
-  default_prompt: "Usa este skill para OpenAPI, README, spec-kit-notes, seeds, chat history, comandos de test y checklist final."
+  short_description: "OpenAPI README seeds entrega"
+  default_prompt: "Usa este skill para OpenAPI, README, seeds, chat history, comandos de test y checklist final."
