@@ -11,6 +11,12 @@ reasoning: high
 
 Mantener los `skills/` actualizados cuando el trabajo realizado cambia reglas, arquitectura, stack, flujo, criterios de entrega o revela bugs/patrones que no deben repetirse.
 
+## Modelo
+
+- Perfil: Codex alto.
+- Razonamiento: high.
+- Uso: mantener skills actualizadas, descubribles y sin drift.
+
 ## Cuándo Usarlo
 
 - Al final de toda tarea de desarrollo.
@@ -33,7 +39,7 @@ Mantener los `skills/` actualizados cuando el trabajo realizado cambia reglas, a
 - `memory/`
 - `memory/progress.md` cuando exista.
 - Wrappers de herramienta como `CLAUDE.md` u `opencode.json`.
-- `plan.md`/`sdd/plans/`
+- `sdd/plans.md`/`sdd/plans/`
 - `sdd/tasks.md`/`sdd/tasks/`
 - Specs relevantes.
 

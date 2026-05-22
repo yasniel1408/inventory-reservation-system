@@ -11,6 +11,12 @@ reasoning: medium
 
 Asegurar que el comportamiento implementado este cubierto por tests utiles, mantenibles y alineados con las specs.
 
+## Modelo
+
+- Perfil: Codex estandar.
+- Razonamiento: medium.
+- Uso: crear/corregir tests y validar comportamiento.
+
 ## Cuándo Usarlo
 
 - Despues de implementar comportamiento nuevo.

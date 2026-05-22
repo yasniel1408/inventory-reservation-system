@@ -11,6 +11,12 @@ reasoning: high
 
 Revisar que lo implementado cumpla las specs, no rompa decisiones del plan y no introduzca regresiones o complejidad innecesaria.
 
+## Modelo
+
+- Perfil: Codex alto.
+- Razonamiento: high.
+- Uso: detectar bugs, riesgos, gaps de tests y problemas de contrato.
+
 ## Cuándo Usarlo
 
 - Despues de cambios de backend, frontend, DB, OpenAPI o README.

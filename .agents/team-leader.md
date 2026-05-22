@@ -12,6 +12,13 @@ reasoning: xhigh
 
 Traducir un plan aprobado por el usuario en tareas tecnicas ejecutables, con ownership de archivos/modulos y criterios de validacion. Mantener visible el estado del flujo durante toda la ejecucion.
 
+## Modelo
+
+- Perfil: Codex maximo disponible.
+- Preferido: gpt-5.5-codex si esta disponible.
+- Razonamiento: xhigh.
+- Uso: coordinacion global, ownership, paralelismo, tradeoffs y cierre.
+
 ## Cuándo Usarlo
 
 - Despues de `analyst` y solo cuando el usuario aprobo el plan.

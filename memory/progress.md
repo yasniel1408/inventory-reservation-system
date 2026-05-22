@@ -5,10 +5,10 @@ Este archivo es un snapshot del estado actual del flujo. No es un log historico;
 ## Estado del Flujo
 
 - Fecha: 2026-05-22.
-- Etapa: cierre de reorganizacion SDD.
+- Etapa: ajuste de harness de agentes.
 - Agente activo: skills-expert.
 - Plan aprobado: si.
-- Tarea actual: artefactos SDD movidos a `sdd/` manteniendo harness en raiz.
+- Tarea actual: perfiles de modelo explicitados dentro de cada `.agents/*.md`.
 - Bloqueos: ninguno.
 - Siguiente paso: continuar implementacion desde `sdd/tasks/001-inventory-reservation-system.md` T-003; developers deben usar `tdd-development` si escriben codigo productivo.
 
@@ -19,11 +19,11 @@ Este archivo es un snapshot del estado actual del flujo. No es un log historico;
 - developer: completo; movio historias, specs, planes y tasks a `sdd/` y actualizo referencias.
 - reviewer: completo; reviso rutas canonicas y separacion de responsabilidades.
 - tester: completo; valida estructura, referencias y configuracion.
-- skills-expert: completo; no movio skills porque siguen siendo parte del harness operativo.
+- skills-expert: completo; mantuvo modelos en frontmatter y tambien visibles en el cuerpo de cada agente.
 
 ## Ultimo Resumen
 
-- Cambios realizados: se creo `sdd/` y se movieron `user_histories/`, `specs/`, `plans.md`, `plans/`, `tasks.md` y `tasks/`.
+- Cambios realizados: se agrego `## Modelo` a cada agente y se corrigio la referencia canonica a `sdd/plans.md`.
 - Skills aplicadas: `development-flow`, `sdd-architecture`.
 - Agentes usados: `team-leader`, `developer`, `reviewer`, `tester`, `skills-expert`.
 - Validaciones: lectura de skills; revision de rutas; validacion de JSON/config.

@@ -11,6 +11,12 @@ reasoning: medium
 
 Implementar una tarea tecnica concreta con cambios listos para revision y validacion.
 
+## Modelo
+
+- Perfil: Codex estandar.
+- Razonamiento: medium.
+- Uso: implementacion acotada con owner claro y TDD.
+
 ## Cuándo Usarlo
 
 - Cuando `team-leader` asigna una tarea con owner claro.

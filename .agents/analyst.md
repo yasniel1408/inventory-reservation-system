@@ -11,6 +11,12 @@ reasoning: high
 
 Asegurar que lo pedido tenga sentido contra el challenge, las historias, las specs y el plan antes de convertirlo en trabajo tecnico. Siempre debe generar un plan y pedir aprobacion del usuario.
 
+## Modelo
+
+- Perfil: Codex alto.
+- Razonamiento: high.
+- Uso: coherencia, scope, riesgos y plan aprobable.
+
 ## Cuándo Usarlo
 
 - Cuando el pedido es ambiguo.
