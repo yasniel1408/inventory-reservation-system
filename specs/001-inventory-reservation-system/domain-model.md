@@ -54,8 +54,8 @@ Reglas:
 - `scope` más `key` debe ser único.
 - Misma key más mismo request hash debe devolver el outcome almacenado.
 - Misma key más distinto request hash debe devolver conflicto de idempotencia.
-- Duplicados en progreso deben esperar, bloquear o devolver una respuesta retryable determinística. El enfoque elegido debe documentarse en `plan.md`.
-- Los registros de idempotencia deben tener política de retención documentada en `plan.md`.
+- Duplicados en progreso deben esperar, bloquear o devolver una respuesta retryable determinística. El enfoque elegido debe documentarse en el plan activo enlazado desde `plans.md`.
+- Los registros de idempotencia deben tener política de retención documentada en el plan activo.
 
 ## Transiciones de Estado
 
@@ -83,7 +83,7 @@ confirmed -> confirmed (no-op idempotente para release salvo que una futura sem�
 
 La transacción de base de datos es el límite de concurrencia. La aplicación no debe depender de locks en memoria como mecanismo primario de correctness porque el servicio puede escalar horizontalmente.
 
-Estrategias PostgreSQL candidatas a evaluar en `plan.md`:
+Estrategias PostgreSQL candidatas a evaluar en el plan activo:
 
 - Update atómico condicional sobre fila de item, protegido por `WHERE available >= requested`.
 - Row-level lock sobre item con `SELECT ... FOR UPDATE`.
@@ -98,4 +98,3 @@ El reloj de backend/base de datos es autoritativo para `created_at`, `expires_at
 ## Decisión de Persistencia
 
 Las reservas expiradas pueden quedar persistidas con status `expired` para auditabilidad y manejo idempotente de no-op. No deben aparecer en queries de reservas activas ni ser interactuables como holds activos.
-

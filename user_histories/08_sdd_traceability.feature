@@ -11,7 +11,7 @@ Característica: Trazabilidad SDD y entregables
     Y las decisiones ambiguas quedan registradas como supuestos o preguntas resueltas
 
   Escenario: Trazar plan técnico hacia tareas implementables
-    Cuando reviso `plan.md` y `tasks.md`
+    Cuando reviso `plans.md`, `plans/`, `tasks.md` y `tasks/`
     Entonces cada decisión arquitectónica relevante tiene tareas asociadas
     Y cada tarea puede mapearse a código, pruebas o documentación verificable
     Y no existen tareas vagas sin resultado observable
@@ -31,4 +31,4 @@ Característica: Trazabilidad SDD y entregables
     Y encuentro código fuente React con Vite y TypeScript del frontend
     Y encuentro seed data para PostgreSQL
     Y encuentro un `README.md` con estrategia de concurrencia, ejecución de tests y LLM usado
-    Y encuentro trazabilidad suficiente en `spec.md`, `plan.md`, `tasks.md` y `README.md`
+    Y encuentro trazabilidad suficiente en `spec.md`, `plans.md`/`plans/`, `tasks.md`/`tasks/` y `README.md`

@@ -88,7 +88,7 @@ El sistema debe mostrar estado de stock, crear reservas de forma atómica, expir
 - La expiración debe devolver la cantidad reservada al pool disponible exactamente una vez.
 - La expiración debe ser durable y segura ante retries o múltiples ejecuciones de worker.
 - La expiración debe usar tiempo de backend/base de datos como fuente de verdad, no el reloj frontend.
-- La expiración puede implementarse mediante worker, scheduled job, lazy cleanup en lecturas/escrituras o combinación. El mecanismo elegido debe documentarse en `plan.md`.
+- La expiración puede implementarse mediante worker, scheduled job, lazy cleanup en lecturas/escrituras o combinación. El mecanismo elegido debe documentarse en el plan activo enlazado desde `plans.md`.
 - El timer frontend es solo orientativo; el estado backend es autoritativo.
 - La UI debe dejar de mostrar reservas expiradas como activas después de sincronizar.
 
@@ -104,13 +104,13 @@ El sistema debe mostrar estado de stock, crear reservas de forma atómica, expir
 ### Idempotencia
 
 - `POST /reservations` debe requerir header `Idempotency-Key`.
-- Las idempotency keys se scopean por endpoint y user/session salvo que `plan.md` elija un scope global más estricto.
+- Las idempotency keys se scopean por endpoint y user/session salvo que el plan activo elija un scope global más estricto.
 - La persistencia de idempotencia debe guardar un request hash canónico y el outcome final replayable.
 - Dos requests de reserva con la misma key y mismo payload deben devolver el mismo outcome de reserva.
 - Misma key y mismo payload no deben decrementar stock más de una vez.
 - Dos requests con misma key y payload distinto deben rechazarse con error claro de conflicto de idempotencia.
 - Requests paralelos con misma key y mismo payload deben converger a un outcome almacenado.
-- Si llega un request duplicado mientras el primero sigue en progreso, API debe esperar, bloquear o devolver respuesta retryable determinística. La opción elegida debe documentarse en `plan.md`.
+- Si llega un request duplicado mientras el primero sigue en progreso, API debe esperar, bloquear o devolver respuesta retryable determinística. La opción elegida debe documentarse en el plan activo.
 - Responses de validación y stock-conflict pueden almacenarse como outcomes idempotentes si son determinísticos. Errores `5xx` transitorios no deben cachearse como outcomes finales exitosos.
 - `DELETE /reservations/{id}` debe ser seguro de llamar repetidamente.
 - Retries de release no deben devolver stock más de una vez.
@@ -207,6 +207,6 @@ El sistema debe mostrar estado de stock, crear reservas de forma atómica, expir
   - `user_histories/07_openapi_contract.feature`
   - `user_histories/08_sdd_traceability.feature`
 - Próximos artefactos:
-  - `plan.md`
-  - `tasks.md`
+  - `plans.md` y `plans/001-inventory-reservation-system.md`
+  - `tasks.md` y `tasks/001-inventory-reservation-system.md`
   - contrato OpenAPI

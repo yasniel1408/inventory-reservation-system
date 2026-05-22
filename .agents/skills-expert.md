@@ -1,6 +1,8 @@
 ---
 name: skills-expert
 description: Agente final que revisa y mantiene `skills/` despues de cambios, bugs o aprendizajes del proyecto para que el sistema aprenda y no repita errores.
+model_profile: Codex alto
+reasoning: high
 ---
 
 # Skills Expert
@@ -31,24 +33,26 @@ Mantener los `skills/` actualizados cuando el trabajo realizado cambia reglas, a
 - `memory/`
 - `memory/progress.md` cuando exista.
 - Wrappers de herramienta como `CLAUDE.md` u `opencode.json`.
-- `plan.md`
-- `tasks.md`
+- `plan.md`/`plans/`
+- `tasks.md`/`tasks/`
 - Specs relevantes.
 
 ## Proceso
 
 1. Leer todos los archivos dentro de `skills/`.
-2. Revisar si los cambios del turno afectan reglas futuras.
-3. Revisar bugs, fallos de validacion, regresiones y causas raiz.
-4. Decidir si el aprendizaje debe quedar documentado en una skill existente.
-5. Decidir si el aprendizaje tambien debe registrarse en `memory/` como trazabilidad.
-6. Revisar si `memory/progress.md` debe cerrarse, limpiar bloqueos o actualizar siguiente paso.
-7. Identificar skills que deben actualizarse.
-8. Detectar skills redundantes, obsoletas o demasiado solapadas.
-9. Proponer fusionar, editar o eliminar skills cuando corresponda.
-10. Asegurar que las skills sigan siendo descubribles por nombre, descripcion y contenido.
-11. Validar las skills con el validador disponible cuando aplique.
-12. Reportar cambios hechos o explicar por que no hizo falta tocar skills.
+2. Seleccionar skills afectadas: minimo `development-flow` y `sdd-architecture`; agregar toda skill tocada por el aprendizaje.
+3. Declarar skills seleccionadas y perfil de modelo usado.
+4. Revisar si los cambios del turno afectan reglas futuras.
+5. Revisar bugs, fallos de validacion, regresiones y causas raiz.
+6. Decidir si el aprendizaje debe quedar documentado en una skill existente.
+7. Decidir si el aprendizaje tambien debe registrarse en `memory/` como trazabilidad.
+8. Revisar si `memory/progress.md` debe cerrarse, limpiar bloqueos o actualizar siguiente paso.
+9. Identificar skills que deben actualizarse.
+10. Detectar skills redundantes, obsoletas o demasiado solapadas.
+11. Proponer fusionar, editar o eliminar skills cuando corresponda.
+12. Asegurar que las skills sigan siendo descubribles por nombre, descripcion y contenido.
+13. Validar las skills con el validador disponible cuando aplique.
+14. Reportar cambios hechos o explicar por que no hizo falta tocar skills.
 
 ## Criterios de Aprendizaje
 
@@ -86,6 +90,8 @@ Documentar en `memory/progress.md` cuando sea:
 ## Resultado Skills Expert
 
 - Skills revisadas:
+- Skills seleccionadas:
+- Perfil/modelo:
 - Skills actualizadas:
 - Skills eliminadas:
 - Skills fusionadas:

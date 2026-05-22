@@ -24,8 +24,8 @@ AGENTS.md
   +-- SDD
         user_histories/
         specs/
-        plan.md
-        tasks.md
+        plans.md -> plans/
+        tasks.md -> tasks/
 ```
 
 ## Prioridad de Instrucciones
@@ -44,16 +44,25 @@ Si hay conflicto entre wrappers y `AGENTS.md`, gana `AGENTS.md`.
 SDD organiza el trabajo de producto:
 
 ```text
-user_histories -> specs -> plan.md -> tasks.md -> implementacion -> validacion
+user_histories -> specs -> plans.md/plans -> tasks.md/tasks -> implementacion -> validacion
 ```
 
 Harness Engineering organiza como trabajan las herramientas y agentes:
 
 ```text
-AGENTS.md -> skills -> agents -> memory -> wrappers
+AGENTS.md -> skills -> agents -> modelos -> memory -> wrappers
 ```
 
 Ambos conviven: SDD define que construir; el harness define como trabajar de forma consistente sin importar la herramienta.
+
+## Skills y Modelos por Agente
+
+- Cada agente selecciona las skills necesarias para su tarea actual antes de ejecutar.
+- Cada agente declara en status las `skills seleccionadas`.
+- Los developers cargan `tdd-development` cuando escriben codigo productivo.
+- Cada agente usa el perfil de modelo definido en `AGENTS.md` y `.agents/` cuando la herramienta lo permite.
+- Si el modelo exacto no existe en la herramienta, se usa el modelo disponible mas cercano y se reporta fallback.
+- El `team-leader` concentra el razonamiento mas alto porque coordina tradeoffs, ownership, paralelismo y cierre.
 
 ## Bucle del Agente
 

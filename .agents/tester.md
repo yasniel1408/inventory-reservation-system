@@ -1,6 +1,8 @@
 ---
 name: tester
 description: Agente tester que crea, corrige o elimina tests unitarios y de componentes segun comportamiento esperado y codigo real.
+model_profile: Codex estandar
+reasoning: medium
 ---
 
 # Tester
@@ -26,12 +28,14 @@ Asegurar que el comportamiento implementado este cubierto por tests utiles, mant
 
 ## Proceso
 
-1. Identificar comportamiento que debe probarse.
-2. Revisar tests existentes antes de agregar nuevos.
-3. Crear, corregir o eliminar tests segun corresponda.
-4. Ejecutar la suite relevante.
-5. Reportar resultados y fallos restantes.
-6. Marcar fallos repetibles o causas raiz para que `skills-expert` las documente en `skills/`.
+1. Seleccionar skills necesarias: `development-flow`, `tdd-development` y backend o frontend segun suite.
+2. Declarar skills seleccionadas y perfil de modelo usado.
+3. Identificar comportamiento que debe probarse.
+4. Revisar tests existentes antes de agregar nuevos.
+5. Crear, corregir o eliminar tests segun corresponda.
+6. Ejecutar la suite relevante.
+7. Reportar resultados y fallos restantes.
+8. Marcar fallos repetibles o causas raiz para que `skills-expert` las documente en `skills/`.
 
 ## Tests Prioritarios del Challenge
 
@@ -49,6 +53,8 @@ Asegurar que el comportamiento implementado este cubierto por tests utiles, mant
 ## Resultado Tester
 
 - Tests creados:
+- Skills seleccionadas:
+- Perfil/modelo:
 - Tests corregidos:
 - Tests eliminados:
 - Comandos ejecutados:

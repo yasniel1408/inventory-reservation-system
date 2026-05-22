@@ -1,11 +1,11 @@
 ---
 name: sdd-architecture
-description: Usar al crear, actualizar o validar artefactos SDD para este challenge de reservas de inventario, incluyendo user histories, spec.md, plan.md, tasks.md, decisiones de arquitectura, supuestos y trazabilidad antes de implementación.
+description: Usar al crear, actualizar o validar artefactos SDD para este challenge de reservas de inventario, incluyendo user histories, spec.md, plans.md, plans/, tasks.md, tasks/, decisiones de arquitectura, supuestos y trazabilidad antes de implementación.
 ---
 
 # SDD Architecture
 
-Usar este skill para preservar el flujo SDD del challenge. No escribir código de aplicación hasta que existan `spec.md`, `plan.md` y `tasks.md`, y hasta que mapeen con las historias de usuario.
+Usar este skill para preservar el flujo SDD del challenge. No escribir código de aplicación hasta que existan `spec.md`, `plans.md`, `plans/`, `tasks.md` y `tasks/`, y hasta que mapeen con las historias de usuario.
 
 ## Entradas Requeridas
 
@@ -24,12 +24,15 @@ Usar este skill para preservar el flujo SDD del challenge. No escribir código d
    - `specs/001-inventory-reservation-system/api-spec.md`
    - `specs/001-inventory-reservation-system/acceptance-criteria.md`
    - `specs/001-inventory-reservation-system/test-spec.md`
-   - `plan.md`
-   - `tasks.md`
-3. Documentar supuestos, ambigüedades y decisiones en el artefacto más cercano: `spec.md`, `plan.md`, `tasks.md` o `README.md`.
+   - `plans.md` como indice
+   - `plans/001-inventory-reservation-system.md` como plan activo
+   - `tasks.md` como indice
+   - `tasks/001-inventory-reservation-system.md` como tablero activo
+3. Documentar supuestos, ambigüedades y decisiones en el artefacto más cercano: `spec.md`, `plans/<id>.md`, `tasks/<id>.md` o `README.md`.
 4. Mantener trazabilidad explícita: cada tarea de implementación debe apuntar a al menos una spec, criterio de aceptación o requisito de test.
 5. Preferir artefactos pequeños y revisables antes que documentos narrativos amplios.
 6. Si el usuario pide implementar antes de que existan artefactos requeridos, crear o actualizar primero los artefactos faltantes.
+7. Al trabajar con agentes, cada agente debe declarar las skills seleccionadas para su rol y scope.
 
 ## Reglas de Artefactos
 
@@ -38,8 +41,10 @@ Usar este skill para preservar el flujo SDD del challenge. No escribir código d
 - `api-spec.md` define la superficie REST prevista antes de generar el OpenAPI formal.
 - `acceptance-criteria.md` define criterios observables de pass/fail.
 - `test-spec.md` define escenarios de verificación requeridos.
-- `plan.md` debe elegir tecnologías y estrategias concretas de implementación.
-- `tasks.md` debe contener work items ejecutables con ownership claro de archivo/módulo.
+- `plans.md` debe ser un indice corto de planes.
+- `plans/<id>.md` debe elegir tecnologías y estrategias concretas de implementación.
+- `tasks.md` debe ser un indice corto de tableros.
+- `tasks/<id>.md` debe contener work items ejecutables con ownership claro de archivo/módulo.
 
 ## Checks Específicos del Challenge
 

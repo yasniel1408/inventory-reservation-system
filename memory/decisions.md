@@ -54,6 +54,24 @@
 - Motivo: evita ejecucion a ciegas y hace portable el modo de trabajo entre herramientas.
 - Implicacion: cada agente debe reportar status, validar antes de cerrar y marcar aprendizajes para `skills-expert`.
 
+## Skills por Agente
+
+- Decision: cada agente recolecta y declara las skills necesarias para su tarea actual.
+- Motivo: reduce tokens y evita cargar contexto que no aplica sin perder reglas obligatorias.
+- Implicacion: el status y el cierre deben mostrar skills seleccionadas/aplicadas.
+
+## TDD Obligatorio para Developers
+
+- Decision: todo agente `developer` que escriba codigo productivo debe usar `tdd-development`.
+- Motivo: asegurar que los cambios de comportamiento tengan tests que fallan primero y evitar tests sesgados escritos despues.
+- Implicacion: el resultado del developer debe incluir evidencia RED/GREEN o una excepcion aprobada.
+
+## Perfiles de Modelo por Agente
+
+- Decision: cada agente tiene un perfil de modelo recomendado; `team-leader` usa el modelo Codex maximo disponible, preferentemente `gpt-5.5-codex` si existe, con razonamiento `xhigh`.
+- Motivo: concentrar mayor razonamiento en coordinacion global y ahorrar tokens en tareas acotadas.
+- Implicacion: si una herramienta no soporta el modelo exacto, debe usar el modelo disponible mas cercano y reportar fallback.
+
 ## Stack del Challenge
 
 - Decision: backend Go + Gin + GORM + PostgreSQL; frontend React + Vite + TypeScript.

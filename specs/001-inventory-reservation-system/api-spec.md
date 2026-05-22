@@ -5,7 +5,7 @@ Este documento define la superficie REST prevista. El archivo OpenAPI final debe
 ## Reglas Generales
 
 - Todos los timestamps son strings UTC ISO 8601.
-- Los requests se asocian al usuario/session actual. Para el challenge es aceptable una session anónima sembrada o header simple si queda documentado en `plan.md`.
+- Los requests se asocian al usuario/session actual. Para el challenge es aceptable una session anónima sembrada o header simple si queda documentado en el plan activo enlazado desde `plans.md`.
 - `Idempotency-Key` está scopeado por endpoint y user/session.
 - Los error codes deben ser estables y documentados en OpenAPI.
 
@@ -181,4 +181,3 @@ Errores:
 - `ReleaseReservationResponse`
 - `ErrorResponse`
 - `IdempotencyConflictError`
-

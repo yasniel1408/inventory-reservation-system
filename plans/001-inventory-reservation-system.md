@@ -8,6 +8,7 @@ Implementar el challenge con una solución simple y verificable: backend Go con 
 
 - Historias: `user_histories/`
 - Specs: `specs/001-inventory-reservation-system/`
+- Tasks: `tasks/001-inventory-reservation-system.md`
 - Skills activos: `skills/`
 - Próximos artefactos: implementación, OpenAPI, README y chat history
 

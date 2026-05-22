@@ -1,0 +1,4 @@
+interface:
+  display_name: "TDD Desarrollo"
+  short_description: "Test primero para developers"
+  default_prompt: "Usa este skill cuando un developer implemente features, bugfixes, refactors o cambios de comportamiento con ciclo red-green-refactor."

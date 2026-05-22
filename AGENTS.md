@@ -8,8 +8,10 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
 - La fuente principal de requerimientos esta en:
   - `user_histories/`
   - `specs/001-inventory-reservation-system/`
-  - `plan.md`
-  - `tasks.md`
+  - `plans.md` como indice de planes
+  - `plans/001-inventory-reservation-system.md` como plan activo
+  - `tasks.md` como indice de tareas
+  - `tasks/001-inventory-reservation-system.md` como tablero activo
 - Los `skills/` definen reglas tecnicas y de arquitectura.
 - `.agents/` define roles de coordinacion.
 - `memory/` guarda decisiones y aprendizajes versionados del harness.
@@ -32,6 +34,8 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
 - `reviewer` revisa cambios contra specs, plan, tasks y riesgos.
 - `tester` crea, corrige o elimina tests segun comportamiento real.
 - `skills-expert` corre al final para mantener `skills/` actualizadas, descubribles y sin redundancia.
+- Cada agente debe recolectar y declarar las skills necesarias para su tarea actual antes de ejecutar.
+- Cada agente debe usar el perfil de modelo recomendado para su rol cuando la herramienta lo permita.
 - Si aparece un bug, regresion o validacion fallida con causa reusable, `skills-expert` debe documentar la regla preventiva en `skills/`.
 - Usar `memory/` para decisiones estables y aprendizajes historicos que no necesariamente son reglas operativas.
 - Usar `memory/progress.md` para retomar el estado actual sin convertirlo en log historico.
@@ -52,6 +56,48 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
 9. `tester` ajusta tests cuando corresponde.
 10. `skills-expert` revisa si hay que actualizar, fusionar o eliminar skills, incluyendo aprendizajes de bugs corregidos.
 11. Reportar resumen final con trabajo realizado, skills aplicadas, agentes usados, camino tomado, validaciones y riesgos restantes.
+
+## Seleccion de Skills por Agente
+
+Cada agente hace una seleccion local de skills para reducir contexto sin perder reglas importantes.
+
+Proceso obligatorio:
+
+1. Leer `skills/SELECTING_SKILLS.md`.
+2. Leer `skills/development-flow/SKILL.md` si la tarea es no trivial o de desarrollo.
+3. Elegir solo las skills especificas necesarias para el trabajo actual.
+4. Declarar en el status inicial: `skills seleccionadas`.
+5. Si durante el trabajo aparece otro scope, agregar la skill correspondiente y reportarlo.
+6. En el cierre, reportar `skills aplicadas`.
+
+| Agente | Skills minimas | Skills condicionales |
+| --- | --- | --- |
+| `analyst` | `development-flow`, `sdd-architecture` | `delivery-artifacts` si analiza entrega |
+| `team-leader` | `development-flow`, `sdd-architecture` | backend/frontend/delivery segun tareas |
+| `developer` | `development-flow`, `tdd-development` + skill tecnica asignada | `sdd-architecture` si toca artefactos SDD |
+| `reviewer` | `development-flow`, `sdd-architecture` | `tdd-development` y backend/frontend/delivery segun diff |
+| `tester` | `development-flow`, `tdd-development` | backend/frontend segun suite |
+| `skills-expert` | `development-flow`, `sdd-architecture` | toda skill afectada por el aprendizaje |
+
+## Perfiles de Modelo
+
+Estos perfiles son una politica del harness para ahorrar tokens. Si la herramienta no soporta el nombre exacto, usar el modelo disponible mas cercano al perfil.
+
+| Agente | Perfil recomendado | Razonamiento | Uso esperado |
+| --- | --- | --- | --- |
+| `analyst` | Codex alto | high | Coherencia, scope, riesgos y plan aprobable. |
+| `team-leader` | Codex maximo disponible, preferentemente `gpt-5.5-codex` si existe | xhigh | Coordinacion global, paralelismo, ownership y decisiones de tradeoff. |
+| `developer` | Codex estandar | medium | Implementacion acotada con archivos owner claros. |
+| `reviewer` | Codex alto | high | Revision de bugs, riesgos, contratos y gaps. |
+| `tester` | Codex estandar | medium | Tests concretos y validacion de comportamiento. |
+| `skills-expert` | Codex alto | high | Mantener skills sin duplicacion ni drift. |
+
+Reglas:
+
+- Subir temporalmente el perfil si hay concurrencia, seguridad, datos, migraciones o decisiones irreversibles.
+- Bajar temporalmente el perfil para cambios mecanicos, indices o formato.
+- No reducir contexto critico: specs, plan activo, task activa, diff y skill tecnica aplicable siempre se leen cuando corresponden.
+- El resumen final debe indicar si se uso un perfil distinto al recomendado.
 
 ## Bucle del Agente
 
@@ -84,6 +130,8 @@ Reglas del bucle:
   - etapa actual del flujo
   - agente activo
   - tarea en curso
+  - skills seleccionadas
+  - modelo o perfil usado
   - decision o bloqueo relevante
   - siguiente paso
 - El resumen final debe incluir:
@@ -91,6 +139,7 @@ Reglas del bucle:
   - que archivos cambiaron
   - que skills se aplicaron
   - que agentes participaron
+  - que perfiles de modelo se usaron o si hubo fallback
   - que camino tomo el flujo
   - que validaciones se ejecutaron
   - que riesgos o pendientes quedan
@@ -111,6 +160,6 @@ Reglas del bucle:
 
 ## Entrega
 
-- Mantener trazabilidad entre historias, specs, plan, tasks, implementacion y README.
+- Mantener trazabilidad entre historias, specs, `plans.md`, `plans/`, `tasks.md`, `tasks/`, implementacion y README.
 - El README debe documentar setup, tests, estrategia de concurrencia, TTL, idempotencia y LLM usado.
 - El contrato OpenAPI final debe vivir en `openapi/openapi.yaml`.

@@ -14,6 +14,8 @@ tenga analisis, plan, ejecucion, revision, pruebas y aprendizaje cuando aplica.
 - El `team-leader` no continua con ejecucion hasta que el plan este aprobado.
 - El `team-leader` informa estado durante todo el flujo.
 - Al final, `skills-expert` revisa si lo aprendido debe quedar documentado en `skills/`.
+- Cada agente selecciona y declara las skills que necesita para su tarea actual.
+- Cada agente usa el perfil de modelo recomendado para su rol si la herramienta lo permite.
 
 ## Flujo General
 
@@ -194,6 +196,41 @@ no cambia la disciplina del proceso.
 | Reportar estado | Informar etapa, agente activo, tarea actual, bloqueos y proximo paso. |
 | Aprender si aplica | Documentar en skills o memoria solo si aparece una regla reutilizable. |
 
+## Seleccion de Skills por Agente
+
+```text
+agente recibe tarea
+        |
+        v
+lee skills/SELECTING_SKILLS.md
+        |
+        v
+elige skills minimas para el scope
+        |
+        v
+declara skills seleccionadas en status
+        |
+        v
+ejecuta con esas skills
+        |
+        v
+si cambia el scope, agrega skill y reporta
+```
+
+La seleccion debe ser chica y suficiente. No cargar todas las skills para cada
+subtarea si solo aplica backend, frontend o delivery.
+
+Mapa minimo:
+
+| Agente | Skills base |
+| --- | --- |
+| `analyst` | `development-flow`, `sdd-architecture` |
+| `team-leader` | `development-flow`, `sdd-architecture` |
+| `developer` | `development-flow`, `tdd-development`, skill tecnica asignada |
+| `reviewer` | `development-flow`, `sdd-architecture`, skills del diff |
+| `tester` | `development-flow`, `tdd-development`, skill de la suite |
+| `skills-expert` | `development-flow`, `sdd-architecture`, skills afectadas |
+
 ## Responsabilidades Por Agente
 
 | Agente | Entra cuando | Produce | No debe hacer |
@@ -204,6 +241,29 @@ no cambia la disciplina del proceso.
 | `reviewer` | Hay cambios completos para revisar | Hallazgos, riesgos, gaps y aprobacion/rechazo tecnica | Reescribir todo sin justificar |
 | `tester` | Hay comportamiento que validar | Tests nuevos, corregidos o eliminados segun corresponda | Mantener tests falsos o desalineados |
 | `skills-expert` | Termina el flujo o cambia una regla de trabajo | Skills actualizadas, simplificadas o sin cambios justificados | Convertir todo en skill sin valor reutilizable |
+
+## Modelo Por Agente
+
+| Agente | Perfil recomendado | Razonamiento | Motivo |
+| --- | --- | --- | --- |
+| `analyst` | Codex alto | high | Necesita detectar contradicciones y preparar un plan aprobable. |
+| `team-leader` | Codex maximo disponible, preferentemente `gpt-5.5-codex` si existe | xhigh | Coordina tradeoffs, ownership, paralelismo y cierre. |
+| `developer` | Codex estandar | medium | Ejecuta tareas acotadas con contexto tecnico especifico. |
+| `reviewer` | Codex alto | high | Busca bugs, riesgos y gaps de tests. |
+| `tester` | Codex estandar | medium | Ajusta tests y validaciones concretas. |
+| `skills-expert` | Codex alto | high | Evita drift y mantiene skills descubribles. |
+
+Si el modelo exacto no existe en la herramienta usada, se usa el disponible mas cercano al perfil.
+
+## TDD Para Developers
+
+Cuando `developer` escribe codigo productivo, debe usar `tdd-development`.
+
+```text
+test RED -> codigo minimo GREEN -> refactor con tests verdes
+```
+
+El resultado del developer debe incluir evidencia RED/GREEN o una excepcion aprobada.
 
 ## Paralelismo
 
@@ -236,6 +296,8 @@ Status:
 - etapa: <analisis | plan | ejecucion | revision | testing | skills | cierre>
 - agente activo: <analyst | team-leader | developer | reviewer | tester | skills-expert>
 - tarea actual: <que se esta haciendo>
+- skills seleccionadas: <lista corta>
+- modelo/perfil: <perfil usado>
 - bloqueo: <ninguno | descripcion>
 - siguiente paso: <accion concreta>
 ```
@@ -251,6 +313,7 @@ Al terminar, el `team-leader` entrega un resumen corto con:
 - Que archivos se tocaron.
 - Que skills se aplicaron.
 - Que agentes participaron.
+- Que perfiles de modelo se usaron o si hubo fallback.
 - Que camino tomo el flujo.
 - Que validaciones se corrieron.
 - Riesgos o pendientes, si existen.
