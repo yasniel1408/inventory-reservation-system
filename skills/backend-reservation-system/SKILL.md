@@ -1,0 +1,45 @@
+---
+name: backend-reservation-system
+description: Usar para implementar, planificar o revisar el backend Go del sistema de reservas con Gin, GORM y PostgreSQL, incluyendo migraciones versionadas, schema, handlers REST, transacciones, prevención de oversell, TTL de 60 segundos, release idempotente, Idempotency-Key, seed compatibility y tests de concurrencia.
+---
+
+# Backend Reservation System
+
+Usar este skill para todo el backend. Mantenerlo simple: el challenge evalúa concurrencia, idempotencia y trazabilidad, no una arquitectura grande.
+
+## Stack
+
+- Go.
+- Gin para HTTP.
+- GORM para acceso a PostgreSQL.
+- Migraciones SQL versionadas; no depender de AutoMigrate como contrato final.
+
+## Estructura Recomendada
+
+```text
+backend/
+  cmd/api/
+  internal/config/
+  internal/http/
+  internal/store/
+  internal/reservations/
+  internal/items/
+```
+
+## Reglas Críticas
+
+- PostgreSQL es la fuente de verdad.
+- Toda mutación de reserva corre en transacción.
+- Usar SQL crudo dentro de GORM cuando haga falta locking, conditional update o `RETURNING`.
+- No usar locks en memoria como mecanismo de correctness.
+- `POST /reservations` requiere `Idempotency-Key`.
+- `DELETE /reservations/{id}` es idempotente.
+- Expiración y release no pueden devolver stock más de una vez.
+
+## Tests Backend Obligatorios
+
+- 50+ requests concurrentes por la última unidad: exactamente un éxito.
+- 100 requests concurrentes por 10 unidades: 10 éxitos y 90 rechazos.
+- Misma `Idempotency-Key` en paralelo: una reserva y un decremento.
+- Release doble: stock devuelto una sola vez.
+

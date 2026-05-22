@@ -1,0 +1,4 @@
+interface:
+  display_name: "Frontend Reservas"
+  short_description: "React Vite TS reservas UI"
+  default_prompt: "Usa este skill para frontend React/Vite/TypeScript, dashboard, reservas activas, timers, feedback, estado API y tests de componentes."

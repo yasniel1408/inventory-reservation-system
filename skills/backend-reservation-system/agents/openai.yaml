@@ -1,0 +1,4 @@
+interface:
+  display_name: "Backend Reservas"
+  short_description: "Go Gin GORM PostgreSQL reservas"
+  default_prompt: "Usa este skill para backend Go/Gin/GORM/PostgreSQL, migraciones, concurrencia, TTL, release, idempotencia y tests backend."

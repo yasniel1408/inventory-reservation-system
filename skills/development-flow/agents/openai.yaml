@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flujo de Desarrollo"
+  short_description: "Flujo simple del challenge"
+  default_prompt: "Usa este skill al inicio de toda tarea no trivial para mantener Spec Kit, ejecución simple, ownership claro y validación concreta."
