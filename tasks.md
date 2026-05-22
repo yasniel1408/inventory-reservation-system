@@ -6,11 +6,11 @@
 - Mantener trazabilidad hacia `plan.md`, `user_histories/` y `specs/001-inventory-reservation-system/`.
 - Marcar tareas completadas cambiando `[ ]` por `[x]`.
 
-## Fase 0 - Spec Kit
+## Fase 0 - SDD
 
-- [x] T-001 Validar coherencia inicial de Spec Kit.
+- [x] T-001 Validar coherencia inicial de SDD.
   - Owner: raíz del repo.
-  - Referencias: `plan.md`, `user_histories/08_spec_kit_traceability.feature`.
+  - Referencias: `plan.md`, `user_histories/08_sdd_traceability.feature`.
   - Resultado: `plan.md`, `tasks.md`, `user_histories/` y `specs/` quedan alineados antes de implementar.
 
 - [x] T-002 Registrar decisión de simplificar arquitectura.
@@ -182,12 +182,12 @@
 
 - [ ] T-032 Crear o documentar chat history.
   - Owner: `docs/chat-history.md` o README.
-  - Referencias: `user_histories/08_spec_kit_traceability.feature`.
+  - Referencias: `user_histories/08_sdd_traceability.feature`.
   - Criterios: el repo indica dónde está el historial completo de la conversación.
 
 - [ ] T-033 Documentar comandos y decisiones finales.
   - Owner: `README.md`.
-  - Referencias: `plan.md`, `user_histories/08_spec_kit_traceability.feature`.
+  - Referencias: `plan.md`, `user_histories/08_sdd_traceability.feature`.
   - Criterios: comandos usados, supuestos relevantes y decisiones finales.
 
 - [ ] T-034 Ejecutar validación final.

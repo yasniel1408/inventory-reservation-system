@@ -1,11 +1,11 @@
 ---
-name: spec-kit-architecture
-description: Usar al crear, actualizar o validar artefactos Spec Kit para este challenge de reservas de inventario, incluyendo user histories, spec.md, plan.md, tasks.md, decisiones de arquitectura, supuestos y trazabilidad antes de implementación.
+name: sdd-architecture
+description: Usar al crear, actualizar o validar artefactos SDD para este challenge de reservas de inventario, incluyendo user histories, spec.md, plan.md, tasks.md, decisiones de arquitectura, supuestos y trazabilidad antes de implementación.
 ---
 
-# Spec Kit Architecture
+# SDD Architecture
 
-Usar este skill para preservar el flujo Architecture First del challenge. No escribir código de aplicación hasta que existan `spec.md`, `plan.md` y `tasks.md`, y hasta que mapeen con las historias de usuario.
+Usar este skill para preservar el flujo SDD del challenge. No escribir código de aplicación hasta que existan `spec.md`, `plan.md` y `tasks.md`, y hasta que mapeen con las historias de usuario.
 
 ## Entradas Requeridas
 

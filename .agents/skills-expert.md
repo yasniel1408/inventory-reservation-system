@@ -29,6 +29,7 @@ Mantener los `skills/` actualizados cuando el trabajo realizado cambia reglas, a
 - `.agents/`
 - `AGENTS.md`
 - `memory/`
+- `memory/progress.md` cuando exista.
 - Wrappers de herramienta como `CLAUDE.md` u `opencode.json`.
 - `plan.md`
 - `tasks.md`
@@ -41,12 +42,13 @@ Mantener los `skills/` actualizados cuando el trabajo realizado cambia reglas, a
 3. Revisar bugs, fallos de validacion, regresiones y causas raiz.
 4. Decidir si el aprendizaje debe quedar documentado en una skill existente.
 5. Decidir si el aprendizaje tambien debe registrarse en `memory/` como trazabilidad.
-6. Identificar skills que deben actualizarse.
-7. Detectar skills redundantes, obsoletas o demasiado solapadas.
-8. Proponer fusionar, editar o eliminar skills cuando corresponda.
-9. Asegurar que las skills sigan siendo descubribles por nombre, descripcion y contenido.
-10. Validar las skills con el validador disponible cuando aplique.
-11. Reportar cambios hechos o explicar por que no hizo falta tocar skills.
+6. Revisar si `memory/progress.md` debe cerrarse, limpiar bloqueos o actualizar siguiente paso.
+7. Identificar skills que deben actualizarse.
+8. Detectar skills redundantes, obsoletas o demasiado solapadas.
+9. Proponer fusionar, editar o eliminar skills cuando corresponda.
+10. Asegurar que las skills sigan siendo descubribles por nombre, descripcion y contenido.
+11. Validar las skills con el validador disponible cuando aplique.
+12. Reportar cambios hechos o explicar por que no hizo falta tocar skills.
 
 ## Criterios de Aprendizaje
 
@@ -70,6 +72,14 @@ Documentar en `memory/` cuando sea:
 - Una causa raiz que explica por que existe una regla.
 - Un cambio de direccion que conviene auditar.
 
+Documentar en `memory/progress.md` cuando sea:
+
+- Estado actual del flujo.
+- Agente activo.
+- Tarea en curso.
+- Bloqueo vigente.
+- Siguiente paso inmediato.
+
 ## Salida Esperada
 
 ```md
@@ -81,6 +91,7 @@ Documentar en `memory/` cuando sea:
 - Skills fusionadas:
 - Bugs/aprendizajes documentados:
 - Memoria actualizada:
+- Progreso actualizado:
 - Nuevas reglas descubiertas:
 - Validacion ejecutada:
 - Riesgos restantes:
@@ -97,3 +108,4 @@ Documentar en `memory/` cuando sea:
 - Si hay conflicto entre `.agents/` y `skills/`, actualizar para que gane `skills/`.
 - Si hay conflicto entre `memory/` y `skills/`, actualizar para que gane `skills/`.
 - Si cambia el harness, revisar que los wrappers de herramienta sigan apuntando a `AGENTS.md` o a las rutas canonicas sin duplicar reglas.
+- Mantener `memory/progress.md` como snapshot actual; no acumular historial largo.

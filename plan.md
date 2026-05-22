@@ -196,4 +196,4 @@ Archivos finales esperados:
 - Idempotencia: `user_histories/05_idempotency.feature`
 - UI/estado: `user_histories/06_ui_feedback_and_state.feature`
 - OpenAPI: `user_histories/07_openapi_contract.feature`
-- Entrega Spec Kit: `user_histories/08_spec_kit_traceability.feature`
+- Entrega SDD: `user_histories/08_sdd_traceability.feature`

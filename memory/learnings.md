@@ -30,8 +30,20 @@
 - Regla preventiva: si el aprendizaje guia acciones futuras, actualizar `skills/`; si solo da contexto historico, registrarlo en `memory/`.
 - Responsable: `skills-expert`.
 
+## Progreso no es Historial
+
+- Aprendizaje: guardar cada evento de agentes en memoria puede convertir el repo en un log ruidoso.
+- Regla preventiva: `memory/progress.md` debe ser snapshot del estado actual, no historial acumulativo.
+- Responsable: `team-leader` durante ejecucion y `skills-expert` al cierre.
+
 ## Evitar Duplicacion del Flujo
 
 - Aprendizaje: duplicar `development-flow` en `.agents/` y `skills/` crea dos fuentes de verdad.
 - Regla preventiva: mantener `skills/development-flow/SKILL.md` como unica fuente del flujo inicial; `.agents/` solo define roles.
 - Aplicado en: eliminacion de `.agents/development-flow.md`.
+
+## Evitar Dependencia de Marca en el Proceso
+
+- Aprendizaje: nombrar el flujo con una marca especifica ata el harness a una herramienta concreta.
+- Regla preventiva: usar terminos generales del proceso, como SDD, specs, plan y tasks.
+- Aplicado en: usar `skills/sdd-architecture` y limpiar referencias textuales de marca.

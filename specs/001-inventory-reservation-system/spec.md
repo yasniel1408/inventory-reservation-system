@@ -205,7 +205,7 @@ El sistema debe mostrar estado de stock, crear reservas de forma atómica, expir
   - `user_histories/05_idempotency.feature`
   - `user_histories/06_ui_feedback_and_state.feature`
   - `user_histories/07_openapi_contract.feature`
-  - `user_histories/08_spec_kit_traceability.feature`
+  - `user_histories/08_sdd_traceability.feature`
 - Próximos artefactos:
   - `plan.md`
   - `tasks.md`

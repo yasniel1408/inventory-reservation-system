@@ -1,11 +1,11 @@
 # language: es
-Característica: Trazabilidad Spec Kit y entregables
+Característica: Trazabilidad SDD y entregables
   Como evaluador del challenge
   Quiero que las decisiones y tareas estén documentadas antes de codificar
   Para verificar que el proyecto siguió un enfoque Architecture First
 
   Escenario: Documentar requisitos y casos límite antes del código
-    Cuando reviso los artefactos Spec Kit del repositorio
+    Cuando reviso los artefactos SDD del repositorio
     Entonces encuentro un `spec.md` que describe requisitos funcionales y no funcionales
     Y el `spec.md` identifica casos límite de concurrencia, TTL, idempotencia y desincronización de UI
     Y las decisiones ambiguas quedan registradas como supuestos o preguntas resueltas

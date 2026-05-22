@@ -12,6 +12,12 @@
 - Motivo: el harness debe ser entendible para cualquier herramienta o developer sin leer todos los archivos primero.
 - Implicacion: `HARNESS.md` no reemplaza `AGENTS.md`; solo documenta el mapa.
 
+## Lenguaje SDD General
+
+- Decision: usar SDD como lenguaje de especificacion general.
+- Motivo: el harness apunta a SDD general y no debe depender de una marca o kit especifico.
+- Implicacion: skills, tasks, histories y docs deben hablar de SDD, specs, plan y tasks.
+
 ## Skills como Reglas Operativas
 
 - Decision: `skills/` contiene reglas tecnicas, arquitectura, criterios de ejecucion y aprendizajes accionables.
@@ -35,6 +41,12 @@
 - Decision: `team-leader` debe mantener status continuo y resumen final del flujo.
 - Motivo: el usuario necesita ver etapa, agente activo, tarea, bloqueos y siguiente paso.
 - Implicacion: el cierre debe incluir trabajo realizado, skills aplicadas, agentes usados, camino tomado, validaciones y riesgos.
+
+## Progreso como Snapshot
+
+- Decision: `memory/progress.md` guarda el estado actual del flujo y agentes como snapshot.
+- Motivo: permite pausar y retomar con Codex, Claude Code, OpenCode u otra herramienta sin depender de memoria interna.
+- Implicacion: no debe convertirse en log historico; se reemplaza el estado vigente.
 
 ## Stack del Challenge
 

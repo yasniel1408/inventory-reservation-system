@@ -6,17 +6,20 @@ Esta carpeta guarda memoria versionada dentro del repo. Es auditable y portable 
 
 - `decisions.md`: decisiones estables que no queremos rediscutir sin motivo.
 - `learnings.md`: aprendizajes reutilizables, especialmente bugs, fallos o ajustes de proceso.
+- `progress.md`: snapshot del estado actual del flujo y agentes.
 
 ## Cuándo Leer
 
 Leer esta carpeta cuando:
 
 - una tarea toca el harness, agentes, skills o forma de trabajo;
+- se retoma trabajo pausado y hace falta conocer el estado actual;
 - una decision previa parece relevante;
 - aparece un bug o fallo que podria tener una causa ya aprendida;
 - hay duda entre una decision nueva y una decision historica.
 
 No es obligatorio leer `memory/` para cada microtarea si `skills/`, specs y plan ya bastan.
+Si existe duda sobre el estado actual del flujo, leer `memory/progress.md`.
 
 ## Cuándo Actualizar
 
@@ -26,6 +29,9 @@ Actualizar memoria cuando:
 - se corrige un bug o fallo con causa reusable;
 - se descarta una decision previa;
 - se descubre un patron que conviene recordar, pero no necesariamente convertir en skill.
+- cambia el agente activo, etapa, bloqueo o siguiente paso relevante del flujo.
+
+`progress.md` debe actualizarse como snapshot: reemplazar estado actual, no acumular historial largo.
 
 ## Relacion con Skills
 

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Arquitectura Spec Kit"
-  short_description: "Flujo Architecture First completo"
-  default_prompt: "Usa este skill para historias, specs, plan, tasks, supuestos, decisiones y trazabilidad antes de implementar."

@@ -10,7 +10,7 @@ Este repo debe priorizar entrega clara sobre ceremonia. Usar este skill como pun
 ## Reglas
 
 - Leer todos los archivos bajo `skills/` antes de ejecutar una tarea.
-- Usar `spec-kit-architecture` antes de escribir código de aplicación.
+- Usar `sdd-architecture` antes de escribir código de aplicación.
 - Para desarrollo, usar siempre el flujo de agentes definido en `.agents/`.
 - `analyst` siempre debe producir un plan y esperar aprobacion explicita del usuario antes de continuar.
 - `team-leader` solo puede continuar despues de que el usuario apruebe el plan del `analyst`.

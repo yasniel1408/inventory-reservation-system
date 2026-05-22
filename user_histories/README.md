@@ -7,5 +7,4 @@ Convenciones:
 - Cada archivo `.feature` representa una capacidad funcional o transversal.
 - Los escenarios cubren comportamiento observable, errores y condiciones de carrera relevantes.
 - La carpeta mantiene el nombre `user_histories` por convención de repo.
-- Las historias deben guiar los artefactos Spec Kit posteriores: `spec.md`, `plan.md`, `tasks.md` y contrato OpenAPI.
-
+- Las historias deben guiar los artefactos SDD posteriores: `spec.md`, `plan.md`, `tasks.md` y contrato OpenAPI.

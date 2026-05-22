@@ -13,6 +13,7 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
 - Los `skills/` definen reglas tecnicas y de arquitectura.
 - `.agents/` define roles de coordinacion.
 - `memory/` guarda decisiones y aprendizajes versionados del harness.
+- `memory/progress.md` guarda el snapshot actual del flujo y agentes.
 - `HARNESS.md` explica el mapa operativo entre harness, SDD, wrappers, skills y memoria.
 - `AGENTS.md` es la fuente canonica tool-agnostic del harness.
 - `CLAUDE.md` y `opencode.json` son wrappers para herramientas especificas y no deben duplicar reglas.
@@ -26,12 +27,14 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
 - El plan del `analyst` requiere aprobacion explicita del usuario.
 - `team-leader` no puede continuar hasta que el usuario apruebe el plan.
 - `team-leader` debe mantener status continuo del flujo: etapa actual, agente activo, tarea en curso, bloqueos y siguiente paso.
+- `team-leader` puede actualizar `memory/progress.md` cuando cambie etapa, agente activo, bloqueo o siguiente paso.
 - `developer` solo trabaja sobre tareas tecnicas con ownership claro.
 - `reviewer` revisa cambios contra specs, plan, tasks y riesgos.
 - `tester` crea, corrige o elimina tests segun comportamiento real.
 - `skills-expert` corre al final para mantener `skills/` actualizadas, descubribles y sin redundancia.
 - Si aparece un bug, regresion o validacion fallida con causa reusable, `skills-expert` debe documentar la regla preventiva en `skills/`.
 - Usar `memory/` para decisiones estables y aprendizajes historicos que no necesariamente son reglas operativas.
+- Usar `memory/progress.md` para retomar el estado actual sin convertirlo en log historico.
 - Si hay conflicto entre `.agents/` y `skills/`, ganan los `skills/`.
 - Si hay conflicto entre wrappers de herramienta y `AGENTS.md`, gana `AGENTS.md`.
 - Si hay conflicto entre `memory/` y `skills/`, ganan los `skills/`.
@@ -53,6 +56,7 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
 ## Status y Resumen
 
 - Durante ejecucion, el usuario debe ver status recurrente y claro de que esta pasando.
+- Si el trabajo puede pausarse o cambiar de herramienta, reflejar el estado actual en `memory/progress.md`.
 - El status debe indicar:
   - etapa actual del flujo
   - agente activo

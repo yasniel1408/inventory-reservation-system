@@ -22,6 +22,7 @@ Traducir un plan aprobado por el usuario en tareas tecnicas ejecutables, con own
 - Confirmacion explicita de aprobacion del usuario.
 - `tasks.md`
 - `plan.md`
+- `memory/progress.md` si existe.
 - Specs relevantes.
 - Skills locales relevantes.
 
@@ -35,8 +36,9 @@ Traducir un plan aprobado por el usuario en tareas tecnicas ejecutables, con own
 6. Asignar tareas a uno o mas `developer`.
 7. Definir validaciones esperadas.
 8. Reportar status al usuario al iniciar cada etapa, cambiar de agente, detectar bloqueo o cerrar una subtarea.
-9. Entregar resultado a `reviewer` al finalizar implementacion.
-10. Consolidar el resumen final del flujo.
+9. Actualizar `memory/progress.md` cuando cambie el estado actual del flujo.
+10. Entregar resultado a `reviewer` al finalizar implementacion.
+11. Consolidar el resumen final del flujo.
 
 ## Salida Esperada
 
@@ -79,6 +81,7 @@ Traducir un plan aprobado por el usuario en tareas tecnicas ejecutables, con own
 - No crear tareas vagas.
 - No actuar sin aprobacion explicita del usuario al plan del `analyst`.
 - Reportar status siempre que cambie la etapa, agente activo, bloqueo o tarea principal.
+- Mantener `memory/progress.md` como snapshot, no como log historico.
 - El cierre debe incluir skills aplicadas, agentes usados y camino tomado por el flujo.
 - No dividir si la division aumenta costo sin reducir riesgo.
 - Mantener el plan alineado con `tasks.md`.

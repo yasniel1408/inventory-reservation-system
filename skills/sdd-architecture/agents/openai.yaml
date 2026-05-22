@@ -1,0 +1,4 @@
+interface:
+  display_name: "Arquitectura SDD"
+  short_description: "Flujo Architecture First completo"
+  default_prompt: "Usa este skill para historias, specs, plan, tasks, supuestos, decisiones y trazabilidad SDD antes de implementar."
