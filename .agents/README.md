@@ -41,10 +41,12 @@ No hace falta activar todo el flujo para preguntas conceptuales, lecturas cortas
 | --- | --- | --- |
 | `analyst` | Codex alto | high |
 | `team-leader` | Codex maximo disponible, preferentemente `gpt-5.5-codex` si existe | xhigh |
-| `developer` | Codex estandar | medium |
+| `developer` | Codex rapido/estandar | medium |
 | `reviewer` | Codex alto | high |
-| `tester` | Codex estandar | medium |
-| `delivery-manager` | Codex estandar | medium |
+| `tester` | Codex rapido/estandar | medium |
+| `delivery-manager` | Codex rapido/estandar | low/medium |
 | `skills-expert` | Codex alto | high |
 
 Si la herramienta no soporta el nombre exacto, usar el modelo disponible mas cercano.
+
+El `team-leader` debe preparar briefs masticados y verificables para que sub-agentes de bajo riesgo puedan usar modelos mas rapidos/chicos sin perder contexto critico.

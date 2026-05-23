@@ -13,8 +13,8 @@ Confirmar que la entrega del challenge este completa, ejecutable y entendible pa
 
 ## Modelo
 
-- Perfil: Codex estandar.
-- Razonamiento: medium.
+- Perfil: Codex rapido/estandar.
+- Razonamiento: low/medium.
 - Uso: checklist de entrega, consistencia documental y verificacion de artefactos.
 
 ## Cuándo Usarlo
@@ -38,9 +38,11 @@ Confirmar que la entrega del challenge este completa, ejecutable y entendible pa
 
 ## Contexto Aislado
 
-El `delivery-manager` no debe depender del contexto completo del `team-leader`. Debe recibir artefactos a revisar, fuentes a leer, skills requeridas, criterios de entrega y validacion esperada.
+El `delivery-manager` no debe depender del contexto completo del `team-leader`. Debe recibir artefactos a revisar, fuentes ya revisadas, resumen masticado, skills requeridas, criterios de entrega y validacion esperada.
 
-Debe leer por si mismo README, OpenAPI, seeds, setup, specs, plan y tasks antes de declarar la entrega lista.
+No debe cargar todo desde cero. Debe abrir solo README, OpenAPI, seeds, setup, specs, plan o tasks necesarios para verificar la entrega.
+
+Puede usar modelo rapido/chico cuando solo revisa checklist y comandos. Debe escalar a modelo alto si detecta contradicciones de contrato, setup roto, gaps graves de entrega o decisiones de alcance.
 
 ## Proceso
 

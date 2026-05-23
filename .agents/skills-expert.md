@@ -47,9 +47,11 @@ Mantener los `skills/` actualizados cuando el trabajo realizado cambia reglas, a
 
 ## Contexto Aislado
 
-El `skills-expert` no debe depender del contexto completo del `team-leader`. Debe recibir cambios, aprendizajes, validaciones, fuentes a revisar y criterios de cierre.
+El `skills-expert` no debe depender del contexto completo del `team-leader`. Debe recibir cambios, aprendizajes, validaciones, fuentes ya revisadas, resumen masticado y criterios de cierre.
 
-Debe leer por si mismo `skills/`, `.agents/`, memoria, wrappers y artefactos relevantes antes de modificar reglas futuras.
+No debe cargar todo desde cero, pero debe abrir por si mismo `skills/`, `.agents/`, memoria, wrappers y artefactos relevantes antes de modificar reglas futuras.
+
+Mantiene modelo alto por defecto porque toca reglas futuras. Puede bajar solo para actualizaciones mecanicas sin cambio de criterio.
 
 ## Proceso
 

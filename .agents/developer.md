@@ -13,9 +13,9 @@ Implementar una tarea tecnica concreta con cambios listos para revision y valida
 
 ## Modelo
 
-- Perfil: Codex estandar.
+- Perfil: Codex rapido/estandar.
 - Razonamiento: medium.
-- Uso: implementacion acotada con owner claro y TDD.
+- Uso: implementacion acotada con brief masticado, owner claro y TDD.
 
 ## Cuándo Usarlo
 
@@ -37,9 +37,11 @@ Implementar una tarea tecnica concreta con cambios listos para revision y valida
 
 ## Contexto Aislado
 
-El `developer` no debe depender del contexto completo del `team-leader`. Debe recibir solo objetivo, archivos owner, fuentes a leer, skills requeridas, restricciones y validacion esperada.
+El `developer` no debe depender del contexto completo del `team-leader`. Debe recibir objetivo, archivos owner, fuentes ya revisadas, resumen masticado, skills requeridas, restricciones y validacion esperada.
 
-Debe leer por si mismo los archivos fuente relevantes antes de editar y reportar si el brief es insuficiente o ambiguo.
+No debe cargar todo desde cero. Debe abrir solo las fuentes necesarias para editar o validar, y reportar si el brief es insuficiente o ambiguo.
+
+Puede usar modelo rapido/chico cuando el brief sea claro, los archivos owner esten definidos y no toque concurrencia critica, migraciones, seguridad, datos sensibles o contratos. Debe escalar a modelo alto si aparece alguno de esos riesgos.
 
 ## Proceso
 

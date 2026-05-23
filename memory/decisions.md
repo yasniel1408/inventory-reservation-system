@@ -102,6 +102,18 @@
 - Motivo: reducir tokens, evitar contaminacion por dudas o ramas descartadas y mantener ownership claro.
 - Implicacion: `team-leader` entrega un brief minimo y cada sub-agente lee por si mismo las fuentes requeridas.
 
+## Briefs Masticados y Modelos Rapidos
+
+- Decision: el `team-leader` debe entregar briefs minimos, masticados y verificables para sub-agentes.
+- Motivo: concentrar razonamiento caro en coordinacion y permitir ejecucion rapida con modelos mas chicos cuando el riesgo lo permita.
+- Implicacion: sub-agentes usan modelos rapidos/chicos solo con scope claro, owner definido, fuentes resumidas y validacion concreta; escalan modelo si aparece ambiguedad, contratos, datos, concurrencia, migraciones, seguridad o decisiones arquitectonicas.
+
+## Templates y Riesgo Operativo
+
+- Decision: agregar templates canonicos de brief, status y resumen final, mas niveles de riesgo y reglas de escalamiento.
+- Motivo: evitar formatos improvisados y hacer consistente la operacion del harness.
+- Implicacion: `team-leader` y sub-agentes deben usar `harness/` para brief, status, cierre, risk level y escalamiento.
+
 ## Stack del Challenge
 
 - Decision: backend Go + Gin + GORM + PostgreSQL; frontend React + Vite + TypeScript.

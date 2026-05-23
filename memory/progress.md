@@ -8,7 +8,7 @@ Este archivo es un snapshot del estado actual del flujo. No es un log historico;
 - Etapa: mejora de Harness Engineering.
 - Agente activo: skills-expert.
 - Plan aprobado: si.
-- Tarea actual: aplicar contexto aislado para sub-agentes; ver `memory/current-task.md` para la siguiente tarea tecnica.
+- Tarea actual: agregar templates, niveles de riesgo, escalamiento y campos operativos en `memory/current-task.md`.
 - Bloqueos: ninguno.
 - Siguiente paso: continuar implementacion desde la tarea activa documentada en `memory/current-task.md`.
 
@@ -24,7 +24,7 @@ Este archivo es un snapshot del estado actual del flujo. No es un log historico;
 
 ## Ultimo Resumen
 
-- Cambios realizados: se agrego `harness/checklist.md`, `scripts/validate-harness.sh`, `sdd/TRACEABILITY.md`, handoff entre agentes, reglas para no usar flujo completo en tareas menores y contexto aislado para sub-agentes.
+- Cambios realizados: se agrego `harness/checklist.md`, `scripts/validate-harness.sh`, `sdd/TRACEABILITY.md`, handoff entre agentes, reglas para no usar flujo completo en tareas menores, contexto aislado, briefs masticados, templates operativos, risk levels y reglas de escalamiento.
 - Skills aplicadas: `development-flow`, `sdd-architecture`.
 - Agentes usados: `team-leader`, `developer`, `reviewer`, `tester`, `delivery-manager`, `skills-expert`.
 - Validaciones: lectura de skills; revision de rutas; validacion automatica del harness.

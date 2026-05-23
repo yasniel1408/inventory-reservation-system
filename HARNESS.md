@@ -87,6 +87,11 @@ Cuando un agente termina, entrega un bloque `## Handoff` al siguiente agente con
 ## Validacion del Harness
 
 - `harness/checklist.md`: checklist humano del harness.
+- `harness/brief-template.md`: formato canonico de brief para sub-agentes.
+- `harness/status-template.md`: formato canonico de status recurrente.
+- `harness/final-summary-template.md`: formato canonico de cierre.
+- `harness/risk-levels.md`: politica de riesgo para modelo, paralelismo y revision.
+- `harness/escalation.md`: reglas para parar y devolver al `team-leader`.
 - `scripts/validate-harness.sh`: validacion automatica de estructura, skills, agentes, wrappers y referencias obsoletas.
 
 Ejecutar:

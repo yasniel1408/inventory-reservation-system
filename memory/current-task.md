@@ -21,6 +21,14 @@ Este archivo es un snapshot de la tarea tecnica activa. No es historial; se reem
   - `openapi/`
   - `docs/`
 
+## Riesgo y Ejecucion
+
+- Risk level: bajo.
+- Modelo sugerido: Codex rapido/estandar.
+- Agentes requeridos: team-leader, developer, reviewer, skills-expert.
+- Puede paralelizarse: no necesario; scaffold inicial chico.
+- Criterio para escalar: si la estructura base implica cambiar stack, contratos, scripts de build o decisiones del plan.
+
 ## Contexto Necesario
 
 - Skills base: `development-flow`, `sdd-architecture`.

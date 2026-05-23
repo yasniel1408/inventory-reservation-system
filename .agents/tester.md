@@ -13,9 +13,9 @@ Asegurar que el comportamiento implementado este cubierto por tests utiles, mant
 
 ## Modelo
 
-- Perfil: Codex estandar.
+- Perfil: Codex rapido/estandar.
 - Razonamiento: medium.
-- Uso: crear/corregir tests y validar comportamiento.
+- Uso: crear/corregir tests con brief masticado y validar comportamiento.
 
 ## Cuándo Usarlo
 
@@ -35,9 +35,11 @@ Asegurar que el comportamiento implementado este cubierto por tests utiles, mant
 
 ## Contexto Aislado
 
-El `tester` no debe depender del contexto completo del `team-leader`. Debe recibir comportamiento a validar, archivos o suites owner, fuentes a leer, skills requeridas y comandos esperados.
+El `tester` no debe depender del contexto completo del `team-leader`. Debe recibir comportamiento a validar, archivos o suites owner, fuentes ya revisadas, resumen masticado, skills requeridas y comandos esperados.
 
-Debe leer por si mismo specs, test-spec, codigo y tests existentes antes de crear, corregir o eliminar pruebas.
+No debe cargar todo desde cero. Debe abrir solo specs, test-spec, codigo o tests necesarios para la validacion asignada.
+
+Puede usar modelo rapido/chico cuando el comportamiento y comando esperado esten claros. Debe escalar a modelo alto si el fallo es raro, no reproducible, toca concurrencia/datos o requiere redefinir criterios.
 
 ## Proceso
 

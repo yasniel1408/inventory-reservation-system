@@ -35,9 +35,11 @@ Revisar que lo implementado cumpla las specs, no rompa decisiones del plan y no 
 
 ## Contexto Aislado
 
-El `reviewer` no debe depender del contexto completo del `team-leader`. Debe recibir diff, fuentes a leer, criterios, skills requeridas y validacion esperada.
+El `reviewer` no debe depender del contexto completo del `team-leader`. Debe recibir diff, fuentes ya revisadas, resumen masticado, criterios, skills requeridas y validacion esperada.
 
-Debe leer por si mismo specs, plan, tasks y archivos modificados antes de emitir hallazgos.
+No debe cargar todo desde cero, pero debe abrir por si mismo specs, plan, tasks y archivos modificados necesarios antes de emitir hallazgos.
+
+Mantiene modelo alto por defecto porque busca bugs, riesgos y gaps. Puede bajar solo para revisiones mecanicas de formato o indices sin impacto de comportamiento.
 
 ## Proceso
 

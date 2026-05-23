@@ -75,10 +75,15 @@ Traducir un plan aprobado por el usuario en tareas tecnicas ejecutables, con own
 - Para:
 - Objetivo:
 - Archivos owner:
-- Fuentes a leer:
 - Skills requeridas:
+- Fuentes ya revisadas:
+- Resumen masticado:
+- Decisiones ya tomadas:
+- Fuentes a abrir solo si hay duda:
 - Restricciones:
 - Validacion esperada:
+- Modelo/perfil recomendado:
+- Condiciones de escalamiento de modelo:
 - Handoff esperado:
 ```
 
@@ -126,7 +131,9 @@ Traducir un plan aprobado por el usuario en tareas tecnicas ejecutables, con own
 - No crear tareas vagas.
 - No actuar sin aprobacion explicita del usuario al plan del `analyst`.
 - No pasar todo el contexto interno del `team-leader` a sub-agentes.
-- Cada sub-agente recibe solo un brief minimo y autosuficiente.
+- Cada sub-agente recibe solo un brief minimo, masticado, verificable y autosuficiente.
+- Recomendar modelo rapido/chico para sub-agentes solo si el scope, owner y validacion estan claros y el riesgo es bajo.
+- Escalar el modelo del sub-agente si toca contratos, datos, concurrencia, migraciones, seguridad o decisiones arquitectonicas.
 - Reportar status siempre que cambie la etapa, agente activo, bloqueo o tarea principal.
 - Mantener `memory/progress.md` como snapshot, no como log historico.
 - Mantener `memory/current-task.md` como snapshot de una tarea tecnica activa, no como backlog.

@@ -18,6 +18,7 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
 - `memory/progress.md` guarda el snapshot actual del flujo y agentes.
 - `memory/current-task.md` guarda el snapshot de la tarea tecnica activa.
 - `HARNESS.md` explica el mapa operativo entre harness, SDD, wrappers, skills y memoria.
+- `harness/` contiene templates, niveles de riesgo, escalamiento y checklist operativo.
 - `AGENTS.md` es la fuente canonica tool-agnostic del harness.
 - `CLAUDE.md` y `opencode.json` son wrappers para herramientas especificas y no deben duplicar reglas.
 
@@ -106,18 +107,42 @@ Estos perfiles son una politica del harness para ahorrar tokens. Si la herramien
 | --- | --- | --- | --- |
 | `analyst` | Codex alto | high | Coherencia, scope, riesgos y plan aprobable. |
 | `team-leader` | Codex maximo disponible, preferentemente `gpt-5.5-codex` si existe | xhigh | Coordinacion global, paralelismo, ownership y decisiones de tradeoff. |
-| `developer` | Codex estandar | medium | Implementacion acotada con archivos owner claros. |
+| `developer` | Codex rapido/estandar | medium | Implementacion acotada con brief masticado y archivos owner claros. |
 | `reviewer` | Codex alto | high | Revision de bugs, riesgos, contratos y gaps. |
-| `tester` | Codex estandar | medium | Tests concretos y validacion de comportamiento. |
-| `delivery-manager` | Codex estandar | medium | Checklist de entrega, README, OpenAPI, setup y comandos. |
+| `tester` | Codex rapido/estandar | medium | Tests concretos y validacion de comportamiento. |
+| `delivery-manager` | Codex rapido/estandar | low/medium | Checklist de entrega, README, OpenAPI, setup y comandos. |
 | `skills-expert` | Codex alto | high | Mantener skills sin duplicacion ni drift. |
 
 Reglas:
 
 - Subir temporalmente el perfil si hay concurrencia, seguridad, datos, migraciones o decisiones irreversibles.
 - Bajar temporalmente el perfil para cambios mecanicos, indices o formato.
+- Usar modelos rapidos/chicos para sub-agentes cuando el brief este masticado, el scope sea claro y la validacion sea concreta.
+- Usar `harness/risk-levels.md` para decidir modelo, paralelismo y revision.
+- Usar `harness/escalation.md` cuando un sub-agente deba parar y devolver al `team-leader`.
 - No reducir contexto critico: specs, plan activo, task activa, diff y skill tecnica aplicable siempre se leen cuando corresponden.
 - El resumen final debe indicar si se uso un perfil distinto al recomendado.
+
+## Optimización de Contexto y Modelo
+
+El `team-leader` concentra el razonamiento caro: lee contexto amplio, decide scope, define ownership y prepara briefs masticados y verificables. Los sub-agentes deben ejecutar con contexto reducido.
+
+Un sub-agente puede usar modelo rapido/chico si:
+
+- el objetivo esta claro;
+- los archivos owner estan definidos;
+- las fuentes relevantes ya estan resumidas en el brief;
+- las restricciones estan explicitas;
+- la validacion esperada es concreta;
+- no toca concurrencia critica, migraciones destructivas, seguridad, datos sensibles ni decisiones arquitectonicas.
+
+Debe escalar a modelo alto si:
+
+- el brief es ambiguo o insuficiente;
+- cambia un contrato;
+- toca datos, concurrencia, migraciones o seguridad;
+- aparecen fallos raros o no reproducibles;
+- debe tomar una decision arquitectonica.
 
 ## Bucle del Agente
 
@@ -171,11 +196,17 @@ Cuando `team-leader` instancia o deriva trabajo a un sub-agente, no debe pasarle
 - validacion esperada;
 - formato de handoff esperado.
 
-El sub-agente debe leer por si mismo los archivos fuente que necesite y no depender de memoria implicita, razonamiento privado o dudas internas del `team-leader`.
+El brief debe ser masticado: incluir resumen de lo relevante, decisiones ya tomadas, fuentes ya revisadas y fuentes que el sub-agente debe abrir solo si hay duda o si va a editar/validar esa superficie.
+
+El sub-agente no debe cargar todo desde cero. Debe verificar solo lo necesario y no depender de memoria implicita, razonamiento privado o dudas internas del `team-leader`.
+
+Usar `harness/brief-template.md` para el brief. Usar `harness/escalation.md` si el brief no alcanza o sube el riesgo.
 
 ## Status y Resumen
 
 - Durante ejecucion, el usuario debe ver status recurrente y claro de que esta pasando.
+- Usar `harness/status-template.md` para status recurrente.
+- Usar `harness/final-summary-template.md` para cierres.
 - Si el flujo puede pausarse o cambiar de herramienta, reflejar el estado actual en `memory/progress.md`.
 - Si la tarea tecnica puede pausarse o cambiar de herramienta, reflejar tarea, owner, scope, bloqueo y siguiente paso en `memory/current-task.md`.
 - El status debe indicar:

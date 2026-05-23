@@ -271,13 +271,15 @@ Mapa minimo:
 | --- | --- | --- | --- |
 | `analyst` | Codex alto | high | Necesita detectar contradicciones y preparar un plan aprobable. |
 | `team-leader` | Codex maximo disponible, preferentemente `gpt-5.5-codex` si existe | xhigh | Coordina tradeoffs, ownership, paralelismo y cierre. |
-| `developer` | Codex estandar | medium | Ejecuta tareas acotadas con contexto tecnico especifico. |
+| `developer` | Codex rapido/estandar | medium | Ejecuta tareas acotadas con brief masticado y contexto reducido. |
 | `reviewer` | Codex alto | high | Busca bugs, riesgos y gaps de tests. |
-| `tester` | Codex estandar | medium | Ajusta tests y validaciones concretas. |
-| `delivery-manager` | Codex estandar | medium | Verifica artefactos de entrega y comandos documentados. |
+| `tester` | Codex rapido/estandar | medium | Ajusta tests y validaciones concretas con brief masticado. |
+| `delivery-manager` | Codex rapido/estandar | low/medium | Verifica artefactos de entrega y comandos documentados. |
 | `skills-expert` | Codex alto | high | Evita drift y mantiene skills descubribles. |
 
 Si el modelo exacto no existe en la herramienta usada, se usa el disponible mas cercano al perfil.
+
+El `team-leader` concentra el modelo fuerte y contexto amplio. Los sub-agentes pueden usar modelos mas rapidos/chicos cuando reciben brief masticado, owner claro y validacion concreta.
 
 ## TDD Para Developers
 
@@ -360,14 +362,19 @@ El handoff evita que el siguiente agente tenga que reconstruir contexto desde ce
 team-leader
     |
     v
-brief minimo y autosuficiente
+brief minimo, masticado y verificable
     |
     +-- objetivo concreto
     +-- archivos owner
-    +-- fuentes a leer
+    +-- fuentes ya revisadas
+    +-- resumen masticado
+    +-- decisiones ya tomadas
+    +-- fuentes puntuales a abrir si hace falta
     +-- skills requeridas
     +-- restricciones
     +-- validacion esperada
+    +-- modelo recomendado
+    +-- condiciones de escalamiento
     +-- handoff esperado
     |
     v
@@ -380,6 +387,7 @@ Reglas:
 - No pasar dudas, ramas descartadas o contexto no accionable.
 - No depender de memoria implicita del agente padre.
 - Si el brief no alcanza, el sub-agente pide aclaracion o lee las fuentes indicadas.
+- Si aparece riesgo alto, el sub-agente escala modelo/perfil antes de continuar.
 - El sub-agente reporta que fuentes leyo y que skills aplico.
 
 ## Cierre Obligatorio

@@ -25,6 +25,8 @@ Este repo debe priorizar entrega clara sobre ceremonia. Usar este skill como pun
 - Preferir pocos artefactos buenos sobre muchos documentos repetidos.
 - Usar handoff explicito al pasar trabajo entre agentes.
 - Los sub-agentes deben recibir contexto minimo y autosuficiente; no heredan todo el contexto del `team-leader`.
+- El `team-leader` debe entregar briefs masticados y verificables para habilitar sub-agentes mas rapidos/chicos cuando el riesgo lo permita.
+- Usar `harness/brief-template.md`, `harness/status-template.md`, `harness/final-summary-template.md`, `harness/risk-levels.md` y `harness/escalation.md`.
 
 ## Cuándo No Usar Todo el Flujo
 
@@ -99,17 +101,50 @@ El handoff debe ser corto, accionable y suficiente para que el siguiente agente 
 
 ## Contexto de Sub-agentes
 
-Cuando `team-leader` instancie `developer`, `reviewer`, `tester`, `delivery-manager` o `skills-expert`, debe pasar solo un brief minimo:
+Cuando `team-leader` instancie `developer`, `reviewer`, `tester`, `delivery-manager` o `skills-expert`, debe pasar un brief minimo, masticado y verificable:
 
 - objetivo concreto;
 - archivos owner;
 - specs, tasks o criterios relevantes;
 - skills requeridas;
+- resumen masticado de lo que ya leyo el `team-leader`;
+- decisiones ya tomadas;
+- fuentes ya revisadas;
+- fuentes que el sub-agente debe abrir solo si hay duda o si va a editar/validar;
 - restricciones;
 - validacion esperada;
 - handoff esperado.
 
-El sub-agente debe leer por si mismo los archivos fuente que necesite. No debe depender del contexto completo, memoria implicita, razonamiento privado o ramas descartadas del `team-leader`.
+El sub-agente no debe cargar todo desde cero. Debe verificar solo lo necesario y no depender del contexto completo, memoria implicita, razonamiento privado o ramas descartadas del `team-leader`.
+
+Usar `harness/brief-template.md` como formato canonico.
+
+## Optimización de Contexto y Modelo
+
+Patron esperado:
+
+```text
+team-leader: modelo fuerte + contexto amplio + decisiones
+sub-agente: modelo rapido/chico + brief masticado + fuentes puntuales
+```
+
+Un sub-agente puede usar modelo rapido/chico si:
+
+- el scope esta claro;
+- los archivos owner estan definidos;
+- las fuentes relevantes estan resumidas;
+- la validacion esperada es concreta;
+- no toca concurrencia critica, migraciones destructivas, seguridad, datos sensibles o decisiones arquitectonicas.
+
+Debe escalar a modelo alto si:
+
+- hay ambiguedad;
+- cambia un contrato;
+- toca datos, concurrencia, migraciones o seguridad;
+- aparecen fallos raros;
+- el brief es insuficiente.
+
+Usar `harness/risk-levels.md` para clasificar riesgo y `harness/escalation.md` para devolver al `team-leader`.
 
 ## Status Obligatorio
 

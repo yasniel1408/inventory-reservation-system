@@ -6,6 +6,11 @@ Este checklist valida que el harness siga siendo portable, descubrible y util si
 
 - [ ] `AGENTS.md` existe y define reglas tool-agnostic.
 - [ ] `HARNESS.md` existe y explica el mapa operativo.
+- [ ] `harness/brief-template.md` existe.
+- [ ] `harness/status-template.md` existe.
+- [ ] `harness/final-summary-template.md` existe.
+- [ ] `harness/risk-levels.md` existe.
+- [ ] `harness/escalation.md` existe.
 - [ ] Wrappers como `CLAUDE.md` u `opencode.json` no duplican reglas globales.
 - [ ] Si hay conflicto entre wrappers y `AGENTS.md`, gana `AGENTS.md`.
 
@@ -27,6 +32,8 @@ Este checklist valida que el harness siga siendo portable, descubrible y util si
 - [ ] Cada agente declara skills seleccionadas y perfil/modelo usado.
 - [ ] Cada sub-agente define `## Contexto Aislado`.
 - [ ] `team-leader` define `## Brief de Sub-agente`.
+- [ ] El brief de sub-agente incluye resumen masticado, fuentes ya revisadas y modelo/perfil recomendado.
+- [ ] Los sub-agentes documentan condiciones para usar modelo rapido/chico o escalar.
 
 ## SDD
 
@@ -44,6 +51,7 @@ Este checklist valida que el harness siga siendo portable, descubrible y util si
 - [ ] `memory/learnings.md` contiene aprendizajes reutilizables.
 - [ ] `memory/progress.md` es snapshot actual y no log historico.
 - [ ] `memory/current-task.md` es snapshot de una tarea tecnica activa y no backlog.
+- [ ] `memory/current-task.md` incluye risk level, modelo sugerido, agentes requeridos, paralelismo y criterio para escalar.
 - [ ] Si una regla guia ejecucion futura, vive en `skills/`.
 - [ ] Si un dato solo da contexto historico, puede vivir en `memory/`.
 
