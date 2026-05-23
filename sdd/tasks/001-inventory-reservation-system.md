@@ -25,80 +25,93 @@
 
 ## Fase 1 - Estructura Base
 
-- [ ] T-003 Crear estructura de carpetas del proyecto.
+- [x] T-003 Crear estructura de carpetas del proyecto.
   - Owner: raíz del repo.
   - Archivos/carpetas: `backend/`, `frontend/`, `db/migrations/`, `db/seeds/`, `openapi/`, `docs/`.
   - Referencias: `sdd/plans/001-inventory-reservation-system.md#entrega`.
+  - Resultado: carpetas base versionadas con `.gitkeep`.
 
-- [ ] T-004 Crear `docker-compose.yml` para PostgreSQL local.
+- [x] T-004 Crear `docker-compose.yml` para PostgreSQL local.
   - Owner: `docker-compose.yml`.
   - Referencias: `sdd/plans/001-inventory-reservation-system.md#entrega`, `skills/delivery-artifacts/SKILL.md`.
   - Validación: `docker compose config`.
+  - Resultado: servicio PostgreSQL 16 local con volumen persistente, healthcheck y carpetas DB montadas; validado con `docker-compose config` porque el binario disponible localmente es `docker-compose`.
 
 ## Fase 2 - Base de Datos
 
-- [ ] T-005 Crear migración inicial PostgreSQL.
+- [x] T-005 Crear migración inicial PostgreSQL.
   - Owner: `db/migrations/`.
   - Tablas mínimas: `items`, `reservations`, `idempotency_keys`.
   - Referencias: `sdd/specs/001-inventory-reservation-system/domain-model.md`, `sdd/plans/001-inventory-reservation-system.md#estrategia-de-idempotencia`.
   - Criterios: constraints para cantidad positiva, stock no negativo, status conocido, unique index para `scope + key`.
+  - Resultado: `db/migrations/001_initial_schema.sql` crea schema inicial con constraints de stock, reservas, idempotencia, FKs e índices base.
 
-- [ ] T-006 Crear seed data de revisión.
+- [x] T-006 Crear seed data de revisión.
   - Owner: `db/seeds/`.
   - Referencias: `skills/delivery-artifacts/SKILL.md`, `sdd/specs/001-inventory-reservation-system/acceptance-criteria.md#inventario`.
   - Criterios: al menos un item con stock suficiente y un item low-stock.
+  - Resultado: `db/seeds/001_seed_items.sql` crea seed determinístico con un item de stock holgado y uno low-stock.
 
 ## Fase 3 - Backend
 
-- [ ] T-007 Inicializar módulo Go backend.
+- [x] T-007 Inicializar módulo Go backend.
   - Owner: `backend/`.
   - Stack: Go, Gin, GORM, PostgreSQL driver.
   - Referencias: `sdd/plans/001-inventory-reservation-system.md#backend`, `skills/backend-reservation-system/SKILL.md`.
   - Validación: `go test ./...` desde `backend/`.
+  - Resultado: módulo Go inicializado con Gin, GORM, driver PostgreSQL, UUID y estructura backend acordada.
 
-- [ ] T-008 Implementar configuración y conexión DB.
+- [x] T-008 Implementar configuración y conexión DB.
   - Owner: `backend/internal/config/`, `backend/internal/store/`.
   - Referencias: `sdd/plans/001-inventory-reservation-system.md#backend`.
   - Criterios: conexión por env vars y helper transaccional reutilizable.
+  - Resultado: config por env vars, conexión GORM y helper transaccional reutilizable.
 
-- [ ] T-009 Implementar lectura de inventario.
+- [x] T-009 Implementar lectura de inventario.
   - Owner: `backend/internal/items/`, `backend/internal/http/`.
   - Endpoint: `GET /items`.
   - Referencias: `sdd/user_histories/01_inventory_dashboard.feature`, `sdd/specs/001-inventory-reservation-system/api-spec.md#get-items`.
   - Criterios: devuelve nombre, stock total, reserved stock y available stock.
+  - Resultado: handler y servicio de items devuelven stock total, reservado y disponible; ejecutan expiración lazy antes de leer.
 
-- [ ] T-010 Implementar creación de reserva atómica.
+- [x] T-010 Implementar creación de reserva atómica.
   - Owner: `backend/internal/reservations/`, `backend/internal/http/`.
   - Endpoint: `POST /reservations`.
   - Referencias: `sdd/user_histories/02_atomic_reservations.feature`, `sdd/plans/001-inventory-reservation-system.md#estrategia-de-concurrencia`.
   - Criterios: update condicional en transacción, sin oversell, validación de cantidad e item.
+  - Resultado: creación usa transacción PostgreSQL y `UPDATE items ... WHERE total_stock - reserved_stock >= quantity RETURNING`.
 
-- [ ] T-011 Implementar idempotencia para `POST /reservations`.
+- [x] T-011 Implementar idempotencia para `POST /reservations`.
   - Owner: `backend/internal/reservations/`, `backend/internal/store/`.
   - Referencias: `sdd/user_histories/05_idempotency.feature`, `sdd/plans/001-inventory-reservation-system.md#estrategia-de-idempotencia`.
   - Criterios: misma key/payload devuelve mismo outcome; misma key/payload distinto devuelve `409`.
+  - Resultado: `Idempotency-Key` obligatorio, scope por session, request hash, `FOR UPDATE`, replay desde outcome almacenado y conflicto por payload distinto.
 
-- [ ] T-012 Implementar listado de reservas activas.
+- [x] T-012 Implementar listado de reservas activas.
   - Owner: `backend/internal/reservations/`, `backend/internal/http/`.
   - Endpoint: `GET /reservations`.
   - Referencias: `sdd/user_histories/06_ui_feedback_and_state.feature`, `sdd/specs/001-inventory-reservation-system/api-spec.md#get-reservations`.
   - Criterios: no devuelve reservas `released` ni `expired`.
+  - Resultado: lista reservas activas por `X-Session-ID`/session anónima después de expiración lazy.
 
-- [ ] T-013 Implementar release idempotente.
+- [x] T-013 Implementar release idempotente.
   - Owner: `backend/internal/reservations/`, `backend/internal/http/`.
   - Endpoint: `DELETE /reservations/{id}`.
   - Referencias: `sdd/user_histories/04_manual_release.feature`, `sdd/plans/001-inventory-reservation-system.md#estrategia-de-ttl-y-release`.
   - Criterios: release activo devuelve stock una vez; release repetido es no-op exitoso.
+  - Resultado: release usa lock de fila, cambia `active -> released`, devuelve stock una vez y trata terminales como no-op.
 
-- [ ] T-014 Implementar expiración lazy de reservas.
+- [x] T-014 Implementar expiración lazy de reservas.
   - Owner: `backend/internal/reservations/`.
   - Referencias: `sdd/user_histories/03_reservation_ttl.feature`, `sdd/plans/001-inventory-reservation-system.md#estrategia-de-ttl-y-release`.
   - Criterios: `active -> expired` devuelve stock una vez; se ejecuta antes de lecturas/mutaciones relevantes.
+  - Resultado: expiración lazy usa CTE transaccional con `NOW()` antes de lecturas y mutaciones relevantes.
 
-- [ ] T-015 Implementar manejo consistente de errores API.
+- [x] T-015 Implementar manejo consistente de errores API.
   - Owner: `backend/internal/http/`.
   - Referencias: `sdd/specs/001-inventory-reservation-system/api-spec.md#shape-de-error`.
   - Criterios: error shape estable y status codes documentados.
+  - Resultado: handlers devuelven shape `{ "error": { "code", "message", "details" } }`, mapean errores de dominio y validan UUIDs antes de casts SQL.
 
 ## Fase 4 - Tests Backend
 

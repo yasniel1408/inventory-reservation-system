@@ -9,8 +9,8 @@ Este archivo es el indice de tableros de tareas activos. El detalle vive en `sdd
 ## Estado Actual
 
 - Plan asociado: `sdd/plans/001-inventory-reservation-system.md`.
-- Fase actual: Fase 1 - Estructura Base.
-- Proxima tarea: `T-003 Crear estructura de carpetas del proyecto`.
+- Fase actual: Fase 4 - Tests Backend.
+- Proxima tarea: `T-016 Test de concurrencia para última unidad`.
 
 ## Regla
 

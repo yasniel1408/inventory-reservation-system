@@ -35,6 +35,10 @@ backend/
 - `POST /reservations` requiere `Idempotency-Key`.
 - `DELETE /reservations/{id}` es idempotente.
 - Expiración y release no pueden devolver stock más de una vez.
+- El replay idempotente debe devolver el outcome almacenado, no reconstruirlo desde estado vivo que pudo cambiar por release o expiración.
+- Si se persiste un fallo determinístico de idempotencia, la transacción debe commitear ese outcome y luego devolver el error al handler; no hacer rollback del registro idempotente.
+- Los timestamps canónicos de reservas, expiración y release deben venir de PostgreSQL cuando afecten TTL o auditoría.
+- Validar UUIDs de entrada antes de casts SQL para devolver errores `4xx` estables en lugar de `500`.
 
 ## Tests Backend Obligatorios
 
@@ -42,4 +46,3 @@ backend/
 - 100 requests concurrentes por 10 unidades: 10 éxitos y 90 rechazos.
 - Misma `Idempotency-Key` en paralelo: una reserva y un decremento.
 - Release doble: stock devuelto una sola vez.
-

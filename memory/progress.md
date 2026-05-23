@@ -5,27 +5,27 @@ Este archivo es un snapshot del estado actual del flujo. No es un log historico;
 ## Estado del Flujo
 
 - Fecha: 2026-05-22.
-- Etapa: mejora de Harness Engineering.
-- Agente activo: skills-expert.
+- Etapa: Fase 3 completada; preparado para Fase 4.
+- Agente activo: team-leader.
 - Plan aprobado: si.
-- Tarea actual: agregar templates, niveles de riesgo, escalamiento y campos operativos en `memory/current-task.md`.
+- Tarea actual: Fase 3 completada; siguiente tarea tecnica en `memory/current-task.md`.
 - Bloqueos: ninguno.
-- Siguiente paso: continuar implementacion desde la tarea activa documentada en `memory/current-task.md`.
+- Siguiente paso: continuar con T-016 test de concurrencia para ultima unidad documentada en `memory/current-task.md`.
 
 ## Agentes
 
-- analyst: completo; valido separar SDD como el que y mantener harness como el como.
-- team-leader: completo; limito el cambio a artefactos SDD.
-- developer: completo; movio historias, specs, planes y tasks a `sdd/` y actualizo referencias.
-- reviewer: completo; reviso rutas canonicas y separacion de responsabilidades.
-- tester: completo; valida estructura, referencias y configuracion.
-- delivery-manager: definido; revisa artefactos de entrega antes de `skills-expert`.
-- skills-expert: completo; mantiene skills despues del cierre de delivery y verifica reglas de harness.
+- analyst: completo; valido que Fase 3 T-007..T-015 era coherente como backend usable.
+- team-leader: completo; mantuvo núcleo de reservas bajo un ownership por acoplamiento transaccional.
+- developer: completo; implemento backend Go/Gin/GORM/PostgreSQL con TDD focalizado.
+- reviewer: completo; detecto bugs de idempotencia, tiempo DB e IDs invalidos.
+- tester: completo; ejecuto suite Go y validacion del harness.
+- delivery-manager: completo; confirmo que Fase 3 deja API base para OpenAPI/README posteriores.
+- skills-expert: completo; documento reglas preventivas de idempotencia y tiempo DB.
 
 ## Ultimo Resumen
 
-- Cambios realizados: se agrego `harness/checklist.md`, `scripts/validate-harness.sh`, `sdd/TRACEABILITY.md`, handoff entre agentes, reglas para no usar flujo completo en tareas menores, contexto aislado, briefs masticados, templates operativos, risk levels y reglas de escalamiento.
-- Skills aplicadas: `development-flow`, `sdd-architecture`.
-- Agentes usados: `team-leader`, `developer`, `reviewer`, `tester`, `delivery-manager`, `skills-expert`.
-- Validaciones: lectura de skills; revision de rutas; validacion automatica del harness.
-- Riesgos: mantener `memory/current-task.md` y `sdd/TRACEABILITY.md` actualizados cuando cambien tasks o specs.
+- Cambios realizados: se implemento backend Go con config, store GORM, handlers REST, items, reservas atomicas, idempotencia, release, expiracion lazy y errores estables.
+- Skills aplicadas: `development-flow`, `sdd-architecture`, `backend-reservation-system`, `tdd-development`.
+- Agentes usados: `analyst`, `team-leader`, `developer`, `reviewer`, `tester`, `delivery-manager`, `skills-expert`.
+- Validaciones: lectura de skills; `go test ./...` en `backend/`; `scripts/validate-harness.sh`; revision focalizada de idempotencia, DB time y UUID validation.
+- Riesgos: validacion runtime con PostgreSQL real y tests concurrentes quedan para Fase 4.

@@ -14,6 +14,12 @@ Usar este skill para preparar lo que el evaluador revisa fuera del código.
 - Seed data PostgreSQL.
 - Chat history completo o ruta documentada.
 
+## PostgreSQL Local
+
+- La imagen oficial de PostgreSQL solo ejecuta archivos directos en `/docker-entrypoint-initdb.d` durante la inicializacion de un volumen nuevo.
+- Si el repo separa `db/migrations/` y `db/seeds/`, agregar un script directo en `db/init/` que ejecute ambos directorios en orden.
+- Documentar que los scripts de init no vuelven a correr sobre un volumen ya inicializado; para re-bootstrap local se debe recrear el volumen.
+
 ## OpenAPI Mínimo
 
 - `GET /items`

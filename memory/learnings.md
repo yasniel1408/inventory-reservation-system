@@ -53,3 +53,15 @@
 - Aprendizaje: nombrar el flujo con una marca especifica ata el harness a una herramienta concreta.
 - Regla preventiva: usar terminos generales del proceso, como SDD, specs, plan y tasks.
 - Aplicado en: usar `skills/sdd-architecture` y limpiar referencias textuales de marca.
+
+## Init de PostgreSQL no Ejecuta Subdirectorios
+
+- Aprendizaje: la imagen oficial de PostgreSQL ejecuta archivos directos en `/docker-entrypoint-initdb.d`, pero no recorre subdirectorios de migraciones o seeds automaticamente.
+- Regla preventiva: si se mantienen `db/migrations/` y `db/seeds/`, agregar un script directo en `db/init/` que ejecute esos directorios en orden.
+- Aplicado en: `db/init/001_run_db_scripts.sh` y mounts de `docker-compose.yml`.
+
+## Idempotencia Debe Reproducir el Outcome Almacenado
+
+- Aprendizaje: reconstruir un replay idempotente desde estado vivo rompe el contrato si la reserva luego fue liberada o expirada.
+- Regla preventiva: guardar y devolver el `response_body` original para replay, y commitear outcomes determinísticos aun cuando el handler deba responder error.
+- Aplicado en: `backend/internal/reservations/postgres_store.go` y `skills/backend-reservation-system/SKILL.md`.
