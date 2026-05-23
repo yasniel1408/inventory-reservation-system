@@ -25,6 +25,7 @@ Implementar una tarea tecnica concreta con cambios listos para revision y valida
 
 ## Entradas
 
+- Brief minimo del `team-leader`; no contexto completo heredado.
 - Tarea tecnica asignada.
 - Archivos owner.
 - Specs y criterios de aceptacion relevantes.
@@ -33,6 +34,12 @@ Implementar una tarea tecnica concreta con cambios listos para revision y valida
   - backend: `backend-reservation-system`
   - frontend: `frontend-reservation-app`
   - entrega: `delivery-artifacts`
+
+## Contexto Aislado
+
+El `developer` no debe depender del contexto completo del `team-leader`. Debe recibir solo objetivo, archivos owner, fuentes a leer, skills requeridas, restricciones y validacion esperada.
+
+Debe leer por si mismo los archivos fuente relevantes antes de editar y reportar si el brief es insuficiente o ambiguo.
 
 ## Proceso
 

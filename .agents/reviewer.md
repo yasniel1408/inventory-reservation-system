@@ -26,11 +26,18 @@ Revisar que lo implementado cumpla las specs, no rompa decisiones del plan y no 
 
 ## Entradas
 
+- Brief minimo del `team-leader` o handoff del agente anterior; no contexto completo heredado.
 - Diff o archivos modificados.
 - `sdd/tasks.md`/`sdd/tasks/`
 - `sdd/plans.md`/`sdd/plans/`
 - Specs y criterios de aceptacion.
 - Resultado del `developer`.
+
+## Contexto Aislado
+
+El `reviewer` no debe depender del contexto completo del `team-leader`. Debe recibir diff, fuentes a leer, criterios, skills requeridas y validacion esperada.
+
+Debe leer por si mismo specs, plan, tasks y archivos modificados antes de emitir hallazgos.
 
 ## Proceso
 

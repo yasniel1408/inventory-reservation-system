@@ -38,6 +38,7 @@ require_file .agents/ARCHITECTURE.md
 require_file memory/decisions.md
 require_file memory/learnings.md
 require_file memory/progress.md
+require_file memory/current-task.md
 require_file harness/checklist.md
 require_file sdd/TRACEABILITY.md
 require_file sdd/plans.md
@@ -70,10 +71,21 @@ for agent_file in .agents/*.md; do
 done
 
 require_contains AGENTS.md 'delivery-manager'
+require_contains AGENTS.md 'Contexto de Sub-agentes'
 require_contains skills/development-flow/SKILL.md 'delivery-manager'
+require_contains skills/development-flow/SKILL.md 'Contexto de Sub-agentes'
 require_contains skills/SELECTING_SKILLS.md 'delivery-manager'
 require_contains .agents/ARCHITECTURE.md 'delivery-manager'
+require_contains .agents/ARCHITECTURE.md 'Contexto de Sub-agentes'
+require_contains .agents/team-leader.md 'Brief de Sub-agente'
+for sub_agent in .agents/developer.md .agents/reviewer.md .agents/tester.md .agents/delivery-manager.md .agents/skills-expert.md; do
+  require_contains "$sub_agent" '^## Contexto Aislado'
+done
 require_contains sdd/TRACEABILITY.md 'T-003'
+require_contains memory/progress.md 'memory/current-task.md'
+require_contains memory/current-task.md '^## Identificacion'
+require_contains memory/current-task.md '^## Owner y Alcance'
+require_contains memory/current-task.md '^## Validacion Esperada'
 
 node -e "const fs=require('fs'); JSON.parse(fs.readFileSync('opencode.json','utf8'));" >/dev/null
 

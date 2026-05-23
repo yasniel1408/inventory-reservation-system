@@ -8,9 +8,9 @@ Este archivo es un snapshot del estado actual del flujo. No es un log historico;
 - Etapa: mejora de Harness Engineering.
 - Agente activo: skills-expert.
 - Plan aprobado: si.
-- Tarea actual: checklist, validador, handoff, excepciones de flujo y trazabilidad SDD agregados.
+- Tarea actual: aplicar contexto aislado para sub-agentes; ver `memory/current-task.md` para la siguiente tarea tecnica.
 - Bloqueos: ninguno.
-- Siguiente paso: continuar implementacion desde `sdd/tasks/001-inventory-reservation-system.md` T-003; developers deben usar `tdd-development` si escriben codigo productivo.
+- Siguiente paso: continuar implementacion desde la tarea activa documentada en `memory/current-task.md`.
 
 ## Agentes
 
@@ -24,8 +24,8 @@ Este archivo es un snapshot del estado actual del flujo. No es un log historico;
 
 ## Ultimo Resumen
 
-- Cambios realizados: se agrego `harness/checklist.md`, `scripts/validate-harness.sh`, `sdd/TRACEABILITY.md`, handoff entre agentes y reglas para no usar flujo completo en tareas menores.
+- Cambios realizados: se agrego `harness/checklist.md`, `scripts/validate-harness.sh`, `sdd/TRACEABILITY.md`, handoff entre agentes, reglas para no usar flujo completo en tareas menores y contexto aislado para sub-agentes.
 - Skills aplicadas: `development-flow`, `sdd-architecture`.
 - Agentes usados: `team-leader`, `developer`, `reviewer`, `tester`, `delivery-manager`, `skills-expert`.
 - Validaciones: lectura de skills; revision de rutas; validacion automatica del harness.
-- Riesgos: mantener `sdd/TRACEABILITY.md` actualizado cuando cambien tasks o specs.
+- Riesgos: mantener `memory/current-task.md` y `sdd/TRACEABILITY.md` actualizados cuando cambien tasks o specs.

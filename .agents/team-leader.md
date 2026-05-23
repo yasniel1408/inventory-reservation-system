@@ -33,6 +33,7 @@ Traducir un plan aprobado por el usuario en tareas tecnicas ejecutables, con own
 - `sdd/tasks.md`/`sdd/tasks/`
 - `sdd/plans.md`/`sdd/plans/`
 - `memory/progress.md` si existe.
+- `memory/current-task.md` si existe.
 - Specs relevantes.
 - Skills seleccionadas para la coordinacion actual.
 
@@ -45,12 +46,14 @@ Traducir un plan aprobado por el usuario en tareas tecnicas ejecutables, con own
 5. Definir archivos o carpetas owner.
 6. Identificar dependencias entre tareas.
 7. Detectar que puede ejecutarse en paralelo sin pisarse.
-8. Asignar tareas a uno o mas `developer`.
-9. Definir validaciones esperadas.
-10. Reportar status al usuario al iniciar cada etapa, cambiar de agente, detectar bloqueo o cerrar una subtarea.
-11. Actualizar `memory/progress.md` cuando cambie el estado actual del flujo.
-12. Entregar resultado a `reviewer` al finalizar implementacion.
-13. Consolidar el resumen final del flujo.
+8. Crear un brief minimo y autosuficiente para cada sub-agente.
+9. Asignar tareas a uno o mas `developer` u otro sub-agente segun corresponda.
+10. Definir validaciones esperadas.
+11. Reportar status al usuario al iniciar cada etapa, cambiar de agente, detectar bloqueo o cerrar una subtarea.
+12. Actualizar `memory/progress.md` cuando cambie el estado actual del flujo.
+13. Actualizar `memory/current-task.md` cuando cambie la tarea tecnica activa, owner, scope, bloqueo o siguiente paso.
+14. Entregar resultado a `reviewer` al finalizar implementacion.
+15. Consolidar el resumen final del flujo.
 
 ## Salida Esperada
 
@@ -64,6 +67,19 @@ Traducir un plan aprobado por el usuario en tareas tecnicas ejecutables, con own
 - Puede paralelizarse:
 - Developer asignado:
 - Validacion:
+```
+
+```md
+## Brief de Sub-agente
+
+- Para:
+- Objetivo:
+- Archivos owner:
+- Fuentes a leer:
+- Skills requeridas:
+- Restricciones:
+- Validacion esperada:
+- Handoff esperado:
 ```
 
 ```md
@@ -109,8 +125,11 @@ Traducir un plan aprobado por el usuario en tareas tecnicas ejecutables, con own
 
 - No crear tareas vagas.
 - No actuar sin aprobacion explicita del usuario al plan del `analyst`.
+- No pasar todo el contexto interno del `team-leader` a sub-agentes.
+- Cada sub-agente recibe solo un brief minimo y autosuficiente.
 - Reportar status siempre que cambie la etapa, agente activo, bloqueo o tarea principal.
 - Mantener `memory/progress.md` como snapshot, no como log historico.
+- Mantener `memory/current-task.md` como snapshot de una tarea tecnica activa, no como backlog.
 - El cierre debe incluir skills aplicadas, agentes usados y camino tomado por el flujo.
 - No dividir si la division aumenta costo sin reducir riesgo.
 - Mantener el plan alineado con `sdd/tasks.md`.

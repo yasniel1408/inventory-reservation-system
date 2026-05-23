@@ -26,11 +26,18 @@ Asegurar que el comportamiento implementado este cubierto por tests utiles, mant
 
 ## Entradas
 
+- Brief minimo del `team-leader` o handoff del `reviewer`; no contexto completo heredado.
 - Specs y criterios de aceptacion.
 - `test-spec.md`
 - Codigo implementado.
 - Resultado del `reviewer`.
 - Comandos de test disponibles.
+
+## Contexto Aislado
+
+El `tester` no debe depender del contexto completo del `team-leader`. Debe recibir comportamiento a validar, archivos o suites owner, fuentes a leer, skills requeridas y comandos esperados.
+
+Debe leer por si mismo specs, test-spec, codigo y tests existentes antes de crear, corregir o eliminar pruebas.
 
 ## Proceso
 

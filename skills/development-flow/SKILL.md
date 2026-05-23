@@ -24,6 +24,7 @@ Este repo debe priorizar entrega clara sobre ceremonia. Usar este skill como pun
 - Dividir trabajo solo cuando haya scopes independientes reales.
 - Preferir pocos artefactos buenos sobre muchos documentos repetidos.
 - Usar handoff explicito al pasar trabajo entre agentes.
+- Los sub-agentes deben recibir contexto minimo y autosuficiente; no heredan todo el contexto del `team-leader`.
 
 ## Cuándo No Usar Todo el Flujo
 
@@ -75,7 +76,8 @@ Reglas:
 - No pasar al siguiente agente si falta aprobacion, validacion u ownership.
 - Si hay bloqueo, reportarlo y replanificar.
 - Si hay aprendizaje reusable, marcarlo para `skills-expert`.
-- Si el trabajo puede pausarse o cambiar de herramienta, actualizar `memory/progress.md`.
+- Si el flujo puede pausarse o cambiar de herramienta, actualizar `memory/progress.md`.
+- Si la tarea tecnica puede pausarse o cambiar de herramienta, actualizar `memory/current-task.md`.
 
 ## Handoff Entre Agentes
 
@@ -94,6 +96,20 @@ Cada agente debe entregar al siguiente un bloque reutilizable:
 ```
 
 El handoff debe ser corto, accionable y suficiente para que el siguiente agente no tenga que reconstruir todo desde cero.
+
+## Contexto de Sub-agentes
+
+Cuando `team-leader` instancie `developer`, `reviewer`, `tester`, `delivery-manager` o `skills-expert`, debe pasar solo un brief minimo:
+
+- objetivo concreto;
+- archivos owner;
+- specs, tasks o criterios relevantes;
+- skills requeridas;
+- restricciones;
+- validacion esperada;
+- handoff esperado.
+
+El sub-agente debe leer por si mismo los archivos fuente que necesite. No debe depender del contexto completo, memoria implicita, razonamiento privado o ramas descartadas del `team-leader`.
 
 ## Status Obligatorio
 
@@ -130,5 +146,6 @@ Antes de código deben existir:
 - `sdd/plans/001-inventory-reservation-system.md` como plan activo
 - `sdd/tasks.md` como indice de tareas
 - `sdd/tasks/001-inventory-reservation-system.md` como tablero activo
+- `memory/current-task.md` como snapshot de tarea activa
 
 Si falta alguno y la tarea es implementación, crear primero el artefacto faltante.

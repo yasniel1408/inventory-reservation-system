@@ -29,6 +29,7 @@ Mantener los `skills/` actualizados cuando el trabajo realizado cambia reglas, a
 
 ## Entradas
 
+- Brief minimo del `team-leader` o handoff del `delivery-manager`; no contexto completo heredado.
 - Cambios realizados en el turno.
 - Bugs encontrados o corregidos.
 - Causas raiz identificadas por `reviewer` o `tester`.
@@ -38,10 +39,17 @@ Mantener los `skills/` actualizados cuando el trabajo realizado cambia reglas, a
 - `AGENTS.md`
 - `memory/`
 - `memory/progress.md` cuando exista.
+- `memory/current-task.md` cuando exista.
 - Wrappers de herramienta como `CLAUDE.md` u `opencode.json`.
 - `sdd/plans.md`/`sdd/plans/`
 - `sdd/tasks.md`/`sdd/tasks/`
 - Specs relevantes.
+
+## Contexto Aislado
+
+El `skills-expert` no debe depender del contexto completo del `team-leader`. Debe recibir cambios, aprendizajes, validaciones, fuentes a revisar y criterios de cierre.
+
+Debe leer por si mismo `skills/`, `.agents/`, memoria, wrappers y artefactos relevantes antes de modificar reglas futuras.
 
 ## Proceso
 
@@ -53,12 +61,13 @@ Mantener los `skills/` actualizados cuando el trabajo realizado cambia reglas, a
 6. Decidir si el aprendizaje debe quedar documentado en una skill existente.
 7. Decidir si el aprendizaje tambien debe registrarse en `memory/` como trazabilidad.
 8. Revisar si `memory/progress.md` debe cerrarse, limpiar bloqueos o actualizar siguiente paso.
-9. Identificar skills que deben actualizarse.
-10. Detectar skills redundantes, obsoletas o demasiado solapadas.
-11. Proponer fusionar, editar o eliminar skills cuando corresponda.
-12. Asegurar que las skills sigan siendo descubribles por nombre, descripcion y contenido.
-13. Validar las skills con el validador disponible cuando aplique.
-14. Reportar cambios hechos o explicar por que no hizo falta tocar skills.
+9. Revisar si `memory/current-task.md` debe actualizar tarea, owner, scope, bloqueo o siguiente paso.
+10. Identificar skills que deben actualizarse.
+11. Detectar skills redundantes, obsoletas o demasiado solapadas.
+12. Proponer fusionar, editar o eliminar skills cuando corresponda.
+13. Asegurar que las skills sigan siendo descubribles por nombre, descripcion y contenido.
+14. Validar las skills con el validador disponible cuando aplique.
+15. Reportar cambios hechos o explicar por que no hizo falta tocar skills.
 
 ## Criterios de Aprendizaje
 
@@ -86,9 +95,17 @@ Documentar en `memory/progress.md` cuando sea:
 
 - Estado actual del flujo.
 - Agente activo.
-- Tarea en curso.
-- Bloqueo vigente.
-- Siguiente paso inmediato.
+- Bloqueo del flujo.
+- Siguiente paso del flujo.
+
+Documentar en `memory/current-task.md` cuando sea:
+
+- Tarea tecnica activa.
+- Owner.
+- Scope.
+- Validacion esperada.
+- Bloqueo de la tarea.
+- Siguiente paso tecnico inmediato.
 
 ## Salida Esperada
 
@@ -135,3 +152,4 @@ Documentar en `memory/progress.md` cuando sea:
 - Si hay conflicto entre `memory/` y `skills/`, actualizar para que gane `skills/`.
 - Si cambia el harness, revisar que los wrappers de herramienta sigan apuntando a `AGENTS.md` o a las rutas canonicas sin duplicar reglas.
 - Mantener `memory/progress.md` como snapshot actual; no acumular historial largo.
+- Mantener `memory/current-task.md` como snapshot de una tarea activa; no convertirlo en backlog.

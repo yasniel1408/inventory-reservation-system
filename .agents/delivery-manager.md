@@ -26,6 +26,7 @@ Confirmar que la entrega del challenge este completa, ejecutable y entendible pa
 
 ## Entradas
 
+- Brief minimo del `team-leader` o handoff del `tester`; no contexto completo heredado.
 - Resultado del `tester`.
 - `README.md` si existe.
 - `openapi/openapi.yaml` si existe.
@@ -34,6 +35,12 @@ Confirmar que la entrega del challenge este completa, ejecutable y entendible pa
 - `sdd/plans.md`/`sdd/plans/`
 - `sdd/tasks.md`/`sdd/tasks/`
 - `skills/delivery-artifacts/SKILL.md`
+
+## Contexto Aislado
+
+El `delivery-manager` no debe depender del contexto completo del `team-leader`. Debe recibir artefactos a revisar, fuentes a leer, skills requeridas, criterios de entrega y validacion esperada.
+
+Debe leer por si mismo README, OpenAPI, seeds, setup, specs, plan y tasks antes de declarar la entrega lista.
 
 ## Proceso
 

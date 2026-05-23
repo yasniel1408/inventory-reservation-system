@@ -17,6 +17,7 @@ tenga analisis, plan, ejecucion, revision, pruebas y aprendizaje cuando aplica.
 - Cada agente selecciona y declara las skills que necesita para su tarea actual.
 - Cada agente usa el perfil de modelo recomendado para su rol si la herramienta lo permite.
 - Cada agente entrega un `## Handoff` cuando pasa trabajo al siguiente agente.
+- Los sub-agentes no heredan el contexto completo del `team-leader`; reciben un brief minimo y leen fuentes por cuenta propia.
 
 ## Flujo General
 
@@ -208,7 +209,7 @@ no cambia la disciplina del proceso.
 
 | Paso | Significado practico |
 | --- | --- |
-| Leer contexto | Revisar skills, specs, plan, tasks, memoria y archivos relevantes. |
+| Leer contexto | Revisar skills, specs, plan, tasks, memoria de flujo, tarea actual y archivos relevantes. |
 | Entender objetivo | Confirmar que se sabe que se debe producir y que queda fuera del alcance. |
 | Planificar el siguiente paso | Elegir la accion mas chica que mueve el trabajo sin mezclar responsabilidades. |
 | Ejecutar accion | Cambiar archivos, generar artefactos, revisar codigo o correr comandos segun el rol. |
@@ -328,6 +329,13 @@ Status:
 El status no reemplaza el trabajo. Sirve para que el usuario sepa donde esta el
 flujo, que camino tomo y que falta.
 
+## Memoria de Flujo y Tarea
+
+- `memory/progress.md`: etapa, agente activo, bloqueos del flujo y siguiente paso del flujo.
+- `memory/current-task.md`: tarea tecnica activa, owner, scope, validacion, bloqueo tecnico y proximo paso.
+
+No mezclar ambos: el progreso cuenta donde esta el flujo; la tarea actual cuenta que se ejecuta ahora.
+
 ## Handoff Entre Agentes
 
 Cada agente entrega al siguiente este bloque:
@@ -345,6 +353,34 @@ Cada agente entrega al siguiente este bloque:
 ```
 
 El handoff evita que el siguiente agente tenga que reconstruir contexto desde cero y hace el flujo portable entre herramientas.
+
+## Contexto de Sub-agentes
+
+```text
+team-leader
+    |
+    v
+brief minimo y autosuficiente
+    |
+    +-- objetivo concreto
+    +-- archivos owner
+    +-- fuentes a leer
+    +-- skills requeridas
+    +-- restricciones
+    +-- validacion esperada
+    +-- handoff esperado
+    |
+    v
+sub-agente lee fuentes por cuenta propia
+```
+
+Reglas:
+
+- No pasar todo el razonamiento interno del `team-leader`.
+- No pasar dudas, ramas descartadas o contexto no accionable.
+- No depender de memoria implicita del agente padre.
+- Si el brief no alcanza, el sub-agente pide aclaracion o lee las fuentes indicadas.
+- El sub-agente reporta que fuentes leyo y que skills aplico.
 
 ## Cierre Obligatorio
 

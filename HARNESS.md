@@ -78,7 +78,7 @@ Todo agente sigue el mismo ciclo operativo:
 leer contexto -> entender tarea -> planificar -> ejecutar -> validar -> reportar -> aprender -> repetir o cerrar
 ```
 
-Este bucle evita ejecucion a ciegas y deja trazabilidad en status, `memory/progress.md`, skills o memoria cuando corresponde.
+Este bucle evita ejecucion a ciegas y deja trazabilidad en status, `memory/progress.md`, `memory/current-task.md`, skills o memoria cuando corresponde.
 
 ## Handoff
 
@@ -106,6 +106,8 @@ Los wrappers no deben duplicar reglas. Si una regla aplica a todas las herramien
 
 - `memory/decisions.md`: decisiones estables.
 - `memory/learnings.md`: aprendizajes reutilizables y contexto historico.
+- `memory/progress.md`: snapshot del flujo y agentes.
+- `memory/current-task.md`: snapshot de la tarea tecnica activa.
 
 Si el aprendizaje debe guiar ejecucion futura, `skills-expert` debe evaluar moverlo o copiarlo a `skills/` como regla preventiva.
 

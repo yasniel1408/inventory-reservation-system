@@ -25,6 +25,8 @@ Este checklist valida que el harness siga siendo portable, descubrible y util si
 - [ ] Cada agente define `## Objetivo`, `## Modelo`, `## Entradas`, `## Proceso`, `## Salida Esperada`, `## Handoff` y `## Reglas`.
 - [ ] El flujo incluye `delivery-manager` entre `tester` y `skills-expert`.
 - [ ] Cada agente declara skills seleccionadas y perfil/modelo usado.
+- [ ] Cada sub-agente define `## Contexto Aislado`.
+- [ ] `team-leader` define `## Brief de Sub-agente`.
 
 ## SDD
 
@@ -41,6 +43,7 @@ Este checklist valida que el harness siga siendo portable, descubrible y util si
 - [ ] `memory/decisions.md` contiene decisiones estables.
 - [ ] `memory/learnings.md` contiene aprendizajes reutilizables.
 - [ ] `memory/progress.md` es snapshot actual y no log historico.
+- [ ] `memory/current-task.md` es snapshot de una tarea tecnica activa y no backlog.
 - [ ] Si una regla guia ejecucion futura, vive en `skills/`.
 - [ ] Si un dato solo da contexto historico, puede vivir en `memory/`.
 

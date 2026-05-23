@@ -7,6 +7,7 @@ Esta carpeta guarda memoria versionada dentro del repo. Es auditable y portable 
 - `decisions.md`: decisiones estables que no queremos rediscutir sin motivo.
 - `learnings.md`: aprendizajes reutilizables, especialmente bugs, fallos o ajustes de proceso.
 - `progress.md`: snapshot del estado actual del flujo y agentes.
+- `current-task.md`: snapshot de la tarea tecnica activa, owner, alcance, validacion y siguiente paso.
 
 ## Cuándo Leer
 
@@ -20,6 +21,7 @@ Leer esta carpeta cuando:
 
 No es obligatorio leer `memory/` para cada microtarea si `skills/`, specs y plan ya bastan.
 Si existe duda sobre el estado actual del flujo, leer `memory/progress.md`.
+Si existe duda sobre que tarea tecnica ejecutar ahora, leer `memory/current-task.md`.
 
 ## Cuándo Actualizar
 
@@ -30,8 +32,10 @@ Actualizar memoria cuando:
 - se descarta una decision previa;
 - se descubre un patron que conviene recordar, pero no necesariamente convertir en skill.
 - cambia el agente activo, etapa, bloqueo o siguiente paso relevante del flujo.
+- cambia la tarea tecnica activa, su owner, scope, validacion o bloqueo.
 
 `progress.md` debe actualizarse como snapshot: reemplazar estado actual, no acumular historial largo.
+`current-task.md` tambien debe actualizarse como snapshot: una tarea activa, no backlog paralelo.
 
 ## Relacion con Skills
 

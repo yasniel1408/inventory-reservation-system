@@ -16,6 +16,7 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
 - `.agents/` define roles de coordinacion.
 - `memory/` guarda decisiones y aprendizajes versionados del harness.
 - `memory/progress.md` guarda el snapshot actual del flujo y agentes.
+- `memory/current-task.md` guarda el snapshot de la tarea tecnica activa.
 - `HARNESS.md` explica el mapa operativo entre harness, SDD, wrappers, skills y memoria.
 - `AGENTS.md` es la fuente canonica tool-agnostic del harness.
 - `CLAUDE.md` y `opencode.json` son wrappers para herramientas especificas y no deben duplicar reglas.
@@ -38,9 +39,11 @@ Instrucciones obligatorias para Codex y agentes en este repositorio.
 - Cada agente debe recolectar y declarar las skills necesarias para su tarea actual antes de ejecutar.
 - Cada agente debe usar el perfil de modelo recomendado para su rol cuando la herramienta lo permita.
 - Cada agente debe entregar un bloque `## Handoff` al pasar trabajo al siguiente agente.
+- Los sub-agentes no deben heredar todo el contexto interno del `team-leader`; deben recibir un brief minimo y autosuficiente.
 - Si aparece un bug, regresion o validacion fallida con causa reusable, `skills-expert` debe documentar la regla preventiva en `skills/`.
 - Usar `memory/` para decisiones estables y aprendizajes historicos que no necesariamente son reglas operativas.
 - Usar `memory/progress.md` para retomar el estado actual sin convertirlo en log historico.
+- Usar `memory/current-task.md` para retomar la tarea tecnica activa sin mezclarla con el estado del flujo.
 - Si hay conflicto entre `.agents/` y `skills/`, ganan los `skills/`.
 - Si hay conflicto entre wrappers de herramienta y `AGENTS.md`, gana `AGENTS.md`.
 - Si hay conflicto entre `memory/` y `skills/`, ganan los `skills/`.
@@ -137,7 +140,8 @@ Reglas del bucle:
 - No avanzar al siguiente agente si falta aprobacion, validacion o ownership.
 - Si aparece un bloqueo, reportarlo y volver a planificar.
 - Si aparece un aprendizaje reusable, marcarlo para `skills-expert`.
-- Si el trabajo puede pausarse, actualizar `memory/progress.md`.
+- Si el flujo puede pausarse, actualizar `memory/progress.md`.
+- Si la tarea tecnica puede pausarse, actualizar `memory/current-task.md`.
 
 ## Handoff
 
@@ -155,10 +159,25 @@ Cada agente debe pasar un bloque reutilizable al siguiente:
 - Proximo paso:
 ```
 
+## Contexto de Sub-agentes
+
+Cuando `team-leader` instancia o deriva trabajo a un sub-agente, no debe pasarle todo su contexto interno. Debe entregar un brief minimo:
+
+- objetivo concreto;
+- archivos owner;
+- specs, tasks o criterios relevantes;
+- skills requeridas;
+- restricciones;
+- validacion esperada;
+- formato de handoff esperado.
+
+El sub-agente debe leer por si mismo los archivos fuente que necesite y no depender de memoria implicita, razonamiento privado o dudas internas del `team-leader`.
+
 ## Status y Resumen
 
 - Durante ejecucion, el usuario debe ver status recurrente y claro de que esta pasando.
-- Si el trabajo puede pausarse o cambiar de herramienta, reflejar el estado actual en `memory/progress.md`.
+- Si el flujo puede pausarse o cambiar de herramienta, reflejar el estado actual en `memory/progress.md`.
+- Si la tarea tecnica puede pausarse o cambiar de herramienta, reflejar tarea, owner, scope, bloqueo y siguiente paso en `memory/current-task.md`.
 - El status debe indicar:
   - etapa actual del flujo
   - agente activo

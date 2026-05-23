@@ -48,6 +48,12 @@
 - Motivo: permite pausar y retomar con Codex, Claude Code, OpenCode u otra herramienta sin depender de memoria interna.
 - Implicacion: no debe convertirse en log historico; se reemplaza el estado vigente.
 
+## Tarea Actual Separada del Progreso
+
+- Decision: `memory/current-task.md` guarda la tarea tecnica activa separada de `memory/progress.md`.
+- Motivo: el flujo de agentes y la tarea tecnica cambian a ritmos distintos.
+- Implicacion: `progress.md` muestra etapa/agente; `current-task.md` muestra task, owner, scope, validacion, bloqueo y siguiente paso.
+
 ## Bucle del Agente
 
 - Decision: todo agente trabaja con un bucle explicito de contexto, plan, ejecucion, validacion, status y aprendizaje.
@@ -89,6 +95,12 @@
 - Decision: cada agente entrega un bloque `## Handoff` al siguiente.
 - Motivo: hacer portable el flujo entre Codex, Claude Code, OpenCode u otra herramienta.
 - Implicacion: el siguiente agente recibe contexto, archivos, decisiones, validacion, riesgos y proximo paso sin reconstruir todo.
+
+## Contexto Aislado de Sub-agentes
+
+- Decision: los sub-agentes no heredan todo el contexto interno del `team-leader`.
+- Motivo: reducir tokens, evitar contaminacion por dudas o ramas descartadas y mantener ownership claro.
+- Implicacion: `team-leader` entrega un brief minimo y cada sub-agente lee por si mismo las fuentes requeridas.
 
 ## Stack del Challenge
 
