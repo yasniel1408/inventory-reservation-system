@@ -115,100 +115,118 @@
 
 ## Fase 4 - Tests Backend
 
-- [ ] T-016 Test de concurrencia para última unidad.
+- [x] T-016 Test de concurrencia para última unidad.
   - Owner: `backend/internal/reservations/`.
   - Referencias: `sdd/specs/001-inventory-reservation-system/test-spec.md#concurrencia-última-unidad`.
   - Validación: exactamente 1 éxito, stock final 0 disponible.
+  - Resultado: `TestPostgresCreateReservationLastUnitConcurrency` valida 50 goroutines, 1 éxito, `reserved_stock=1`, `available=0`.
 
-- [ ] T-017 Test de 100 requests para 10 unidades.
+- [x] T-017 Test de 100 requests para 10 unidades.
   - Owner: `backend/internal/reservations/`.
   - Referencias: `sdd/specs/001-inventory-reservation-system/test-spec.md#concurrencia-100-requests-por-10-unidades`.
   - Validación: 10 éxitos, 90 rechazos, sin stock negativo.
+  - Resultado: `TestPostgresCreateReservationTenUnitsConcurrency` valida 100 goroutines, 10 éxitos, 90 rechazos, stock final correcto.
 
-- [ ] T-018 Test de idempotencia de reserva en paralelo.
+- [x] T-018 Test de idempotencia de reserva en paralelo.
   - Owner: `backend/internal/reservations/`.
   - Referencias: `sdd/specs/001-inventory-reservation-system/test-spec.md#idempotencia-de-reserva`.
   - Validación: una reserva y un decremento.
+  - Resultado: `TestPostgresCreateReservationParallelIdempotency` exige mismo reservation ID para todos los outcomes paralelos y un solo decremento.
 
-- [ ] T-019 Test de release idempotente.
+- [x] T-019 Test de release idempotente.
   - Owner: `backend/internal/reservations/`.
   - Referencias: `sdd/specs/001-inventory-reservation-system/test-spec.md#idempotencia-de-release`.
   - Validación: stock devuelto una sola vez.
+  - Resultado: `TestPostgresReleaseReservationDoubleCallReturnsStockOnce` valida release paralelo y devolución única de stock.
 
-- [ ] T-020 Tests backend adicionales si el tiempo alcanza.
+- [x] T-020 Tests backend adicionales si el tiempo alcanza.
   - Owner: `backend/internal/reservations/`.
   - Referencias: `sdd/plans/001-inventory-reservation-system.md#tests`.
   - Casos: payload distinto con misma key, expiración doble, carrera release vs expiración.
+  - Resultado: se cubren conflicto de idempotencia, expiración doble y carrera release vs expiración con estado final de DB.
 
 ## Fase 5 - Frontend
 
-- [ ] T-021 Inicializar frontend React + Vite + TypeScript.
+- [x] T-021 Inicializar frontend React + Vite + TypeScript.
   - Owner: `frontend/`.
   - Referencias: `sdd/plans/001-inventory-reservation-system.md#frontend`, `skills/frontend-reservation-app/SKILL.md`.
   - Validación: test/build inicial del frontend.
+  - Resultado: frontend inicializado con Vite, React, TypeScript, ESLint y Vitest/jsdom; validado con `npm test`, `npm run build` y `npm run lint`.
 
-- [ ] T-022 Implementar cliente API tipado.
+- [x] T-022 Implementar cliente API tipado.
   - Owner: `frontend/src/api/`, `frontend/src/types/`.
   - Referencias: `sdd/specs/001-inventory-reservation-system/api-spec.md`.
   - Criterios: funciones para items, crear reserva, listar reservas y release.
+  - Resultado: `createApiClient` tipado cubre `GET /items`, `POST /reservations`, `GET /reservations` y `DELETE /reservations/{id}` con `Idempotency-Key` y errores API.
 
-- [ ] T-023 Implementar dashboard de inventario.
+- [x] T-023 Implementar dashboard de inventario.
   - Owner: `frontend/src/components/`.
   - Referencias: `sdd/user_histories/01_inventory_dashboard.feature`.
   - Criterios: muestra item, total, reservado/disponible y acción de reserva.
+  - Resultado: `InventoryDashboard` muestra inventario, métricas de stock, cantidad y acción de reserva por item.
 
-- [ ] T-024 Implementar flujo de reserva con feedback.
+- [x] T-024 Implementar flujo de reserva con feedback.
   - Owner: `frontend/src/components/`, `frontend/src/hooks/`.
   - Referencias: `sdd/user_histories/06_ui_feedback_and_state.feature`.
   - Criterios: success, invalid quantity, insufficient stock, loading state.
+  - Resultado: reserva genera key idempotente por intento, muestra success, cantidad inválida, stock insuficiente, error genérico y refetch posterior.
 
-- [ ] T-025 Implementar vista de reservas activas y release.
+- [x] T-025 Implementar vista de reservas activas y release.
   - Owner: `frontend/src/components/`.
   - Referencias: `sdd/user_histories/04_manual_release.feature`, `sdd/user_histories/06_ui_feedback_and_state.feature`.
   - Criterios: lista reservas activas, botón release, refetch después de release.
+  - Resultado: `ActiveReservations` lista reservas activas con botón de release, feedback y refetch posterior.
 
-- [ ] T-026 Implementar timer de expiración y reconciliación.
+- [x] T-026 Implementar timer de expiración y reconciliación.
   - Owner: `frontend/src/hooks/`, `frontend/src/lib/`.
   - Referencias: `sdd/user_histories/03_reservation_ttl.feature`, `sdd/plans/001-inventory-reservation-system.md#estado-frontend`.
   - Criterios: timer llega a cero, no baja de cero, dispara refetch una vez.
+  - Resultado: helper de timer calcula segundos restantes sin bajar de cero y dispara reconciliación una vez al expirar.
 
 ## Fase 6 - Tests Frontend
 
-- [ ] T-027 Unit test de timer.
+- [x] T-027 Unit test de timer.
   - Owner: `frontend/src/lib/` o `frontend/src/hooks/`.
   - Referencias: `sdd/specs/001-inventory-reservation-system/test-spec.md#unit-test-de-lógica-de-timer`.
+  - Resultado: `frontend/src/lib/timer.test.ts` cubre countdown, límite cero y notificación única de expiración.
 
-- [ ] T-028 Component test de happy path de reserva.
+- [x] T-028 Component test de happy path de reserva.
   - Owner: `frontend/src/components/`.
   - Referencias: `sdd/specs/001-inventory-reservation-system/test-spec.md#component-test-de-happy-path-de-reserva`.
+  - Resultado: `frontend/src/App.test.tsx` cubre reserva exitosa, feedback y refetch.
 
-- [ ] T-029 Component test de error por stock insuficiente.
+- [x] T-029 Component test de error por stock insuficiente.
   - Owner: `frontend/src/components/`.
   - Referencias: `sdd/specs/001-inventory-reservation-system/test-spec.md#component-test-de-estado-de-error`.
+  - Resultado: `frontend/src/App.test.tsx` cubre error de stock insuficiente sin crear reserva falsa.
 
 ## Fase 7 - Contrato y Entrega
 
-- [ ] T-030 Crear `openapi/openapi.yaml`.
+- [x] T-030 Crear `openapi/openapi.yaml`.
   - Owner: `openapi/openapi.yaml`.
   - Referencias: `sdd/user_histories/07_openapi_contract.feature`, `sdd/specs/001-inventory-reservation-system/api-spec.md`.
   - Criterios: documenta endpoints, schemas, headers, status codes y errores.
+  - Resultado: `openapi/openapi.yaml` documenta endpoints implementados, `Idempotency-Key`, `X-Session-ID`, schemas, status codes y errores reales.
 
-- [ ] T-031 Crear `README.md`.
+- [x] T-031 Crear `README.md`.
   - Owner: `README.md`.
   - Referencias: `skills/delivery-artifacts/SKILL.md`, `sdd/plans/001-inventory-reservation-system.md#entrega`.
   - Criterios: explica setup, tests, concurrencia, TTL, idempotencia y LLM usado.
+  - Resultado: `README.md` explica stack, setup DB/backend/frontend, seeds, tests, concurrencia, TTL, idempotencia, OpenAPI y LLM usado.
 
-- [ ] T-032 Crear o documentar chat history.
+- [x] T-032 Crear o documentar chat history.
   - Owner: `docs/chat-history.md` o README.
   - Referencias: `sdd/user_histories/08_sdd_traceability.feature`.
   - Criterios: el repo indica dónde está el historial completo de la conversación.
+  - Resultado: `docs/chat-history.md` resume el flujo de conversación y `README.md` apunta al historial completo en Codex.
 
-- [ ] T-033 Documentar comandos y decisiones finales.
+- [x] T-033 Documentar comandos y decisiones finales.
   - Owner: `README.md`.
   - Referencias: `sdd/plans/001-inventory-reservation-system.md`, `sdd/user_histories/08_sdd_traceability.feature`.
   - Criterios: comandos usados, supuestos relevantes y decisiones finales.
+  - Resultado: `README.md` documenta comandos, decisiones de concurrencia, idempotencia, TTL, PostgreSQL init y validación final.
 
-- [ ] T-034 Ejecutar validación final.
+- [x] T-034 Ejecutar validación final.
   - Owner: repo completo.
   - Comandos esperados:
     - backend tests
@@ -216,3 +234,24 @@
     - frontend build
     - validación OpenAPI si hay herramienta disponible
   - Criterios: resultados documentados en `README.md`.
+  - Resultado: validado con `ruby -e "require 'yaml'; YAML.load_file('openapi/openapi.yaml')"`, `go test ./...`, `npm test`, `npm run lint`, `npm run build` y `./scripts/validate-harness.sh`.
+
+## Fase 8 - Smoke End-to-End y Hardening Final
+
+- [x] T-035 Validar CORS para frontend Vite.
+  - Owner: `backend/internal/http/`.
+  - Referencias: `skills/frontend-reservation-app/SKILL.md`, `skills/backend-reservation-system/SKILL.md`, `README.md#frontend`.
+  - Criterios: `OPTIONS /reservations` permite `Content-Type`, `Idempotency-Key` y `X-Session-ID`; responses API exponen `Access-Control-Allow-Origin`.
+  - Resultado: se agrego test RED/GREEN `TestCorsPreflightAllowsFrontendReservationHeaders` y middleware CORS en router Gin.
+
+- [x] T-036 Ejecutar smoke UI + API + PostgreSQL real.
+  - Owner: repo completo.
+  - Referencias: `README.md`, `openapi/openapi.yaml`, `sdd/specs/001-inventory-reservation-system/acceptance-criteria.md`.
+  - Criterios: cargar inventario seed, crear reserva desde navegador, ver reserva activa, liberar y reconciliar stock sin errores de consola.
+  - Resultado: smoke validado con Apple Container PostgreSQL en `192.168.64.2`, backend local `8080`, frontend Vite `5173` y Playwright.
+
+- [x] T-037 Hardening visual responsive final.
+  - Owner: `frontend/src/App.css`.
+  - Referencias: `skills/frontend-reservation-app/SKILL.md`.
+  - Criterios: no comprimir texto de reserva activa ni desbordar layout mobile.
+  - Resultado: se agrego `box-sizing` local de app y layout propio para `reservation-row`.

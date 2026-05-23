@@ -65,3 +65,27 @@
 - Aprendizaje: reconstruir un replay idempotente desde estado vivo rompe el contrato si la reserva luego fue liberada o expirada.
 - Regla preventiva: guardar y devolver el `response_body` original para replay, y commitear outcomes determinísticos aun cuando el handler deba responder error.
 - Aplicado en: `backend/internal/reservations/postgres_store.go` y `skills/backend-reservation-system/SKILL.md`.
+
+## Tests DB con Apple Container
+
+- Aprendizaje: Apple Container puede publicar PostgreSQL en una IP de contenedor mientras otro servicio local ocupa `127.0.0.1:5432`.
+- Regla preventiva: los tests de integracion deben usar `TEST_DATABASE_URL` explicito, resetear schema desde migraciones y no depender de `docker-compose` ni de bootstrap por mounts.
+- Aplicado en: `backend/internal/reservations/postgres_store_integration_test.go`.
+
+## Frontend Vite/Vitest y Testing Library
+
+- Aprendizaje: `vite.config.ts` con bloque `test` falla en `tsc -b` si `defineConfig` viene de `vite`.
+- Regla preventiva: importar `defineConfig` desde `vitest/config` cuando el proyecto use Vitest integrado a Vite.
+- Aplicado en: `frontend/vite.config.ts` y `skills/frontend-reservation-app/SKILL.md`.
+
+## Tests React Aislados
+
+- Aprendizaje: sin `cleanup()` entre tests, React Testing Library puede dejar DOM acumulado y producir queries duplicadas o falsos fallos.
+- Regla preventiva: agregar `afterEach(cleanup + vi.clearAllMocks)` en suites de componentes.
+- Aplicado en: `frontend/src/App.test.tsx` y `skills/frontend-reservation-app/SKILL.md`.
+
+## CORS en Smoke Frontend Real
+
+- Aprendizaje: los tests mockeados del frontend no detectan que Vite y Gin corren en origins distintos.
+- Regla preventiva: cuando `VITE_API_BASE_URL` apunta a otro origin, validar `Access-Control-Allow-Origin` y preflight `OPTIONS` para `Content-Type`, `Idempotency-Key` y `X-Session-ID`.
+- Aplicado en: `backend/internal/http/router.go`, `backend/internal/http/router_test.go`, `skills/backend-reservation-system/SKILL.md` y `skills/frontend-reservation-app/SKILL.md`.

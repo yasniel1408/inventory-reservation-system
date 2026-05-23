@@ -5,27 +5,27 @@ Este archivo es un snapshot del estado actual del flujo. No es un log historico;
 ## Estado del Flujo
 
 - Fecha: 2026-05-22.
-- Etapa: Fase 3 completada; preparado para Fase 4.
+- Etapa: Fase 8 completada; entrega final lista.
 - Agente activo: team-leader.
 - Plan aprobado: si.
-- Tarea actual: Fase 3 completada; siguiente tarea tecnica en `memory/current-task.md`.
+- Tarea actual: sin tarea tecnica pendiente en el tablero actual; snapshot en `memory/current-task.md`.
 - Bloqueos: ninguno.
-- Siguiente paso: continuar con T-016 test de concurrencia para ultima unidad documentada en `memory/current-task.md`.
+- Siguiente paso: entrega final lista para revisión del usuario.
 
 ## Agentes
 
-- analyst: completo; valido que Fase 3 T-007..T-015 era coherente como backend usable.
-- team-leader: completo; mantuvo núcleo de reservas bajo un ownership por acoplamiento transaccional.
-- developer: completo; implemento backend Go/Gin/GORM/PostgreSQL con TDD focalizado.
-- reviewer: completo; detecto bugs de idempotencia, tiempo DB e IDs invalidos.
-- tester: completo; ejecuto suite Go y validacion del harness.
-- delivery-manager: completo; confirmo que Fase 3 deja API base para OpenAPI/README posteriores.
-- skills-expert: completo; documento reglas preventivas de idempotencia y tiempo DB.
+- analyst: completo; Fase 7 aprobada por el usuario.
+- team-leader: completo; definio Fase 8 como smoke end-to-end y hardening final.
+- developer: completo; corrigio CORS con TDD y ajusto responsive de reservas activas.
+- reviewer: completo; detecto CORS como riesgo alto mediante sub-agente de solo lectura.
+- tester: completo; ejecuto unit/integration tests, CORS curl, smoke Playwright y validaciones finales.
+- delivery-manager: completo; actualizo README/chat history/tasks con evidencia de smoke.
+- skills-expert: completo; documento regla CORS en skills y memoria.
 
 ## Ultimo Resumen
 
-- Cambios realizados: se implemento backend Go con config, store GORM, handlers REST, items, reservas atomicas, idempotencia, release, expiracion lazy y errores estables.
-- Skills aplicadas: `development-flow`, `sdd-architecture`, `backend-reservation-system`, `tdd-development`.
+- Cambios realizados: se agrego Fase 8, CORS backend, test CORS, smoke UI+API+DB real, hardening responsive y documentacion de la validacion.
+- Skills aplicadas: `development-flow`, `sdd-architecture`, `delivery-artifacts`, `backend-reservation-system`, `frontend-reservation-app`, `tdd-development`.
 - Agentes usados: `analyst`, `team-leader`, `developer`, `reviewer`, `tester`, `delivery-manager`, `skills-expert`.
-- Validaciones: lectura de skills; `go test ./...` en `backend/`; `scripts/validate-harness.sh`; revision focalizada de idempotencia, DB time y UUID validation.
-- Riesgos: validacion runtime con PostgreSQL real y tests concurrentes quedan para Fase 4.
+- Validaciones: lectura de skills; RED/GREEN CORS; `go test ./...`; `TEST_DATABASE_URL=... go test ./...`; `npm test`; `npm run lint`; `npm run build`; CORS curl; Playwright smoke; `ruby -e "require 'yaml'; YAML.load_file('openapi/openapi.yaml')"`; `scripts/validate-harness.sh`.
+- Riesgos: Docker/OrbStack no estaba disponible, pero Apple Container si; el smoke uso `container` con PostgreSQL en `192.168.64.2`.

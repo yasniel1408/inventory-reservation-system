@@ -25,6 +25,7 @@ Usar este skill para todo el frontend. Seguir el PDF: React + Vite + TypeScript.
 ## Reglas de Estado
 
 - Backend es canónico.
+- Si el frontend corre separado del backend, validar CORS real en navegador o con preflight `OPTIONS` antes de cerrar la entrega.
 - Refetch después de reserve, release y expiración de timer.
 - No crear reservas falsas ante errores.
 - Generar una `Idempotency-Key` por intento de reserva y reutilizarla solo para retries del mismo intento.
@@ -34,3 +35,10 @@ Usar este skill para todo el frontend. Seguir el PDF: React + Vite + TypeScript.
 - Unit tests para lógica de timer.
 - Component test de happy path de reserva.
 - Component test de estado de error, por ejemplo stock insuficiente.
+
+## Reglas de Validación Frontend
+
+- Si `vite.config.ts` contiene bloque `test`, importar `defineConfig` desde `vitest/config` para que `tsc -b` acepte la configuración.
+- En tests de componentes con React Testing Library, limpiar render entre casos con `cleanup()` y resetear mocks para evitar queries duplicadas por DOM acumulado.
+- Los tests deben mockear errores API con el mismo contrato observable que la app usa: al menos `code` estable, por ejemplo `insufficient_stock`.
+- Si el backend no está corriendo, la inspección browser puede mostrar `ERR_CONNECTION_REFUSED`; eso solo valida estado visual de error, no flujo end-to-end.

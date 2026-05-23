@@ -221,6 +221,30 @@ func TestInternalErrorsUseStableShape(t *testing.T) {
 	assertErrorCode(t, res.Body.Bytes(), "internal_error")
 }
 
+func TestCorsPreflightAllowsFrontendReservationHeaders(t *testing.T) {
+	router := httpapi.NewRouter(httpapi.Dependencies{
+		Items:        fakeItemsService{},
+		Reservations: fakeReservationsService{},
+	})
+
+	req := httptest.NewRequest(http.MethodOptions, "/reservations", nil)
+	req.Header.Set("Origin", "http://localhost:5173")
+	req.Header.Set("Access-Control-Request-Method", http.MethodPost)
+	req.Header.Set("Access-Control-Request-Headers", "content-type,idempotency-key")
+	res := httptest.NewRecorder()
+	router.ServeHTTP(res, req)
+
+	if res.Code != http.StatusNoContent {
+		t.Fatalf("expected 204, got %d: %s", res.Code, res.Body.String())
+	}
+	if got := res.Header().Get("Access-Control-Allow-Origin"); got != "*" {
+		t.Fatalf("expected wildcard allow origin, got %q", got)
+	}
+	if got := res.Header().Get("Access-Control-Allow-Headers"); !strings.Contains(got, "Idempotency-Key") {
+		t.Fatalf("expected idempotency header to be allowed, got %q", got)
+	}
+}
+
 func assertErrorCode(t *testing.T, raw []byte, expected string) {
 	t.Helper()
 

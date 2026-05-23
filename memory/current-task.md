@@ -5,41 +5,46 @@ Este archivo es un snapshot de la tarea tecnica activa. No es historial; se reem
 ## Identificacion
 
 - Fecha: 2026-05-22.
-- Task activa: T-016 Test de concurrencia para última unidad.
+- Task activa: entrega final.
 - Tablero: `sdd/tasks/001-inventory-reservation-system.md`.
 - Plan asociado: `sdd/plans/001-inventory-reservation-system.md`.
-- Estado: pendiente.
+- Estado: sin tarea tecnica pendiente en el tablero actual.
 
 ## Owner y Alcance
 
-- Owner: `backend/internal/reservations/`.
+- Owner: repo completo.
 - Archivos/carpetas esperadas:
-  - `backend/internal/reservations/*_test.go`
+  - `README.md`
+  - `openapi/openapi.yaml`
+  - `docs/chat-history.md`
+  - `backend/internal/http/router.go`
+  - `backend/internal/http/router_test.go`
+  - `frontend/src/App.css`
+  - `sdd/tasks/001-inventory-reservation-system.md`
 
 ## Riesgo y Ejecucion
 
-- Risk level: alto.
-- Modelo sugerido: Codex alto para tests concurrentes y estado final DB.
-- Agentes requeridos: team-leader, developer, reviewer, tester, skills-expert.
-- Puede paralelizarse: no sobre `internal/reservations/`; los tests de concurrencia pisan el mismo contrato.
-- Criterio para escalar: si Docker/PostgreSQL no esta disponible, si aparecen flakiness o si falla atomicidad/idempotencia.
+- Risk level: bajo.
+- Modelo sugerido: Codex estandar para cierre; escalar si el usuario pide cambios de alcance.
+- Agentes requeridos: team-leader, reviewer, delivery-manager, skills-expert si hay cambios nuevos.
+- Puede paralelizarse: no aplica hasta que exista nueva tarea.
+- Criterio para escalar: si se detecta divergencia entre README, OpenAPI, codigo o tests finales.
 
 ## Contexto Necesario
 
-- Skills base: `development-flow`, `sdd-architecture`, `backend-reservation-system`.
-- Si se escribe o corrige código productivo por fallos de test: agregar `tdd-development`.
+- Skills base: `development-flow`, `sdd-architecture`, `delivery-artifacts`.
+- Si se pide implementar cambios nuevos: agregar skill tecnica correspondiente y `tdd-development`.
 - Referencias directas:
-  - `sdd/specs/001-inventory-reservation-system/test-spec.md#concurrencia-última-unidad`
-  - `skills/backend-reservation-system/SKILL.md`
-  - `sdd/tasks/001-inventory-reservation-system.md#fase-4---tests-backend`
-- Antes de implementar, el `team-leader` debe confirmar si hay PostgreSQL disponible o definir estrategia local de test.
+  - `README.md`
+  - `openapi/openapi.yaml`
+  - `sdd/tasks/001-inventory-reservation-system.md`
+  - `sdd/TRACEABILITY.md`
+- Antes de nuevos cambios, el `team-leader` debe confirmar nuevo alcance.
 
 ## Validacion Esperada
 
-- Test concurrente por ultima unidad demuestra exactamente 1 exito.
-- El test verifica estado final de DB, no solo conteo de responses.
-- `go test ./...` desde `backend/` pasa.
-- `sdd/tasks/001-inventory-reservation-system.md` se actualiza si T-016 queda completa.
+- No hay tareas pendientes en el tablero actual.
+- Validaciones finales documentadas siguen pasando.
 - `scripts/validate-harness.sh` sigue pasando.
 
 ## Bloqueos
@@ -48,4 +53,4 @@ Este archivo es un snapshot de la tarea tecnica activa. No es historial; se reem
 
 ## Siguiente Paso
 
-- Activar `team-leader` para preparar brief de T-016 y ejecutar tests backend concurrentes.
+- Entrega final lista para revisión del usuario.

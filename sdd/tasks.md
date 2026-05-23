@@ -9,8 +9,8 @@ Este archivo es el indice de tableros de tareas activos. El detalle vive en `sdd
 ## Estado Actual
 
 - Plan asociado: `sdd/plans/001-inventory-reservation-system.md`.
-- Fase actual: Fase 4 - Tests Backend.
-- Proxima tarea: `T-016 Test de concurrencia para última unidad`.
+- Fase actual: Fase 8 - Smoke End-to-End y Hardening Final completada.
+- Proxima tarea: entrega final.
 
 ## Regla
 

@@ -31,6 +31,7 @@ func NewRouter(deps Dependencies) http.Handler {
 
 	router := gin.New()
 	router.Use(gin.Recovery())
+	router.Use(corsMiddleware())
 
 	router.GET("/items", func(c *gin.Context) {
 		result, err := deps.Items.ListItems(c.Request.Context())
@@ -120,6 +121,21 @@ func NewRouter(deps Dependencies) http.Handler {
 	})
 
 	return router
+}
+
+func corsMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
+		c.Header("Access-Control-Allow-Headers", "Content-Type, Idempotency-Key, X-Session-ID")
+
+		if c.Request.Method == http.MethodOptions {
+			c.AbortWithStatus(http.StatusNoContent)
+			return
+		}
+
+		c.Next()
+	}
 }
 
 func sessionID(c *gin.Context) string {

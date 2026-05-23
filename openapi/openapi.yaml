@@ -1,0 +1,362 @@
+openapi: 3.1.0
+info:
+  title: Inventory Reservation System API
+  version: 1.0.0
+  description: API para listar inventario, crear reservas idempotentes, listar reservas activas y liberar reservas.
+servers:
+  - url: http://localhost:8080
+    description: Backend local
+tags:
+  - name: Items
+  - name: Reservations
+paths:
+  /items:
+    get:
+      tags:
+        - Items
+      summary: Listar inventario
+      description: Expira reservas vencidas de forma lazy y devuelve el stock actual calculado.
+      responses:
+        "200":
+          description: Inventario disponible.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - items
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/InventoryItem"
+        "500":
+          $ref: "#/components/responses/InternalError"
+  /reservations:
+    post:
+      tags:
+        - Reservations
+      summary: Crear reserva idempotente
+      description: Crea una reserva activa de 60 segundos si hay stock disponible. La mutacion es atomica en PostgreSQL.
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/SessionId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateReservationRequest"
+      responses:
+        "201":
+          description: Reserva creada.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateReservationResponse"
+        "200":
+          description: Replay idempotente de una reserva creada previamente con el mismo payload.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/CreateReservationResponse"
+                  - type: object
+                    required:
+                      - idempotentReplay
+                    properties:
+                      idempotentReplay:
+                        type: boolean
+                        const: true
+        "400":
+          description: Request invalido, cantidad invalida o falta Idempotency-Key.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                missingIdempotencyKey:
+                  value:
+                    error:
+                      code: missing_idempotency_key
+                      message: Idempotency-Key header is required.
+                      details: {}
+                invalidQuantity:
+                  value:
+                    error:
+                      code: invalid_quantity
+                      message: Quantity must be a positive integer.
+                      details: {}
+                invalidRequest:
+                  value:
+                    error:
+                      code: invalid_request
+                      message: Request body is invalid.
+                      details: {}
+        "404":
+          description: Item no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error:
+                  code: item_not_found
+                  message: Item was not found.
+                  details: {}
+        "409":
+          description: Stock insuficiente o conflicto de idempotencia.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                insufficientStock:
+                  value:
+                    error:
+                      code: insufficient_stock
+                      message: Not enough stock available.
+                      details: {}
+                idempotencyConflict:
+                  value:
+                    error:
+                      code: idempotency_key_conflict
+                      message: Idempotency key was already used with a different payload.
+                      details: {}
+        "425":
+          description: Ya existe una request en progreso con la misma key.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error:
+                  code: idempotency_in_progress
+                  message: A request with this idempotency key is still in progress.
+                  details: {}
+        "500":
+          $ref: "#/components/responses/InternalError"
+    get:
+      tags:
+        - Reservations
+      summary: Listar reservas activas
+      description: Devuelve solo reservas activas de la session actual. Las reservas liberadas o expiradas no aparecen.
+      parameters:
+        - $ref: "#/components/parameters/SessionId"
+      responses:
+        "200":
+          description: Reservas activas.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - reservations
+                properties:
+                  reservations:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Reservation"
+        "500":
+          $ref: "#/components/responses/InternalError"
+  /reservations/{id}:
+    delete:
+      tags:
+        - Reservations
+      summary: Liberar reserva
+      description: Libera una reserva activa de forma idempotente. Si ya esta liberada o expirada, responde no-op exitoso sin devolver stock otra vez.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/SessionId"
+      responses:
+        "200":
+          description: Release efectivo o no-op idempotente.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReleaseReservationResponse"
+        "400":
+          description: Reservation id invalido.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error:
+                  code: invalid_request
+                  message: reservation id must be a valid UUID.
+                  details: {}
+        "404":
+          description: Reserva no encontrada para la session.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error:
+                  code: reservation_not_found
+                  message: Reservation was not found.
+                  details: {}
+        "500":
+          $ref: "#/components/responses/InternalError"
+components:
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: Key unica por intento de reserva. La misma key con el mismo payload devuelve el mismo outcome; con payload distinto devuelve conflicto.
+      schema:
+        type: string
+        minLength: 1
+    SessionId:
+      name: X-Session-ID
+      in: header
+      required: false
+      description: Session logica del usuario. Si no se envia, el backend usa anonymous-session.
+      schema:
+        type: string
+        minLength: 1
+  responses:
+    InternalError:
+      description: Error interno inesperado.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error:
+              code: internal_error
+              message: Unexpected internal error.
+              details: {}
+  schemas:
+    InventoryItem:
+      type: object
+      required:
+        - id
+        - name
+        - totalStock
+        - reservedStock
+        - availableStock
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        totalStock:
+          type: integer
+          minimum: 0
+        reservedStock:
+          type: integer
+          minimum: 0
+        availableStock:
+          type: integer
+          minimum: 0
+    ReservationStatus:
+      type: string
+      enum:
+        - active
+        - released
+        - expired
+    Reservation:
+      type: object
+      required:
+        - id
+        - itemId
+        - quantity
+        - status
+        - expiresAt
+        - createdAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        itemId:
+          type: string
+          format: uuid
+        itemName:
+          type: string
+        quantity:
+          type: integer
+          minimum: 1
+        status:
+          $ref: "#/components/schemas/ReservationStatus"
+        expiresAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        releasedAt:
+          type: string
+          format: date-time
+        expiredAt:
+          type: string
+          format: date-time
+    CreateReservationRequest:
+      type: object
+      required:
+        - itemId
+        - quantity
+      properties:
+        itemId:
+          type: string
+          format: uuid
+        quantity:
+          type: integer
+          minimum: 1
+    CreateReservationResponse:
+      type: object
+      required:
+        - reservation
+      properties:
+        reservation:
+          $ref: "#/components/schemas/Reservation"
+    ReleaseReservationResponse:
+      type: object
+      required:
+        - reservation
+        - stockReturned
+        - noop
+      properties:
+        reservation:
+          $ref: "#/components/schemas/Reservation"
+        stockReturned:
+          type: boolean
+        noop:
+          type: boolean
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: object
+          required:
+            - code
+            - message
+            - details
+          properties:
+            code:
+              type: string
+              enum:
+                - invalid_request
+                - invalid_quantity
+                - missing_idempotency_key
+                - item_not_found
+                - insufficient_stock
+                - idempotency_key_conflict
+                - idempotency_in_progress
+                - reservation_not_found
+                - internal_error
+            message:
+              type: string
+            details:
+              type: object
+              additionalProperties: true
